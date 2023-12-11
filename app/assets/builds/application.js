@@ -1677,7 +1677,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState2(initialState) {
+          function useState(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -2479,7 +2479,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -30125,40 +30125,84 @@
 
   // app/javascript/react/src/components/Sidebar.jsx
   var SidebarContainer = st.div`
-  width: 250px;
+  width: 16rem;
   background-color: #171717;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  align-items: center;
+  padding-top: 20px;
 `;
-  var Logo = st.h1`
+  var Logo = st.p`
   color: white;
   text-align: center;
   display: flex;
-  align-items: center; /* Alignez le texte et l'icône verticalement */
+  align-items: center;
+  padding-left: 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
 `;
   var Icon = st.span`
   margin-right: 10px; /* Espacement entre l'icône et le texte */
   img {
-    width: 1.7rem;
+    width: 1rem;
   }
 `;
   var MenuItem = st.a`
-  padding: 10px 15px;
   color: white;
   text-decoration: none;
   display: flex;
-  align-items: center; /* Alignez l'icône et le texte verticalement */
-  
+  align-items: center;
+  padding-left: 3rem;
+  font-size: 1.2rem;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+
   &:hover {
     background-color: #5ce1e6;
     color: black;
   }
+
+  &:not(:last-child) {
+    margin-bottom: 10px; /* Espace entre les éléments du menu */
+  }
+`;
+  var Divider = st.hr`
+    width: 80%;
+    background-color: white;
+    border: none;
+    height: 1px;
+    margin: auto;
+    margin-bottom: 15px;
+
+`;
+  var handleLogout = () => {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": csrfToken,
+        // Ajoutez le jeton CSRF aux en-têtes
+        "Content-Type": "application/json"
+      }
+    };
+    fetch("/users/sign_out", requestOptions).then((response) => {
+      if (response.ok) {
+        window.location.replace("/");
+      } else {
+        console.error("Erreur lors de la d\xE9connexion");
+      }
+    }).catch((error) => {
+      console.error("Erreur lors de la d\xE9connexion", error);
+    });
+  };
+  var LogoutItem = st(MenuItem)`
 `;
   var Sidebar = () => {
-    return /* @__PURE__ */ import_react2.default.createElement(SidebarContainer, null, /* @__PURE__ */ import_react2.default.createElement(Logo, null, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/house.svg", alt: "house" })), "Agence Immo"), /* @__PURE__ */ import_react2.default.createElement(MenuItem, { href: "/admin/dashboard" }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/house.svg", alt: "house" })), "Dashboard"), /* @__PURE__ */ import_react2.default.createElement(MenuItem, { href: "/admin/users" }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/house.svg", alt: "house" })), "Users"));
+    return /* @__PURE__ */ import_react2.default.createElement(SidebarContainer, null, /* @__PURE__ */ import_react2.default.createElement(Logo, null, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/house-icon.svg", alt: "house" })), "Agence Immo"), /* @__PURE__ */ import_react2.default.createElement(MenuItem, { href: "/admin/dashboard" }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/dashboard-icon.svg", alt: "dashboard" })), "Dashboard"), /* @__PURE__ */ import_react2.default.createElement(MenuItem, { href: "/admin/users" }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/users-icon.svg", alt: "users" })), "Users"), /* @__PURE__ */ import_react2.default.createElement(Divider, null), " ", /* @__PURE__ */ import_react2.default.createElement(LogoutItem, { onClick: handleLogout }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/logout-icon.svg", alt: "logout" })), "Logout"));
   };
   var Sidebar_default = Sidebar;
 
