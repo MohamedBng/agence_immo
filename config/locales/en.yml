@@ -30,4 +30,38 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    users:
+      created: "User was successfully created."
+      updated: "User was successfully updated."
+      destroyed: "User was successfully deleted."
+      form:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        role: "Role"
+        submit: "Create User"
+        select_role: "Select a role"
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        role: "Role"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "can't be blank"
+              taken: "has already been taken"
+            password:
+              blank: "can't be blank"
+            password_confirmation:
+              blank: "can't be blank"
+            role:
+              blank: "can't be blank"
+

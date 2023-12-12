@@ -1,0 +1,17 @@
+<%= form_for([:admin, @user]) do |f| %>
+  <%= f.label :email, t('admin.users.form.email') %>
+  <%= f.email_field :email %>
+
+  <% if @user.new_record? %>
+    <%= f.label :password, t('admin.users.form.password') %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation, t('admin.users.form.password_confirmation') %>
+    <%= f.password_field :password_confirmation %>
+  <% end %>
+
+  <%= f.label :role, t('admin.users.form.role') %>
+  <%= f.select :role, User.roles.keys.map { |role| [role.titleize, role] }, { include_blank: t('users.form.select_role') } %>
+  
+  <%= f.submit t('admin.users.form.submit') %>
+<% end %>

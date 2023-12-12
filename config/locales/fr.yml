@@ -1,0 +1,35 @@
+fr:
+  admin:
+    users:
+      created: "Utilisateur créé avec succès."
+      updated: "Utilisateur mis à jour avec succès."
+      destroyed: "Utilisateur supprimé avec succès."
+      form:
+        email: "E-mail"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe"
+        role: "Rôle"
+        submit: "Créer Utilisateur"
+        select_role: "Sélectionnez un rôle"
+  activerecord:
+    models:
+      user: "Utilisateur"
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe"
+        role: "Rôle"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "ne peut pas être vide"
+              taken: "est déjà utilisé"
+            password:
+              blank: "ne peut pas être vide"
+            password_confirmation:
+              blank: "ne peut pas être vide"
+            role:
+              blank: "ne peut pas être vide"

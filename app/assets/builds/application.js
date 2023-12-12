@@ -1366,7 +1366,7 @@
               forEachFunc.apply(this, arguments);
             }, forEachContext);
           }
-          function toArray(children) {
+          function toArray2(children) {
             return mapChildren(children, function(child) {
               return child;
             }) || [];
@@ -2445,7 +2445,7 @@
             map: mapChildren,
             forEach: forEachChildren,
             count: countChildren,
-            toArray,
+            toArray: toArray2,
             only: onlyChild
           };
           exports.Children = Children;
@@ -8163,29 +8163,29 @@
             startText = null;
             fallbackText = null;
           }
-          function getData() {
+          function getData2() {
             if (fallbackText) {
               return fallbackText;
             }
-            var start2;
+            var start3;
             var startValue = startText;
             var startLength = startValue.length;
             var end;
             var endValue = getText();
             var endLength = endValue.length;
-            for (start2 = 0; start2 < startLength; start2++) {
-              if (startValue[start2] !== endValue[start2]) {
+            for (start3 = 0; start3 < startLength; start3++) {
+              if (startValue[start3] !== endValue[start3]) {
                 break;
               }
             }
-            var minEnd = startLength - start2;
+            var minEnd = startLength - start3;
             for (end = 1; end <= minEnd; end++) {
               if (startValue[startLength - end] !== endValue[endLength - end]) {
                 break;
               }
             }
             var sliceTail = end > 1 ? 1 - end : void 0;
-            fallbackText = endValue.slice(start2, sliceTail);
+            fallbackText = endValue.slice(start3, sliceTail);
             return fallbackText;
           }
           function getText() {
@@ -8634,7 +8634,7 @@
                 isComposing = initialize(nativeEventTarget);
               } else if (eventType === "onCompositionEnd") {
                 if (isComposing) {
-                  fallbackData = getData();
+                  fallbackData = getData2();
                 }
               }
             }
@@ -8679,7 +8679,7 @@
           function getFallbackBeforeInputChars(domEventName, nativeEvent) {
             if (isComposing) {
               if (domEventName === "compositionend" || !canUseCompositionEvent && isFallbackCompositionEnd(domEventName, nativeEvent)) {
-                var chars = getData();
+                var chars = getData2();
                 reset();
                 isComposing = false;
                 return chars;
@@ -9046,7 +9046,7 @@
           }
           function getModernOffsetsFromPoints(outerNode, anchorNode, anchorOffset, focusNode, focusOffset) {
             var length2 = 0;
-            var start2 = -1;
+            var start3 = -1;
             var end = -1;
             var indexWithinAnchor = 0;
             var indexWithinFocus = 0;
@@ -9057,7 +9057,7 @@
                 var next2 = null;
                 while (true) {
                   if (node2 === anchorNode && (anchorOffset === 0 || node2.nodeType === TEXT_NODE)) {
-                    start2 = length2 + anchorOffset;
+                    start3 = length2 + anchorOffset;
                   }
                   if (node2 === focusNode && (focusOffset === 0 || node2.nodeType === TEXT_NODE)) {
                     end = length2 + focusOffset;
@@ -9076,7 +9076,7 @@
                     break outer;
                   }
                   if (parentNode === anchorNode && ++indexWithinAnchor === anchorOffset) {
-                    start2 = length2;
+                    start3 = length2;
                   }
                   if (parentNode === focusNode && ++indexWithinFocus === focusOffset) {
                     end = length2;
@@ -9089,11 +9089,11 @@
                 }
                 node2 = next2;
               }
-            if (start2 === -1 || end === -1) {
+            if (start3 === -1 || end === -1) {
               return null;
             }
             return {
-              start: start2,
+              start: start3,
               end
             };
           }
@@ -9105,14 +9105,14 @@
             }
             var selection = win.getSelection();
             var length2 = node2.textContent.length;
-            var start2 = Math.min(offsets.start, length2);
-            var end = offsets.end === void 0 ? start2 : Math.min(offsets.end, length2);
-            if (!selection.extend && start2 > end) {
+            var start3 = Math.min(offsets.start, length2);
+            var end = offsets.end === void 0 ? start3 : Math.min(offsets.end, length2);
+            if (!selection.extend && start3 > end) {
               var temp = end;
-              end = start2;
-              start2 = temp;
+              end = start3;
+              start3 = temp;
             }
-            var startMarker = getNodeForCharacterOffset(node2, start2);
+            var startMarker = getNodeForCharacterOffset(node2, start3);
             var endMarker = getNodeForCharacterOffset(node2, end);
             if (startMarker && endMarker) {
               if (selection.rangeCount === 1 && selection.anchorNode === startMarker.node && selection.anchorOffset === startMarker.offset && selection.focusNode === endMarker.node && selection.focusOffset === endMarker.offset) {
@@ -9121,7 +9121,7 @@
               var range = doc.createRange();
               range.setStart(startMarker.node, startMarker.offset);
               selection.removeAllRanges();
-              if (start2 > end) {
+              if (start3 > end) {
                 selection.addRange(range);
                 selection.extend(endMarker.node, endMarker.offset);
               } else {
@@ -9229,13 +9229,13 @@
             };
           }
           function setSelection(input, offsets) {
-            var start2 = offsets.start;
+            var start3 = offsets.start;
             var end = offsets.end;
             if (end === void 0) {
-              end = start2;
+              end = start3;
             }
             if ("selectionStart" in input) {
-              input.selectionStart = start2;
+              input.selectionStart = start3;
               input.selectionEnd = Math.min(end, input.value.length);
             } else {
               setOffsets(input, offsets);
@@ -15401,22 +15401,22 @@
           }
           function mountTransition() {
             var _mountState = mountState(false), isPending = _mountState[0], setPending = _mountState[1];
-            var start2 = startTransition.bind(null, setPending);
+            var start3 = startTransition.bind(null, setPending);
             var hook = mountWorkInProgressHook();
-            hook.memoizedState = start2;
-            return [isPending, start2];
+            hook.memoizedState = start3;
+            return [isPending, start3];
           }
           function updateTransition() {
             var _updateState = updateState(), isPending = _updateState[0];
             var hook = updateWorkInProgressHook();
-            var start2 = hook.memoizedState;
-            return [isPending, start2];
+            var start3 = hook.memoizedState;
+            return [isPending, start3];
           }
           function rerenderTransition() {
             var _rerenderState = rerenderState(), isPending = _rerenderState[0];
             var hook = updateWorkInProgressHook();
-            var start2 = hook.memoizedState;
-            return [isPending, start2];
+            var start3 = hook.memoizedState;
+            return [isPending, start3];
           }
           var isUpdatingOpaqueValueInRenderPhase = false;
           function getIsUpdatingOpaqueValueInRenderPhaseInDEV() {
@@ -24073,16 +24073,16 @@
   var require_client = __commonJS({
     "node_modules/react-dom/client.js"(exports) {
       "use strict";
-      var m = require_react_dom();
+      var m2 = require_react_dom();
       if (false) {
-        exports.createRoot = m.createRoot;
-        exports.hydrateRoot = m.hydrateRoot;
+        exports.createRoot = m2.createRoot;
+        exports.hydrateRoot = m2.hydrateRoot;
       } else {
-        i2 = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        i2 = m2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         exports.createRoot = function(c2, o2) {
           i2.usingClientEntryPoint = true;
           try {
-            return m.createRoot(c2, o2);
+            return m2.createRoot(c2, o2);
           } finally {
             i2.usingClientEntryPoint = false;
           }
@@ -24090,7 +24090,7 @@
         exports.hydrateRoot = function(c2, h, o2) {
           i2.usingClientEntryPoint = true;
           try {
-            return m.hydrateRoot(c2, h, o2);
+            return m2.hydrateRoot(c2, h, o2);
           } finally {
             i2.usingClientEntryPoint = false;
           }
@@ -24136,6 +24136,623 @@
       };
     }
   });
+
+  // node_modules/@rails/ujs/app/assets/javascripts/rails-ujs.esm.js
+  var linkClickSelector = "a[data-confirm], a[data-method], a[data-remote]:not([disabled]), a[data-disable-with], a[data-disable]";
+  var buttonClickSelector = {
+    selector: "button[data-remote]:not([form]), button[data-confirm]:not([form])",
+    exclude: "form button"
+  };
+  var inputChangeSelector = "select[data-remote], input[data-remote], textarea[data-remote]";
+  var formSubmitSelector = "form:not([data-turbo=true])";
+  var formInputClickSelector = "form:not([data-turbo=true]) input[type=submit], form:not([data-turbo=true]) input[type=image], form:not([data-turbo=true]) button[type=submit], form:not([data-turbo=true]) button:not([type]), input[type=submit][form], input[type=image][form], button[type=submit][form], button[form]:not([type])";
+  var formDisableSelector = "input[data-disable-with]:enabled, button[data-disable-with]:enabled, textarea[data-disable-with]:enabled, input[data-disable]:enabled, button[data-disable]:enabled, textarea[data-disable]:enabled";
+  var formEnableSelector = "input[data-disable-with]:disabled, button[data-disable-with]:disabled, textarea[data-disable-with]:disabled, input[data-disable]:disabled, button[data-disable]:disabled, textarea[data-disable]:disabled";
+  var fileInputSelector = "input[name][type=file]:not([disabled])";
+  var linkDisableSelector = "a[data-disable-with], a[data-disable]";
+  var buttonDisableSelector = "button[data-remote][data-disable-with], button[data-remote][data-disable]";
+  var nonce = null;
+  var loadCSPNonce = () => {
+    const metaTag = document.querySelector("meta[name=csp-nonce]");
+    return nonce = metaTag && metaTag.content;
+  };
+  var cspNonce = () => nonce || loadCSPNonce();
+  var m = Element.prototype.matches || Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector;
+  var matches = function(element, selector) {
+    if (selector.exclude) {
+      return m.call(element, selector.selector) && !m.call(element, selector.exclude);
+    } else {
+      return m.call(element, selector);
+    }
+  };
+  var EXPANDO = "_ujsData";
+  var getData = (element, key) => element[EXPANDO] ? element[EXPANDO][key] : void 0;
+  var setData = function(element, key, value) {
+    if (!element[EXPANDO]) {
+      element[EXPANDO] = {};
+    }
+    return element[EXPANDO][key] = value;
+  };
+  var $ = (selector) => Array.prototype.slice.call(document.querySelectorAll(selector));
+  var isContentEditable = function(element) {
+    var isEditable = false;
+    do {
+      if (element.isContentEditable) {
+        isEditable = true;
+        break;
+      }
+      element = element.parentElement;
+    } while (element);
+    return isEditable;
+  };
+  var csrfToken = () => {
+    const meta = document.querySelector("meta[name=csrf-token]");
+    return meta && meta.content;
+  };
+  var csrfParam = () => {
+    const meta = document.querySelector("meta[name=csrf-param]");
+    return meta && meta.content;
+  };
+  var CSRFProtection = (xhr) => {
+    const token2 = csrfToken();
+    if (token2) {
+      return xhr.setRequestHeader("X-CSRF-Token", token2);
+    }
+  };
+  var refreshCSRFTokens = () => {
+    const token2 = csrfToken();
+    const param = csrfParam();
+    if (token2 && param) {
+      return $('form input[name="' + param + '"]').forEach((input) => input.value = token2);
+    }
+  };
+  var AcceptHeaders = {
+    "*": "*/*",
+    text: "text/plain",
+    html: "text/html",
+    xml: "application/xml, text/xml",
+    json: "application/json, text/javascript",
+    script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+  };
+  var ajax = (options) => {
+    options = prepareOptions(options);
+    var xhr = createXHR(options, function() {
+      const response = processResponse(xhr.response != null ? xhr.response : xhr.responseText, xhr.getResponseHeader("Content-Type"));
+      if (Math.floor(xhr.status / 100) === 2) {
+        if (typeof options.success === "function") {
+          options.success(response, xhr.statusText, xhr);
+        }
+      } else {
+        if (typeof options.error === "function") {
+          options.error(response, xhr.statusText, xhr);
+        }
+      }
+      return typeof options.complete === "function" ? options.complete(xhr, xhr.statusText) : void 0;
+    });
+    if (options.beforeSend && !options.beforeSend(xhr, options)) {
+      return false;
+    }
+    if (xhr.readyState === XMLHttpRequest.OPENED) {
+      return xhr.send(options.data);
+    }
+  };
+  var prepareOptions = function(options) {
+    options.url = options.url || location.href;
+    options.type = options.type.toUpperCase();
+    if (options.type === "GET" && options.data) {
+      if (options.url.indexOf("?") < 0) {
+        options.url += "?" + options.data;
+      } else {
+        options.url += "&" + options.data;
+      }
+    }
+    if (!(options.dataType in AcceptHeaders)) {
+      options.dataType = "*";
+    }
+    options.accept = AcceptHeaders[options.dataType];
+    if (options.dataType !== "*") {
+      options.accept += ", */*; q=0.01";
+    }
+    return options;
+  };
+  var createXHR = function(options, done) {
+    const xhr = new XMLHttpRequest();
+    xhr.open(options.type, options.url, true);
+    xhr.setRequestHeader("Accept", options.accept);
+    if (typeof options.data === "string") {
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    }
+    if (!options.crossDomain) {
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      CSRFProtection(xhr);
+    }
+    xhr.withCredentials = !!options.withCredentials;
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        return done(xhr);
+      }
+    };
+    return xhr;
+  };
+  var processResponse = function(response, type) {
+    if (typeof response === "string" && typeof type === "string") {
+      if (type.match(/\bjson\b/)) {
+        try {
+          response = JSON.parse(response);
+        } catch (error) {
+        }
+      } else if (type.match(/\b(?:java|ecma)script\b/)) {
+        const script = document.createElement("script");
+        script.setAttribute("nonce", cspNonce());
+        script.text = response;
+        document.head.appendChild(script).parentNode.removeChild(script);
+      } else if (type.match(/\b(xml|html|svg)\b/)) {
+        const parser = new DOMParser();
+        type = type.replace(/;.+/, "");
+        try {
+          response = parser.parseFromString(response, type);
+        } catch (error1) {
+        }
+      }
+    }
+    return response;
+  };
+  var href = (element) => element.href;
+  var isCrossDomain = function(url) {
+    const originAnchor = document.createElement("a");
+    originAnchor.href = location.href;
+    const urlAnchor = document.createElement("a");
+    try {
+      urlAnchor.href = url;
+      return !((!urlAnchor.protocol || urlAnchor.protocol === ":") && !urlAnchor.host || originAnchor.protocol + "//" + originAnchor.host === urlAnchor.protocol + "//" + urlAnchor.host);
+    } catch (e) {
+      return true;
+    }
+  };
+  var preventDefault;
+  var { CustomEvent: CustomEvent2 } = window;
+  if (typeof CustomEvent2 !== "function") {
+    CustomEvent2 = function(event, params) {
+      const evt = document.createEvent("CustomEvent");
+      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+      return evt;
+    };
+    CustomEvent2.prototype = window.Event.prototype;
+    ({ preventDefault } = CustomEvent2.prototype);
+    CustomEvent2.prototype.preventDefault = function() {
+      const result = preventDefault.call(this);
+      if (this.cancelable && !this.defaultPrevented) {
+        Object.defineProperty(this, "defaultPrevented", {
+          get() {
+            return true;
+          }
+        });
+      }
+      return result;
+    };
+  }
+  var fire = (obj, name2, data) => {
+    const event = new CustomEvent2(name2, {
+      bubbles: true,
+      cancelable: true,
+      detail: data
+    });
+    obj.dispatchEvent(event);
+    return !event.defaultPrevented;
+  };
+  var stopEverything = (e) => {
+    fire(e.target, "ujs:everythingStopped");
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+  };
+  var delegate = (element, selector, eventType, handler) => element.addEventListener(eventType, function(e) {
+    let { target } = e;
+    while (!!(target instanceof Element) && !matches(target, selector)) {
+      target = target.parentNode;
+    }
+    if (target instanceof Element && handler.call(target, e) === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+  var toArray = (e) => Array.prototype.slice.call(e);
+  var serializeElement = (element, additionalParam) => {
+    let inputs = [element];
+    if (matches(element, "form")) {
+      inputs = toArray(element.elements);
+    }
+    const params = [];
+    inputs.forEach(function(input) {
+      if (!input.name || input.disabled) {
+        return;
+      }
+      if (matches(input, "fieldset[disabled] *")) {
+        return;
+      }
+      if (matches(input, "select")) {
+        toArray(input.options).forEach(function(option) {
+          if (option.selected) {
+            params.push({
+              name: input.name,
+              value: option.value
+            });
+          }
+        });
+      } else if (input.checked || ["radio", "checkbox", "submit"].indexOf(input.type) === -1) {
+        params.push({
+          name: input.name,
+          value: input.value
+        });
+      }
+    });
+    if (additionalParam) {
+      params.push(additionalParam);
+    }
+    return params.map(function(param) {
+      if (param.name) {
+        return `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`;
+      } else {
+        return param;
+      }
+    }).join("&");
+  };
+  var formElements = (form, selector) => {
+    if (matches(form, "form")) {
+      return toArray(form.elements).filter((el) => matches(el, selector));
+    } else {
+      return toArray(form.querySelectorAll(selector));
+    }
+  };
+  var handleConfirmWithRails = (rails) => function(e) {
+    if (!allowAction(this, rails)) {
+      stopEverything(e);
+    }
+  };
+  var confirm2 = (message, element) => window.confirm(message);
+  var allowAction = function(element, rails) {
+    let callback;
+    const message = element.getAttribute("data-confirm");
+    if (!message) {
+      return true;
+    }
+    let answer = false;
+    if (fire(element, "confirm")) {
+      try {
+        answer = rails.confirm(message, element);
+      } catch (error) {
+      }
+      callback = fire(element, "confirm:complete", [answer]);
+    }
+    return answer && callback;
+  };
+  var handleDisabledElement = function(e) {
+    const element = this;
+    if (element.disabled) {
+      stopEverything(e);
+    }
+  };
+  var enableElement = (e) => {
+    let element;
+    if (e instanceof Event) {
+      if (isXhrRedirect(e)) {
+        return;
+      }
+      element = e.target;
+    } else {
+      element = e;
+    }
+    if (isContentEditable(element)) {
+      return;
+    }
+    if (matches(element, linkDisableSelector)) {
+      return enableLinkElement(element);
+    } else if (matches(element, buttonDisableSelector) || matches(element, formEnableSelector)) {
+      return enableFormElement(element);
+    } else if (matches(element, formSubmitSelector)) {
+      return enableFormElements(element);
+    }
+  };
+  var disableElement = (e) => {
+    const element = e instanceof Event ? e.target : e;
+    if (isContentEditable(element)) {
+      return;
+    }
+    if (matches(element, linkDisableSelector)) {
+      return disableLinkElement(element);
+    } else if (matches(element, buttonDisableSelector) || matches(element, formDisableSelector)) {
+      return disableFormElement(element);
+    } else if (matches(element, formSubmitSelector)) {
+      return disableFormElements(element);
+    }
+  };
+  var disableLinkElement = function(element) {
+    if (getData(element, "ujs:disabled")) {
+      return;
+    }
+    const replacement = element.getAttribute("data-disable-with");
+    if (replacement != null) {
+      setData(element, "ujs:enable-with", element.innerHTML);
+      element.innerHTML = replacement;
+    }
+    element.addEventListener("click", stopEverything);
+    return setData(element, "ujs:disabled", true);
+  };
+  var enableLinkElement = function(element) {
+    const originalText = getData(element, "ujs:enable-with");
+    if (originalText != null) {
+      element.innerHTML = originalText;
+      setData(element, "ujs:enable-with", null);
+    }
+    element.removeEventListener("click", stopEverything);
+    return setData(element, "ujs:disabled", null);
+  };
+  var disableFormElements = (form) => formElements(form, formDisableSelector).forEach(disableFormElement);
+  var disableFormElement = function(element) {
+    if (getData(element, "ujs:disabled")) {
+      return;
+    }
+    const replacement = element.getAttribute("data-disable-with");
+    if (replacement != null) {
+      if (matches(element, "button")) {
+        setData(element, "ujs:enable-with", element.innerHTML);
+        element.innerHTML = replacement;
+      } else {
+        setData(element, "ujs:enable-with", element.value);
+        element.value = replacement;
+      }
+    }
+    element.disabled = true;
+    return setData(element, "ujs:disabled", true);
+  };
+  var enableFormElements = (form) => formElements(form, formEnableSelector).forEach((element) => enableFormElement(element));
+  var enableFormElement = function(element) {
+    const originalText = getData(element, "ujs:enable-with");
+    if (originalText != null) {
+      if (matches(element, "button")) {
+        element.innerHTML = originalText;
+      } else {
+        element.value = originalText;
+      }
+      setData(element, "ujs:enable-with", null);
+    }
+    element.disabled = false;
+    return setData(element, "ujs:disabled", null);
+  };
+  var isXhrRedirect = function(event) {
+    const xhr = event.detail ? event.detail[0] : void 0;
+    return xhr && xhr.getResponseHeader("X-Xhr-Redirect");
+  };
+  var handleMethodWithRails = (rails) => function(e) {
+    const link = this;
+    const method = link.getAttribute("data-method");
+    if (!method) {
+      return;
+    }
+    if (isContentEditable(this)) {
+      return;
+    }
+    const href2 = rails.href(link);
+    const csrfToken$1 = csrfToken();
+    const csrfParam$1 = csrfParam();
+    const form = document.createElement("form");
+    let formContent = `<input name='_method' value='${method}' type='hidden' />`;
+    if (csrfParam$1 && csrfToken$1 && !isCrossDomain(href2)) {
+      formContent += `<input name='${csrfParam$1}' value='${csrfToken$1}' type='hidden' />`;
+    }
+    formContent += '<input type="submit" />';
+    form.method = "post";
+    form.action = href2;
+    form.target = link.target;
+    form.innerHTML = formContent;
+    form.style.display = "none";
+    document.body.appendChild(form);
+    form.querySelector('[type="submit"]').click();
+    stopEverything(e);
+  };
+  var isRemote = function(element) {
+    const value = element.getAttribute("data-remote");
+    return value != null && value !== "false";
+  };
+  var handleRemoteWithRails = (rails) => function(e) {
+    let data, method, url;
+    const element = this;
+    if (!isRemote(element)) {
+      return true;
+    }
+    if (!fire(element, "ajax:before")) {
+      fire(element, "ajax:stopped");
+      return false;
+    }
+    if (isContentEditable(element)) {
+      fire(element, "ajax:stopped");
+      return false;
+    }
+    const withCredentials = element.getAttribute("data-with-credentials");
+    const dataType = element.getAttribute("data-type") || "script";
+    if (matches(element, formSubmitSelector)) {
+      const button = getData(element, "ujs:submit-button");
+      method = getData(element, "ujs:submit-button-formmethod") || element.getAttribute("method") || "get";
+      url = getData(element, "ujs:submit-button-formaction") || element.getAttribute("action") || location.href;
+      if (method.toUpperCase() === "GET") {
+        url = url.replace(/\?.*$/, "");
+      }
+      if (element.enctype === "multipart/form-data") {
+        data = new FormData(element);
+        if (button != null) {
+          data.append(button.name, button.value);
+        }
+      } else {
+        data = serializeElement(element, button);
+      }
+      setData(element, "ujs:submit-button", null);
+      setData(element, "ujs:submit-button-formmethod", null);
+      setData(element, "ujs:submit-button-formaction", null);
+    } else if (matches(element, buttonClickSelector) || matches(element, inputChangeSelector)) {
+      method = element.getAttribute("data-method");
+      url = element.getAttribute("data-url");
+      data = serializeElement(element, element.getAttribute("data-params"));
+    } else {
+      method = element.getAttribute("data-method");
+      url = rails.href(element);
+      data = element.getAttribute("data-params");
+    }
+    ajax({
+      type: method || "GET",
+      url,
+      data,
+      dataType,
+      beforeSend(xhr, options) {
+        if (fire(element, "ajax:beforeSend", [xhr, options])) {
+          return fire(element, "ajax:send", [xhr]);
+        } else {
+          fire(element, "ajax:stopped");
+          return false;
+        }
+      },
+      success(...args) {
+        return fire(element, "ajax:success", args);
+      },
+      error(...args) {
+        return fire(element, "ajax:error", args);
+      },
+      complete(...args) {
+        return fire(element, "ajax:complete", args);
+      },
+      crossDomain: isCrossDomain(url),
+      withCredentials: withCredentials != null && withCredentials !== "false"
+    });
+    stopEverything(e);
+  };
+  var formSubmitButtonClick = function(e) {
+    const button = this;
+    const { form } = button;
+    if (!form) {
+      return;
+    }
+    if (button.name) {
+      setData(form, "ujs:submit-button", {
+        name: button.name,
+        value: button.value
+      });
+    }
+    setData(form, "ujs:formnovalidate-button", button.formNoValidate);
+    setData(form, "ujs:submit-button-formaction", button.getAttribute("formaction"));
+    return setData(form, "ujs:submit-button-formmethod", button.getAttribute("formmethod"));
+  };
+  var preventInsignificantClick = function(e) {
+    const link = this;
+    const method = (link.getAttribute("data-method") || "GET").toUpperCase();
+    const data = link.getAttribute("data-params");
+    const metaClick = e.metaKey || e.ctrlKey;
+    const insignificantMetaClick = metaClick && method === "GET" && !data;
+    const nonPrimaryMouseClick = e.button != null && e.button !== 0;
+    if (nonPrimaryMouseClick || insignificantMetaClick) {
+      e.stopImmediatePropagation();
+    }
+  };
+  var Rails = {
+    $,
+    ajax,
+    buttonClickSelector,
+    buttonDisableSelector,
+    confirm: confirm2,
+    cspNonce,
+    csrfToken,
+    csrfParam,
+    CSRFProtection,
+    delegate,
+    disableElement,
+    enableElement,
+    fileInputSelector,
+    fire,
+    formElements,
+    formEnableSelector,
+    formDisableSelector,
+    formInputClickSelector,
+    formSubmitButtonClick,
+    formSubmitSelector,
+    getData,
+    handleDisabledElement,
+    href,
+    inputChangeSelector,
+    isCrossDomain,
+    linkClickSelector,
+    linkDisableSelector,
+    loadCSPNonce,
+    matches,
+    preventInsignificantClick,
+    refreshCSRFTokens,
+    serializeElement,
+    setData,
+    stopEverything
+  };
+  var handleConfirm = handleConfirmWithRails(Rails);
+  Rails.handleConfirm = handleConfirm;
+  var handleMethod = handleMethodWithRails(Rails);
+  Rails.handleMethod = handleMethod;
+  var handleRemote = handleRemoteWithRails(Rails);
+  Rails.handleRemote = handleRemote;
+  var start = function() {
+    if (window._rails_loaded) {
+      throw new Error("rails-ujs has already been loaded!");
+    }
+    window.addEventListener("pageshow", function() {
+      $(formEnableSelector).forEach(function(el) {
+        if (getData(el, "ujs:disabled")) {
+          enableElement(el);
+        }
+      });
+      $(linkDisableSelector).forEach(function(el) {
+        if (getData(el, "ujs:disabled")) {
+          enableElement(el);
+        }
+      });
+    });
+    delegate(document, linkDisableSelector, "ajax:complete", enableElement);
+    delegate(document, linkDisableSelector, "ajax:stopped", enableElement);
+    delegate(document, buttonDisableSelector, "ajax:complete", enableElement);
+    delegate(document, buttonDisableSelector, "ajax:stopped", enableElement);
+    delegate(document, linkClickSelector, "click", preventInsignificantClick);
+    delegate(document, linkClickSelector, "click", handleDisabledElement);
+    delegate(document, linkClickSelector, "click", handleConfirm);
+    delegate(document, linkClickSelector, "click", disableElement);
+    delegate(document, linkClickSelector, "click", handleRemote);
+    delegate(document, linkClickSelector, "click", handleMethod);
+    delegate(document, buttonClickSelector, "click", preventInsignificantClick);
+    delegate(document, buttonClickSelector, "click", handleDisabledElement);
+    delegate(document, buttonClickSelector, "click", handleConfirm);
+    delegate(document, buttonClickSelector, "click", disableElement);
+    delegate(document, buttonClickSelector, "click", handleRemote);
+    delegate(document, inputChangeSelector, "change", handleDisabledElement);
+    delegate(document, inputChangeSelector, "change", handleConfirm);
+    delegate(document, inputChangeSelector, "change", handleRemote);
+    delegate(document, formSubmitSelector, "submit", handleDisabledElement);
+    delegate(document, formSubmitSelector, "submit", handleConfirm);
+    delegate(document, formSubmitSelector, "submit", handleRemote);
+    delegate(document, formSubmitSelector, "submit", (e) => setTimeout(() => disableElement(e), 13));
+    delegate(document, formSubmitSelector, "ajax:send", disableElement);
+    delegate(document, formSubmitSelector, "ajax:complete", enableElement);
+    delegate(document, formInputClickSelector, "click", preventInsignificantClick);
+    delegate(document, formInputClickSelector, "click", handleDisabledElement);
+    delegate(document, formInputClickSelector, "click", handleConfirm);
+    delegate(document, formInputClickSelector, "click", formSubmitButtonClick);
+    document.addEventListener("DOMContentLoaded", refreshCSRFTokens);
+    document.addEventListener("DOMContentLoaded", loadCSPNonce);
+    return window._rails_loaded = true;
+  };
+  Rails.start = start;
+  if (typeof jQuery !== "undefined" && jQuery && jQuery.ajax) {
+    if (jQuery.rails) {
+      throw new Error("If you load both jquery_ujs and rails-ujs, use rails-ujs only.");
+    }
+    jQuery.rails = Rails;
+    jQuery.ajaxPrefilter(function(options, originalOptions, xhr) {
+      if (!options.crossDomain) {
+        return CSRFProtection(xhr);
+      }
+    });
+  }
 
   // node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js
   (function() {
@@ -24401,9 +25018,9 @@
       return element;
     } else {
       const createdScriptElement = document.createElement("script");
-      const cspNonce = getMetaContent("csp-nonce");
-      if (cspNonce) {
-        createdScriptElement.nonce = cspNonce;
+      const cspNonce2 = getMetaContent("csp-nonce");
+      if (cspNonce2) {
+        createdScriptElement.nonce = cspNonce2;
       }
       createdScriptElement.textContent = element.textContent;
       createdScriptElement.async = false;
@@ -24572,11 +25189,11 @@
     }
   }
   var FetchRequest = class {
-    constructor(delegate, method, location2, body = new URLSearchParams(), target = null) {
+    constructor(delegate2, method, location2, body = new URLSearchParams(), target = null) {
       this.abortController = new AbortController();
       this.resolveRequestPromise = (_value) => {
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.method = method;
       this.headers = this.defaultHeaders;
       this.body = body;
@@ -24680,7 +25297,7 @@
     }
   };
   var AppearanceObserver = class {
-    constructor(delegate, element) {
+    constructor(delegate2, element) {
       this.started = false;
       this.intersect = (entries) => {
         const lastEntry = entries.slice(-1)[0];
@@ -24688,7 +25305,7 @@
           this.delegate.elementAppearedInViewport(this.element);
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.element = element;
       this.intersectionObserver = new IntersectionObserver(this.intersect);
     }
@@ -24757,9 +25374,9 @@
     static confirmMethod(message, _element, _submitter) {
       return Promise.resolve(confirm(message));
     }
-    constructor(delegate, formElement, submitter, mustRedirect = false) {
+    constructor(delegate2, formElement, submitter, mustRedirect = false) {
       this.state = FormSubmissionState.initialized;
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.formElement = formElement;
       this.submitter = submitter;
       this.formData = buildFormData(formElement, submitter);
@@ -25000,7 +25617,7 @@
     return node2.querySelectorAll("[id][data-turbo-permanent]");
   }
   var FormSubmitObserver = class {
-    constructor(delegate, eventTarget) {
+    constructor(delegate2, eventTarget) {
       this.started = false;
       this.submitCaptured = () => {
         this.eventTarget.removeEventListener("submit", this.submitBubbled, false);
@@ -25017,7 +25634,7 @@
           }
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.eventTarget = eventTarget;
     }
     start() {
@@ -25050,12 +25667,12 @@
     }
   }
   var View = class {
-    constructor(delegate, element) {
+    constructor(delegate2, element) {
       this.resolveRenderPromise = (_value) => {
       };
       this.resolveInterceptionPromise = (_value) => {
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.element = element;
     }
     scrollToAnchor(anchor) {
@@ -25148,7 +25765,7 @@
     }
   };
   var LinkInterceptor = class {
-    constructor(delegate, element) {
+    constructor(delegate2, element) {
       this.clickBubbled = (event) => {
         if (this.respondsToEventTarget(event.target)) {
           this.clickEvent = event;
@@ -25169,7 +25786,7 @@
       this.willVisit = (_event) => {
         delete this.clickEvent;
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.element = element;
     }
     start() {
@@ -25188,7 +25805,7 @@
     }
   };
   var LinkClickObserver = class {
-    constructor(delegate, eventTarget) {
+    constructor(delegate2, eventTarget) {
       this.started = false;
       this.clickCaptured = () => {
         this.eventTarget.removeEventListener("click", this.clickBubbled, false);
@@ -25207,7 +25824,7 @@
           }
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.eventTarget = eventTarget;
     }
     start() {
@@ -25244,8 +25861,8 @@
     }
   }
   var FormLinkClickObserver = class {
-    constructor(delegate, element) {
-      this.delegate = delegate;
+    constructor(delegate2, element) {
+      this.delegate = delegate2;
       this.linkInterceptor = new LinkClickObserver(this, element);
     }
     start() {
@@ -25289,14 +25906,14 @@
     }
   };
   var Bardo = class {
-    static async preservingPermanentElements(delegate, permanentElementMap, callback) {
-      const bardo = new this(delegate, permanentElementMap);
+    static async preservingPermanentElements(delegate2, permanentElementMap, callback) {
+      const bardo = new this(delegate2, permanentElementMap);
       bardo.enter();
       await callback();
       bardo.leave();
     }
-    constructor(delegate, permanentElementMap) {
-      this.delegate = delegate;
+    constructor(delegate2, permanentElementMap) {
+      this.delegate = delegate2;
       this.permanentElementMap = permanentElementMap;
     }
     enter() {
@@ -25415,9 +26032,9 @@
         currentElement.appendChild(sourceRange.extractContents());
       }
     }
-    constructor(delegate, currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
+    constructor(delegate2, currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
       super(currentSnapshot, newSnapshot, renderElement, isPreview, willRender);
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     get shouldRender() {
       return true;
@@ -25742,7 +26359,7 @@
     SystemStatusCode2[SystemStatusCode2["contentTypeMismatch"] = -2] = "contentTypeMismatch";
   })(SystemStatusCode || (SystemStatusCode = {}));
   var Visit = class {
-    constructor(delegate, location2, restorationIdentifier, options = {}) {
+    constructor(delegate2, location2, restorationIdentifier, options = {}) {
       this.identifier = uuid();
       this.timingMetrics = {};
       this.followedRedirect = false;
@@ -25752,7 +26369,7 @@
       this.acceptsStreamResponse = false;
       this.snapshotCached = false;
       this.state = VisitState.initialized;
-      this.delegate = delegate;
+      this.delegate = delegate2;
       this.location = location2;
       this.restorationIdentifier = restorationIdentifier || uuid();
       const { action, historyChanged, referrer, snapshot, snapshotHTML, response, visitCachedSnapshot, willRender, updateHistory, shouldCacheSnapshot, acceptsStreamResponse } = Object.assign(Object.assign({}, defaultOptions), options);
@@ -26253,7 +26870,7 @@
     }
   };
   var History = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.restorationIdentifier = uuid();
       this.restorationData = {};
       this.started = false;
@@ -26273,7 +26890,7 @@
         await nextMicrotask();
         this.pageLoaded = true;
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -26331,8 +26948,8 @@
     }
   };
   var Navigator = class {
-    constructor(delegate) {
-      this.delegate = delegate;
+    constructor(delegate2) {
+      this.delegate = delegate2;
     }
     proposeVisit(location2, options = {}) {
       if (this.delegate.allowsVisitingLocationWithAction(location2, options.action)) {
@@ -26450,7 +27067,7 @@
     PageStage2[PageStage2["complete"] = 3] = "complete";
   })(PageStage || (PageStage = {}));
   var PageObserver = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.stage = PageStage.initial;
       this.started = false;
       this.interpretReadyState = () => {
@@ -26464,7 +27081,7 @@
       this.pageWillUnload = () => {
         this.delegate.pageWillUnload();
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -26501,12 +27118,12 @@
     }
   };
   var ScrollObserver = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.started = false;
       this.onScroll = () => {
         this.updatePosition({ x: window.pageXOffset, y: window.pageYOffset });
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -26550,7 +27167,7 @@
     return permanentElementMap;
   }
   var StreamObserver = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.sources = /* @__PURE__ */ new Set();
       this.started = false;
       this.inspectFetchResponse = (event) => {
@@ -26565,7 +27182,7 @@
           this.receiveMessageHTML(event.data);
         }
       };
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     start() {
       if (!this.started) {
@@ -26875,9 +27492,9 @@
     }
   };
   var Preloader = class {
-    constructor(delegate) {
+    constructor(delegate2) {
       this.selector = "a[data-turbo-preload]";
-      this.delegate = delegate;
+      this.delegate = delegate2;
     }
     get snapshotCache() {
       return this.delegate.navigator.view.snapshotCache;
@@ -27265,7 +27882,7 @@
   var session = new Session();
   var cache = new Cache(session);
   var { navigator: navigator$1 } = session;
-  function start() {
+  function start2() {
     session.start();
   }
   function registerAdapter(adapter) {
@@ -27304,7 +27921,7 @@
     PageRenderer,
     PageSnapshot,
     FrameRenderer,
-    start,
+    start: start2,
     registerAdapter,
     visit,
     connectStreamSource,
@@ -27932,7 +28549,7 @@
     }
   })();
   window.Turbo = Turbo;
-  start();
+  start2();
 
   // node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable.js
   var consumer;
@@ -27960,7 +28577,7 @@
     if (Array.isArray(obj))
       return obj.map(walk);
     return Object.keys(obj).reduce(function(acc, key) {
-      var camel = key[0].toLowerCase() + key.slice(1).replace(/([A-Z]+)/g, function(m, x2) {
+      var camel = key[0].toLowerCase() + key.slice(1).replace(/([A-Z]+)/g, function(m2, x2) {
         return "_" + x2.toLowerCase();
       });
       acc[camel] = walk(obj[key]);
@@ -29534,14 +30151,14 @@
     return "string" == typeof e && e.charAt(0) === e.charAt(0).toLowerCase();
   }
   var M = "function" == typeof Symbol && Symbol.for;
-  var $ = M ? Symbol.for("react.memo") : 60115;
+  var $2 = M ? Symbol.for("react.memo") : 60115;
   var z = M ? Symbol.for("react.forward_ref") : 60112;
   var B = { childContextTypes: true, contextType: true, contextTypes: true, defaultProps: true, displayName: true, getDefaultProps: true, getDerivedStateFromError: true, getDerivedStateFromProps: true, mixins: true, propTypes: true, type: true };
   var L = { name: true, length: true, prototype: true, caller: true, callee: true, arguments: true, arity: true };
   var G = { $$typeof: true, compare: true, defaultProps: true, displayName: true, propTypes: true, type: true };
-  var Y = ((T = {})[z] = { $$typeof: true, render: true, defaultProps: true, displayName: true, propTypes: true }, T[$] = G, T);
+  var Y = ((T = {})[z] = { $$typeof: true, render: true, defaultProps: true, displayName: true, propTypes: true }, T[$2] = G, T);
   function W(e) {
-    return ("type" in (t = e) && t.type.$$typeof) === $ ? G : "$$typeof" in e ? Y[e.$$typeof] : B;
+    return ("type" in (t = e) && t.type.$$typeof) === $2 ? G : "$$typeof" in e ? Y[e.$$typeof] : B;
     var t;
   }
   var q = Object.defineProperty;
@@ -29978,9 +30595,9 @@
       Ze[n] = (Ze[n] || 0) + 1;
       var o2 = "".concat(n, "-").concat(x("6.1.1" + n + Ze[n]));
       return t ? "".concat(t, "-").concat(o2) : o2;
-    }(r2.displayName, r2.parentComponentId) : h, m = r2.displayName, y2 = void 0 === m ? function(e2) {
+    }(r2.displayName, r2.parentComponentId) : h, m2 = r2.displayName, y2 = void 0 === m2 ? function(e2) {
       return F(e2) ? "styled.".concat(e2) : "Styled(".concat(V(e2), ")");
-    }(e) : m, v2 = r2.displayName && r2.componentId ? "".concat(A(r2.displayName), "-").concat(r2.componentId) : r2.componentId || f2, g = i2 && a2.attrs ? a2.attrs.concat(d).filter(Boolean) : d, S2 = r2.shouldForwardProp;
+    }(e) : m2, v2 = r2.displayName && r2.componentId ? "".concat(A(r2.displayName), "-").concat(r2.componentId) : r2.componentId || f2, g = i2 && a2.attrs ? a2.attrs.concat(d).filter(Boolean) : d, S2 = r2.shouldForwardProp;
     if (i2 && a2.shouldForwardProp) {
       var w2 = a2.shouldForwardProp;
       if (r2.shouldForwardProp) {
@@ -29994,7 +30611,7 @@
     var I2 = new qe(s2, v2, i2 ? a2.componentStyle : void 0);
     function O2(e2, r3) {
       return function(e3, r4, s3) {
-        var i3 = e3.attrs, a3 = e3.componentStyle, c3 = e3.defaultProps, p3 = e3.foldedComponentIds, d2 = e3.styledComponentId, h2 = e3.target, f3 = import_react.default.useContext(He), m2 = Ve(), y3 = e3.shouldForwardProp || m2.shouldForwardProp;
+        var i3 = e3.attrs, a3 = e3.componentStyle, c3 = e3.defaultProps, p3 = e3.foldedComponentIds, d2 = e3.styledComponentId, h2 = e3.target, f3 = import_react.default.useContext(He), m3 = Ve(), y3 = e3.shouldForwardProp || m3.shouldForwardProp;
         (0, import_react.useDebugValue)(d2);
         var v3 = function(e4, n, o2) {
           for (var r5, s4 = __assign(__assign({}, n), { className: void 0, theme: o2 }), i4 = 0; i4 < e4.length; i4 += 1) {
@@ -30180,11 +30797,11 @@
 
 `;
   var handleLogout = () => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const csrfToken2 = document.querySelector('meta[name="csrf-token"]').content;
     const requestOptions = {
       method: "DELETE",
       headers: {
-        "X-CSRF-Token": csrfToken,
+        "X-CSRF-Token": csrfToken2,
         // Ajoutez le jeton CSRF aux en-têtes
         "Content-Type": "application/json"
       }
@@ -30208,6 +30825,9 @@
 
   // app/javascript/react/src/index.js
   defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
+
+  // app/javascript/application.js
+  Rails.start();
 })();
 /*! Bundled license information:
 
