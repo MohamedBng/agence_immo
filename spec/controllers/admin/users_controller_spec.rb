@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Admin::Users", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, role: "admin") }
 
   before do
     sign_in user
@@ -34,7 +34,7 @@ RSpec.describe "Admin::Users", type: :request do
         expect {
           post admin_users_path, params: { user: attributes_for(:user) }
         }.to change(User, :count).by(1)
-        expect(response).to redirect_to(admin_users_path)
+        expect(response).to redirect_to([:admin, User.last])
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe "Admin::Users", type: :request do
       put admin_user_path(user), params: { user: { email: updated_email } }
       user.reload
       expect(user.email).to eq(updated_email)
-      expect(response).to redirect_to(admin_users_path)
+      expect(response).to redirect_to([:admin, user])
     end
   end
 

@@ -1,32 +1,8 @@
-<div id="dashboard-container">
-    <section id="sidebar-root">
-        <sidebar-component/>
-    </section>
-    <section id="dashboard-body">
-        <div id="dashboard-header">
-            <p class="dashboard-title">
-                Bienvenue Mohamed !
-                <span>
-                    <img src="/assets/hello-icon.svg" alt="hello" />
-                </span>
-            </p>
-
-            <div id="dashboard-header-right">
-                <div id="dashboard-header-right-item">
-                    <img src="/assets/user.jpg" alt="user-profile" />
-                </div>
-                <p id="dashboard-user-name">
-                    Mohamed
-                </p>
-            </div>
-        </div>
-        <div id="dashboard-corp">
-            <div class="dashboard-card">
-                <p>Add a New User</p>
-                <a href="/admin/users/new">
-                    <img src="/assets/add-icon.svg" alt="add-user" />
-                </a>
-             </div>
-        </div>
-    </section>
-</div>
+<% if policy(User).new? %>
+    <div class="dashboard-card">
+        <p>Add a New User</p>
+        <a href="/admin/users/new">
+            <img src="/assets/add-icon.svg" alt="add-user" />
+        </a>
+    </div>
+<% end %>

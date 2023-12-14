@@ -2,6 +2,12 @@
   <%= f.label :email, t('admin.users.form.email') %>
   <%= f.email_field :email %>
 
+  <%= f.label :lastname, t('admin.users.form.lastname') %>
+  <%= f.text_field :lastname %>
+
+  <%= f.label :firstname, t('admin.users.form.firstname') %>
+  <%= f.text_field :firstname %>
+
   <% if @user.new_record? %>
     <%= f.label :password, t('admin.users.form.password') %>
     <%= f.password_field :password %>
@@ -9,9 +15,15 @@
     <%= f.label :password_confirmation, t('admin.users.form.password_confirmation') %>
     <%= f.password_field :password_confirmation %>
   <% end %>
-
+  
+  <% if current_user.admin? %>
   <%= f.label :role, t('admin.users.form.role') %>
   <%= f.select :role, User.roles.keys.map { |role| [role.titleize, role] }, { include_blank: t('users.form.select_role') } %>
-  
+  <% end %>
+
+  <%= f.label :image, t('admin.users.form.image') %>
+  <%= f.file_field :image %>
+  <%= f.hidden_field :image_cache %>
+
   <%= f.submit t('admin.users.form.submit') %>
 <% end %>

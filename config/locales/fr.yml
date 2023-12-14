@@ -6,11 +6,13 @@ fr:
       destroyed: "Utilisateur supprimé avec succès."
       form:
         email: "E-mail"
+        firstname: "Prénom"
         password: "Mot de passe"
         password_confirmation: "Confirmation du mot de passe"
         role: "Rôle"
         submit: "Créer Utilisateur"
         select_role: "Sélectionnez un rôle"
+        lastname: "Nom"
   activerecord:
     models:
       user: "Utilisateur"
@@ -21,6 +23,8 @@ fr:
         password_confirmation: "Confirmation du mot de passe"
         role: "Rôle"
     errors:
+      messages:
+        record_invalid: "La validation a échoué"
       models:
         user:
           attributes:

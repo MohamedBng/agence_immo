@@ -37,11 +37,13 @@ en:
       destroyed: "User was successfully deleted."
       form:
         email: "Email"
+        firstname: "Firstname"
         password: "Password"
         password_confirmation: "Password Confirmation"
         role: "Role"
         submit: "Create User"
         select_role: "Select a role"
+        lastname: "Lastname"
   activerecord:
     models:
       user: "User"

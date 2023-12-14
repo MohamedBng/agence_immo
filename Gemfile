@@ -79,3 +79,7 @@ end
 gem "devise", "~> 4.9"
 gem 'strip_attributes'
 gem 'pundit'
+gem 'shrine'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'fastimage'

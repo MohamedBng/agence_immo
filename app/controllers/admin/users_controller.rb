@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+    layout 'admin'
     before_action :authenticate_user!
     before_action :set_user, only: [:edit, :update, :destroy, :show]
 
@@ -20,7 +21,7 @@ class Admin::UsersController < ApplicationController
         @user = User.new(user_params)
         authorize @user
         if @user.save
-        redirect_to admin_users_path, notice: t('admin.users.created')
+            redirect_to [:admin, @user], notice: t('admin.users.created')
         else
         flash[:alert] = @user.errors.full_messages.join(', ')
         render :new
@@ -30,7 +31,7 @@ class Admin::UsersController < ApplicationController
     def update
         authorize @user
         if @user.update(user_params)
-        redirect_to admin_users_path, notice: t('admin.users.updated')
+            redirect_to [:admin, @user], notice: t('admin.users.updated')
         else
         render :edit
         end
@@ -49,7 +50,7 @@ class Admin::UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:email, :role, :password, :password_confirmation)
+        params.require(:user).permit(:email, :firstname, :role, :password, :password_confirmation, :lastname, :image, :image_cache)
     end
 end
   

@@ -1,13 +1,23 @@
 <h1>Détails de l'Utilisateur</h1>
 
 <p>
-  <strong>Email :</strong>
+  <strong><%= t('admin.users.form.email') %> :</strong>
   <%= @user.email %>
 </p>
 
 <p>
-  <strong>Rôle :</strong>
+  <strong><%= t('admin.users.form.role') %> :</strong>
   <%= @user.role %>
+</p>
+
+<p>
+  <strong><%= t('admin.users.form.firstname') %> :</strong>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <strong><%= t('admin.users.form.lastname') %> :</strong>
+  <%= @user.lastname %>
 </p>
 
 <%= link_to 'Éditer', edit_admin_user_path(@user) %> |

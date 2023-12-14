@@ -68,8 +68,9 @@ RSpec.describe UserPolicy, type: :policy do
     end
   end
 
-  describe "Access for Own Record" do
-    let(:user) { record }
+  describe "Access for Own Record when Agent Immobilier" do
+    let(:user) { create(:user, role: "agent_immobilier") }
+    let(:record) { user }
 
     it "allows show access for their own record" do
       expect(subject.show?).to be true
@@ -85,6 +86,27 @@ RSpec.describe UserPolicy, type: :policy do
 
     it "denies destroy access for their own record" do
       expect(subject.destroy?).to be false
+    end
+  end
+
+  describe "Access for Own Record when Admin" do
+    let(:user) { create(:user, role: "admin") }
+    let(:record) { user }
+
+    it "allows show access for their own record" do
+      expect(subject.show?).to be true
+    end
+
+    it "allows update access for their own record" do
+      expect(subject.update?).to be true
+    end
+
+    it "allows edit access for their own record" do
+      expect(subject.edit?).to be true
+    end
+
+    it "denies destroy access for their own record" do
+      expect(subject.destroy?).to be true
     end
   end
 end

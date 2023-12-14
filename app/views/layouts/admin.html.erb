@@ -1,0 +1,42 @@
+<!-- app/views/layouts/admin.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Administration</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+</head>
+<body>
+  <div id="dashboard-container">
+    <section id="sidebar-root">
+        <sidebar-component props-json='<%= {  canAccessUsers: policy(User).index?}.to_json.html_safe %>'/>
+    </section>
+    <section id="dashboard-body">
+        <div id="dashboard-header">
+            <p class="dashboard-title">
+                Bienvenue <%= current_user.firstname %> !
+                <span>
+                    <img src="/assets/hello-icon.svg" alt="hello" />
+                </span>
+            </p>
+
+            <div id="dashboard-header-right">
+                <div id="dashboard-header-right-item">
+                    <%= image_tag(current_user.image_url(:small), alt: "user-profile") %>
+                </div>
+                <p id="dashboard-user-name">
+                    <%= link_to("Mohamed", admin_user_path(current_user)) %>
+                </p>
+            </div>
+        </div>
+        <div id="dashboard-corp">
+           <%= yield %>
+        </div>
+    </section>
+  </div>
+</body>
+</html>

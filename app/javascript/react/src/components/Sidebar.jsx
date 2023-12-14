@@ -92,7 +92,7 @@ const handleLogout = () => {
 const LogoutItem = styled(MenuItem)`
 `;
 
-const Sidebar = () => {
+const Sidebar = ({ canAccessUsers }) => {
   return (
     <SidebarContainer>
       <Logo>
@@ -101,26 +101,27 @@ const Sidebar = () => {
         </Icon>
         Agence Immo
       </Logo>
-      <MenuItem href="/admin/dashboard">
-        <Icon>
-          <img src="/assets/dashboard-icon.svg" alt="dashboard" />
-        </Icon>
-        Dashboard
-      </MenuItem>
-      <MenuItem href="/admin/users">
-        <Icon>
-          <img src="/assets/users-icon.svg" alt="users" />
-        </Icon>
-        Users
-      </MenuItem>
-      <Divider /> {/* Ligne de délimitation */}
+        <MenuItem href="/admin/dashboard">
+          <Icon>
+            <img src="/assets/dashboard-icon.svg" alt="dashboard" />
+          </Icon>
+          Dashboard
+        </MenuItem>
+      {canAccessUsers && (
+        <MenuItem href="/admin/users">
+          <Icon>
+            <img src="/assets/users-icon.svg" alt="users" />
+          </Icon>
+          Users
+        </MenuItem>
+      )}
+      <Divider />
       <LogoutItem onClick={handleLogout}>
         <Icon>
           <img src="/assets/logout-icon.svg" alt="logout" />
         </Icon>
         Logout
       </LogoutItem>
-      {/* Ajoutez d'autres liens de menu ici */}
     </SidebarContainer>
   );
 };
