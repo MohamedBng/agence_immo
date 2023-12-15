@@ -9,7 +9,4 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
     resources :users
   end
-
-  # Supprimez ou commentez la ligne suivante, car vous avez déjà défini une route root
-  # root "articles#index"
 end

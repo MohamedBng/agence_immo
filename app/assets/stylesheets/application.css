@@ -69,23 +69,3 @@ body {
         }
     }
 }
-
-.dashboard-card {
-    display: flex;
-    flex-direction: column; /* Aligne les éléments verticalement */
-    width: 200px;
-    height: 170px;
-    background-color: #55fff5;
-    padding: 1rem;
-    border-radius: 15px;
-
-    p {
-        font-size: 1.2rem;
-        margin-bottom: auto;
-    }
-
-    a img{
-        width: 3rem;
-        align-self: flex-start;
-    }
-}

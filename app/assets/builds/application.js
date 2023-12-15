@@ -2975,9 +2975,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React3 = require_react();
+          var React4 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4582,7 +4582,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React3.Children.forEach(props.children, function(child) {
+                  React4.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13029,7 +13029,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React3.Component().refs;
+          var emptyRefsObject = new React4.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -30823,8 +30823,35 @@
   };
   var Sidebar_default = Sidebar;
 
+  // app/javascript/react/src/components/DashboardCard.jsx
+  var import_react3 = __toESM(require_react());
+  var DashboardCardContainer = st.div`
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    width: 200px;
+    height: 170px;
+    background-color: #55fff5;
+    padding: 1rem;
+    border-radius: 15px;
+`;
+  var CardTitle = st.p`
+    font-size: 1.2rem;
+    margin-bottom: auto;
+`;
+  var CardLink = st.a`
+    img {
+        width: 3rem;
+        align-self: flex-start;
+    }
+`;
+  var DashboardCard = ({ text, link, icon }) => {
+    return /* @__PURE__ */ import_react3.default.createElement(DashboardCardContainer, { className: "dashboard-card" }, /* @__PURE__ */ import_react3.default.createElement(CardTitle, null, text), /* @__PURE__ */ import_react3.default.createElement(CardLink, { href: link }, /* @__PURE__ */ import_react3.default.createElement("img", { src: icon, alt: text })));
+  };
+  var DashboardCard_default = DashboardCard;
+
   // app/javascript/react/src/index.js
   defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
+  defineReact({ "dashboard-card-component": DashboardCard_default }, { root: document.getElementById("dashboard-card-root") });
 
   // app/javascript/application.js
   Rails.start();

@@ -1,8 +1,3 @@
 <% if policy(User).new? %>
-    <div class="dashboard-card">
-        <p>Add a New User</p>
-        <a href="/admin/users/new">
-            <img src="/assets/add-icon.svg" alt="add-user" />
-        </a>
-    </div>
+    <dashboard-card-component props-json='<%= {  text: "Add a New User", link: "/admin/users/new", icon: "/assets/add-icon.svg"}.to_json.html_safe %>'/>
 <% end %>
