@@ -4,10 +4,11 @@ import styled from 'styled-components';
 const SidebarContainer = styled.div`
   width: 16rem;
   background-color: #171717;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+  height: 100%;
+  min-height: 100vh;
 `;
 
 const Logo = styled.p`

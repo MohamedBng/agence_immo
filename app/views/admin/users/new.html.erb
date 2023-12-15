@@ -1,5 +1,6 @@
-<h2>Sign up</h2>
-
+<div id="title-component-root">
+    <title-component props-json='<%= {  title: "Create user" }.to_json.html_safe %>'/>
+</div>
 <%= render partial: "admin/users/form"%>
 
 <%= button_to t('admin.users.form.create'), {action: "create"}, method: :post, class: "btn btn-primary" %>

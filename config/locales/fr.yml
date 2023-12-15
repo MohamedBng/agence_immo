@@ -5,14 +5,16 @@ fr:
       updated: "Utilisateur mis à jour avec succès."
       destroyed: "Utilisateur supprimé avec succès."
       form:
+        create: "Créer Utilisateur"
         email: "E-mail"
         firstname: "Prénom"
+        lastname: "Nom"
         password: "Mot de passe"
         password_confirmation: "Confirmation du mot de passe"
         role: "Rôle"
         submit: "Créer Utilisateur"
         select_role: "Sélectionnez un rôle"
-        lastname: "Nom"
+        update: "Mettre à jour Utilisateur"
   activerecord:
     models:
       user: "Utilisateur"

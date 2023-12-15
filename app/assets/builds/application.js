@@ -2975,9 +2975,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React4 = require_react();
+          var React6 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4582,7 +4582,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React4.Children.forEach(props.children, function(child) {
+                  React6.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13029,7 +13029,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React4.Component().refs;
+          var emptyRefsObject = new React6.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -30744,10 +30744,11 @@
   var SidebarContainer = st.div`
   width: 16rem;
   background-color: #171717;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+  height: 100%;
+  min-height: 100vh;
 `;
   var Logo = st.p`
   color: white;
@@ -30849,9 +30850,50 @@
   };
   var DashboardCard_default = DashboardCard;
 
+  // app/javascript/react/src/components/Title.jsx
+  var import_react4 = __toESM(require_react());
+  var TitleText = st.p`
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+`;
+  var Title = ({ title }) => {
+    return /* @__PURE__ */ import_react4.default.createElement(TitleText, null, title);
+  };
+  var Title_default = Title;
+
+  // app/javascript/react/src/components/Button.jsx
+  var import_react5 = __toESM(require_react());
+  var StyledButton = st.button`
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    margin: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 0.25rem;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+`;
+  var Button = ({ text, onClick }) => {
+    return /* @__PURE__ */ import_react5.default.createElement(StyledButton, { onClick }, text);
+  };
+  var Button_default = Button;
+
   // app/javascript/react/src/index.js
   defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
   defineReact({ "dashboard-card-component": DashboardCard_default }, { root: document.getElementById("dashboard-card-root") });
+  defineReact({ "title-component": Title_default }, { root: document.getElementById("title-root") });
+  defineReact({ "button-component": Button_default }, { root: document.getElementById("button-root") });
 
   // app/javascript/application.js
   Rails.start();

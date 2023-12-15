@@ -36,14 +36,16 @@ en:
       updated: "User was successfully updated."
       destroyed: "User was successfully deleted."
       form:
+        create: "Create User"
         email: "Email"
         firstname: "Firstname"
+        lastname: "Lastname"
         password: "Password"
         password_confirmation: "Password Confirmation"
         role: "Role"
         submit: "Create User"
         select_role: "Select a role"
-        lastname: "Lastname"
+        update: "Update User"
   activerecord:
     models:
       user: "User"
