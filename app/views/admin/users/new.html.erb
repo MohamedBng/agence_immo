@@ -1,3 +1,5 @@
 <h2>Sign up</h2>
 
 <%= render partial: "admin/users/form"%>
+
+<%= button_to t('admin.users.form.create'), {action: "create"}, method: :post, class: "btn btn-primary" %>

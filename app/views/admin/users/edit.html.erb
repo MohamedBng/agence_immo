@@ -1,3 +1,5 @@
 <h2>Edit</h2>
 
 <%= render partial: "admin/users/form"%>
+
+<%= button_to t('admin.users.form.update'), {action: "update", id: @user.id}, method: :patch, class: "btn btn-primary" %>
