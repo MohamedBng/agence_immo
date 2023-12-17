@@ -1,71 +1,94 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   admin:
+    dashboard:
+      add_new_user: "Add New User"
+      add_new_property: "Add New Property"
     users:
-      created: "User was successfully created."
-      updated: "User was successfully updated."
-      destroyed: "User was successfully deleted."
+      created: "User successfully created."
+      updated: "User successfully updated."
+      destroyed: "User successfully deleted."
       form:
         create: "Create User"
-        email: "Email"
-        firstname: "Firstname"
-        lastname: "Lastname"
+        email: "E-mail"
+        firstname: "First Name"
+        lastname: "Last Name"
         password: "Password"
         password_confirmation: "Password Confirmation"
         role: "Role"
-        submit: "Create User"
-        select_role: "Select a role"
+        submit: "Submit"
+        select_role: "Select a Role"
         update: "Update User"
+    properties:
+      created: "Property successfully created."
+      updated: "Property successfully updated."
+      destroyed: "Property successfully deleted."
+      form:
+        create: "Create Property"
+        title: "Title"
+        description: "Description"
+        price: "Price"
+        address: "Address"
+        bedrooms: "Bedrooms"
+        bathrooms: "Bathrooms"
+        area: "Area"
+        property_type: "Property Type"
+        status: "Status"
+        submit: "Submit"
+        update: "Update Property"
+        photos: "Photos"
   activerecord:
     models:
       user: "User"
+      property: "Property"
     attributes:
       user:
-        email: "Email"
+        email: "E-mail"
         password: "Password"
-        password_confirmation: "Password confirmation"
+        password_confirmation: "Password Confirmation"
         role: "Role"
+      property:
+        title: "Title"
+        description: "Description"
+        price: "Price"
+        address: "Address"
+        bedrooms: "Bedrooms"
+        bathrooms: "Bathrooms"
+        area: "Area"
+        property_type: "Property Type"
+        status: "Status"
+        photos: "Photos"
     errors:
+      messages:
+        record_invalid: "Validation failed"
       models:
         user:
           attributes:
             email:
-              blank: "can't be blank"
-              taken: "has already been taken"
+              blank: "cannot be blank"
+              taken: "is already taken"
             password:
-              blank: "can't be blank"
+              blank: "cannot be blank"
             password_confirmation:
-              blank: "can't be blank"
+              blank: "cannot be blank"
             role:
-              blank: "can't be blank"
-
+              blank: "cannot be blank"
+        property:
+          attributes:
+            title:
+              blank: "cannot be blank"
+            description:
+              blank: "cannot be blank"
+            price:
+              blank: "cannot be blank"
+            address:
+              blank: "cannot be blank"
+            bedrooms:
+              blank: "cannot be blank"
+            bathrooms:
+              blank: "cannot be blank"
+            area:
+              blank: "cannot be blank"
+            property_type:
+              blank: "cannot be blank"
+            status:
+              blank: "cannot be blank"

@@ -1,5 +1,8 @@
 fr:
   admin:
+    dashboard:
+      add_new_user: "Ajouter un Nouvel Utilisateur"
+      add_new_property: "Ajouter une Nouvelle Propriété"
     users:
       created: "Utilisateur créé avec succès."
       updated: "Utilisateur mis à jour avec succès."
@@ -12,18 +15,48 @@ fr:
         password: "Mot de passe"
         password_confirmation: "Confirmation du mot de passe"
         role: "Rôle"
-        submit: "Créer Utilisateur"
+        submit: "Envoyer"
         select_role: "Sélectionnez un rôle"
         update: "Mettre à jour Utilisateur"
+    properties:
+      created: "Propriété créée avec succès."
+      updated: "Propriété mise à jour avec succès."
+      destroyed: "Propriété supprimée avec succès."
+      form:
+        create: "Créer Propriété"
+        title: "Titre"
+        description: "Description"
+        price: "Prix"
+        address: "Adresse"
+        bedrooms: "Chambres"
+        bathrooms: "Salles de bain"
+        area: "Surface"
+        property_type: "Type de Propriété"
+        status: "Statut"
+        submit: "Envoyer"
+        update: "Mettre à jour Propriété"
+        photos: "Photos"
   activerecord:
     models:
       user: "Utilisateur"
+      property: "Propriété"
     attributes:
       user:
         email: "E-mail"
         password: "Mot de passe"
         password_confirmation: "Confirmation du mot de passe"
         role: "Rôle"
+      property:
+        title: "Titre"
+        description: "Description"
+        price: "Prix"
+        address: "Adresse"
+        bedrooms: "Chambres"
+        bathrooms: "Salles de bain"
+        area: "Surface"
+        property_type: "Type de Propriété"
+        status: "Statut"
+        photos: "Photos"
     errors:
       messages:
         record_invalid: "La validation a échoué"
@@ -38,4 +71,24 @@ fr:
             password_confirmation:
               blank: "ne peut pas être vide"
             role:
+              blank: "ne peut pas être vide"
+        property:
+          attributes:
+            title:
+              blank: "ne peut pas être vide"
+            description:
+              blank: "ne peut pas être vide"
+            price:
+              blank: "ne peut pas être vide"
+            address:
+              blank: "ne peut pas être vide"
+            bedrooms:
+              blank: "ne peut pas être vide"
+            bathrooms:
+              blank: "ne peut pas être vide"
+            area:
+              blank: "ne peut pas être vide"
+            property_type:
+              blank: "ne peut pas être vide"
+            status:
               blank: "ne peut pas être vide"

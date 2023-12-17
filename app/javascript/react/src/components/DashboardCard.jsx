@@ -9,6 +9,7 @@ const DashboardCardContainer = styled.div`
     background-color: #55fff5;
     padding: 1rem;
     border-radius: 15px;
+    color: black;
 `;
 
 const CardTitle = styled.p`

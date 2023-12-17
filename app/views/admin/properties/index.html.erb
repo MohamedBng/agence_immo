@@ -1,0 +1,30 @@
+<h1>Propriétés</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Prix</th>
+      <th>Adresse</th>
+      <th>Type</th>
+      <th>Statut</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.title %></td>
+        <td><%= property.price %></td>
+        <td><%= property.address %></td>
+        <td><%= property.property_type %></td>
+        <td><%= property.status %></td>
+        <td>
+          <%= link_to 'Voir', [:admin, property] %>
+          <%= link_to 'Éditer', edit_admin_property_path(property) %>
+          <%= link_to 'Supprimer', admin_property_path(property), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette propriété ?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

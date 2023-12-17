@@ -1,0 +1,8 @@
+<div class="nested-fields">
+  <% if f.object.persisted? && f.object.file_url %>
+    <%= image_tag f.object.file_url(:small) %>
+  <% else %>
+    <%= f.file_field :file %>
+  <% end %>
+  <%= link_to_remove_association 'Supprimer cette photo', f, class: 'remove-photo' %>
+</div>

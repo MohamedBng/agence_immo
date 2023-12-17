@@ -1,0 +1,58 @@
+<h1>Détails de la Propriété</h1>
+
+<p>
+  <strong><%= t('admin.properties.form.title') %> :</strong>
+  <%= @property.title %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.description') %> :</strong>
+  <%= @property.description %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.price') %> :</strong>
+  <%= @property.price %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.address') %> :</strong>
+  <%= @property.address %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.bedrooms') %> :</strong>
+  <%= @property.bedrooms %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.bathrooms') %> :</strong>
+  <%= @property.bathrooms %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.area') %> :</strong>
+  <%= @property.area %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.property_type') %> :</strong>
+  <%= @property.property_type %>
+</p>
+
+<p>
+  <strong><%= t('admin.properties.form.status') %> :</strong>
+  <%= @property.status %>
+</p>
+
+<p>
+  <strong>Photos :</strong>
+  <div class="image-wrapper">
+    <% @property.property_photos.each do |photo| %>
+            <%= image_tag(photo.file_url(:small), alt: "user-profile") if photo.file.present? %>
+    <% end %>
+  </div>
+</p>
+
+<%= link_to 'Éditer', edit_admin_property_path(@property) %> |
+<%= link_to 'Retour à la liste', admin_properties_path %>

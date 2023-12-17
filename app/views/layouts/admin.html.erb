@@ -13,7 +13,7 @@
 <body>
   <div id="dashboard-container">
     <section id="sidebar-root">
-        <sidebar-component props-json='<%= {  canAccessUsers: policy(User).index?}.to_json.html_safe %>'/>
+        <sidebar-component props-json='<%= {  canAccessUsers: policy(User).index?, canAccessProperties: policy(Property).index?}.to_json.html_safe %>'/>
     </section>
     <section id="dashboard-body">
         <div id="dashboard-header">
@@ -29,7 +29,7 @@
                     <%= image_tag(current_user.image_url(:small), alt: "user-profile") %>
                 </div>
                 <p id="dashboard-user-name">
-                    <%= link_to("Mohamed", admin_user_path(current_user)) %>
+                    <%= link_to(current_user.firstname, admin_user_path(current_user)) %>
                 </p>
             </div>
         </div>

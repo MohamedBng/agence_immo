@@ -1,0 +1,50 @@
+<%= form_for([:admin, @property], html: { class: "form-container", multipart: true }) do |f| %>
+  
+  <!-- Titre en français et en anglais -->
+  <%= f.label :title_fr, t('admin.properties.form.title_fr') %>
+  <%= f.text_area :title_fr, value: @property.title.try(:[], 'fr') %>
+  <%= f.label :title_en, t('admin.properties.form.title_en') %>
+  <%= f.text_area :title_en, value: @property.title.try(:[], 'en') %>
+
+  <!-- Description en français et en anglais -->
+  <%= f.label :description_fr, t('admin.properties.form.description_fr') %>
+  <%= f.text_area :description_fr, value: @property.description.try(:[], 'fr') %>
+  <%= f.label :description_en, t('admin.properties.form.description_en') %>
+  <%= f.text_area :description_en, value: @property.description.try(:[], 'en') %>
+
+  <!-- Autres champs... -->
+  <%= f.label :price, t('admin.properties.form.price') %>
+  <%= f.number_field :price, step: 0.01 %>
+
+  <!-- Adresse (avec champs séparés pour rue, ville, pays) -->
+  <%= f.label :street, t('admin.properties.form.street') %>
+  <%= f.text_field :street, value: @property.address.try(:[], 'street') %>
+  <%= f.label :city, t('admin.properties.form.city') %>
+  <%= f.text_field :city, value: @property.address.try(:[], 'city') %>
+
+  <%= f.label :bedrooms, t('admin.properties.form.bedrooms') %>
+  <%= f.number_field :bedrooms %>
+
+  <%= f.label :bathrooms, t('admin.properties.form.bathrooms') %>
+  <%= f.number_field :bathrooms %>
+
+  <%= f.label :area, t('admin.properties.form.area') %>
+  <%= f.number_field :area, step: 0.01 %>
+
+  <%= f.label :property_type, t('admin.properties.form.property_type') %>
+  <%= f.select :property_type, Property.property_types.keys.map { |type| [t("admin.properties.types.#{type}"), type] }, include_blank: true %>
+
+  <%= f.label :status, t('admin.properties.form.status') %>
+  <%= f.select :status, Property.statuses.keys.map { |status| [t("admin.properties.statuses.#{status}"), status] }, include_blank: true %>
+
+  <div id="property_photos">
+    <%= f.fields_for :property_photos do |photo_fields| %>
+      <%= render 'property_photo_fields', f: photo_fields %> 
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Ajouter une photo', f, :property_photos, class: 'add_fields' %>
+    </div>
+  </div>
+
+  <%= f.submit t('admin.properties.form.submit') %>
+<% end %>

@@ -83,3 +83,4 @@ gem 'shrine'
 gem 'image_processing'
 gem 'mini_magick'
 gem 'fastimage'
+gem "cocoon"

@@ -7,8 +7,8 @@ Shrine.storages = {
 }
 
 Shrine.plugin :activerecord
-Shrine.plugin :cached_attachment_data
-Shrine.plugin :restore_cached_data
+Shrine.plugin :cached_attachment_data # pour conserver les données de fichier uploadé en cache
+Shrine.plugin :restore_cached_data # restaure les données de fichier uploadé du cache
 
 if Rails.env.test?
   require "shrine/storage/memory"

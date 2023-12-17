@@ -6,9 +6,10 @@ const SidebarContainer = styled.div`
   background-color: #171717;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  height: 100%;
-  min-height: 100vh;
+  padding-top: 8%;
+  height: 92%;
+  min-height: 98vh;
+  border-right: 1px solid white;
 `;
 
 const Logo = styled.p`
@@ -43,7 +44,7 @@ const MenuItem = styled.a`
   padding-top: 1rem;
 
   &:hover {
-    background-color: #5ce1e6;
+    background-color: #52E1FEE5;
     color: black;
   }
 
@@ -93,7 +94,7 @@ const handleLogout = () => {
 const LogoutItem = styled(MenuItem)`
 `;
 
-const Sidebar = ({ canAccessUsers }) => {
+const Sidebar = ({ canAccessUsers, canAccessProperties }) => {
   return (
     <SidebarContainer>
       <Logo>
@@ -114,6 +115,14 @@ const Sidebar = ({ canAccessUsers }) => {
             <img src="/assets/users-icon.svg" alt="users" />
           </Icon>
           Users
+        </MenuItem>
+      )}
+      {canAccessProperties && (
+        <MenuItem href="/admin/properties">
+          <Icon>
+            <img src="/assets/house-icon.svg" alt="users" />
+          </Icon>
+          Properties
         </MenuItem>
       )}
       <Divider />
