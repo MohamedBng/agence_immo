@@ -11,7 +11,7 @@ FactoryBot.define do
     status { ["vente", "location"].sample }
 
     after(:build) do |property|
-      property.property_photos = build_list(:property_photo, 3, property: property)
+      property.property_photos = build_list(:property_photo, 5, property: property)
     end
   end
 end

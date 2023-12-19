@@ -9325,9 +9325,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React6 = require_react();
+          var React8 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -10932,7 +10932,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React6.Children.forEach(props.children, function(child) {
+                  React8.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -19379,7 +19379,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React6.Component().refs;
+          var emptyRefsObject = new React8.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -37343,11 +37343,156 @@
   };
   var Button_default = Button;
 
+  // app/javascript/react/src/components/Navbar.jsx
+  var import_react6 = __toESM(require_react());
+  var NavbarContainer = st.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  padding-bottom: 0;
+`;
+  var Logo2 = st.img`
+  width: 6rem; // 40px
+  height: auto;
+  margin-left: 3rem;
+`;
+  var NavRightItems = st.div`
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+`;
+  var ChangeLocales = st.div`
+    display: flex;
+    align-items: center;
+    margin-right: 3rem;
+    margin-top: -1rem;
+`;
+  var NavLinks = st.div`
+    margin-right: 1.5rem;
+    margin-top: 1.3rem;
+`;
+  var NavLink = st.a`
+  margin-right: 1.5rem; // 15px
+  color: black;
+  text-decoration: none;
+  font-size: 1rem; // 10px
+`;
+  var FlagContainer = st.div`
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.3rem;
+`;
+  var Flag = st.img`
+  width: 100%;
+  height: auto;
+`;
+  var LanguageSelect = st.select`
+  border: none;
+  background-color: transparent;
+  font-size: 1rem; // 10px
+  cursor: pointer;
+  &:after {
+    content: '▼';
+    font-size: 1rem; // 10px
+    padding-left: 0.5rem; // 5px
+  }
+`;
+  var Navbar = () => {
+    return /* @__PURE__ */ import_react6.default.createElement(NavbarContainer, null, /* @__PURE__ */ import_react6.default.createElement(Logo2, { src: "/assets/home-logo.svg", alt: "Logo" }), /* @__PURE__ */ import_react6.default.createElement(NavRightItems, null, /* @__PURE__ */ import_react6.default.createElement(ChangeLocales, null, /* @__PURE__ */ import_react6.default.createElement(FlagContainer, null, /* @__PURE__ */ import_react6.default.createElement(Flag, { src: "/assets/french-flag.svg", alt: "Flag" })), /* @__PURE__ */ import_react6.default.createElement(LanguageSelect, null, /* @__PURE__ */ import_react6.default.createElement("option", { value: "fr" }, "Fran\xE7ais"), /* @__PURE__ */ import_react6.default.createElement("option", { value: "en" }, "English"))), /* @__PURE__ */ import_react6.default.createElement(NavLinks, null, /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "ACCUEIL"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "TOUT LES BIENS"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "GUIDES"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "FAQ"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "NOUS CONTACTEZ"))));
+  };
+  var Navbar_default = Navbar;
+
+  // app/javascript/react/src/components/Hero.jsx
+  var import_react7 = __toESM(require_react());
+  var HeroContainer = st.div`
+  position: relative;
+  background-image: url("/assets/dubai-marina.jpg");
+  color: black;
+  text-align: left;
+  padding-left: 4.5rem;
+  height: 71vh;
+  background-size: cover;
+  padding-top: 8rem;
+`;
+  var MainText = st.p`
+  font-size: 2rem;
+  font-weight: bold;
+  width: 29rem;
+`;
+  var Subtitle = st.p`
+  color: white;
+  font-size: 1.5rem;
+  font-weight: lighter;
+`;
+  var SearchBar = st.div`
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  width: 40rem;
+  border-radius: 41px;
+`;
+  var SearchInput = st.input`
+  flex: 1;
+  padding: 1.5rem;
+  padding-left: 1.5rem;
+  padding-left: 2.5rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-style: italic;
+  border-radius: 10px;
+`;
+  var SearchButton = st.button`
+  background-color: #3E8BE4;
+  color: white;
+  border: none;
+  padding: 1rem;
+  margin-left: -7rem;
+  border-radius: 5px;
+`;
+  var IconsContainer = st.div`
+  position: absolute;
+  bottom: 2rem;
+  left: 4.5rem;
+  display: flex;
+  gap: 1rem;
+`;
+  var IconCircle = st.div`
+  width: 3rem; // Taille de l'icône
+  height: 3rem;
+  border-radius: 50%;
+  background-color: white; // Couleur de fond des cercles
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.green {
+    background-color: #46CC6B;
+  }
+
+  &.blue {
+    background-color: #3E8BE4;
+  }
+`;
+  var Icon2 = st.img`
+  width: 60%;
+  height: auto;
+`;
+  var Hero = () => {
+    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, "R\xEAver, Investir, R\xE9ussir Avec La Meilleure Agence Immobili\xE8re \xC0 Duba\xEF Devoyl Capital"), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, "Nous Offrons Les Meilleurs Services Immobiliers"), /* @__PURE__ */ import_react7.default.createElement(SearchBar, null, /* @__PURE__ */ import_react7.default.createElement(SearchInput, { placeholder: "Rechercher une Ville ou une Adresse" }), /* @__PURE__ */ import_react7.default.createElement(SearchButton, null, "Rechercher")), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" }))));
+  };
+  var Hero_default = Hero;
+
   // app/javascript/react/src/index.js
   defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
   defineReact({ "dashboard-card-component": DashboardCard_default }, { root: document.getElementById("dashboard-card-root") });
   defineReact({ "title-component": Title_default }, { root: document.getElementById("title-root") });
   defineReact({ "button-component": Button_default }, { root: document.getElementById("button-root") });
+  defineReact({ "navbar-component": Navbar_default }, { root: document.getElementById("navbar-root") });
+  defineReact({ "hero-component": Hero_default }, { root: document.getElementById("hero-root") });
 
   // app/javascript/application.js
   Rails.start();
