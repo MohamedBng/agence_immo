@@ -7,9 +7,15 @@ const HeroContainer = styled.div`
   color: black;
   text-align: left;
   padding-left: 4.5rem;
-  height: 71vh;
+  height: 90vh;
   background-size: cover;
-  padding-top: 8rem;
+`;
+
+const HeroCorp = styled.div`
+  width: 100%;
+  max-width: 111rem;
+  margin: 0 auto;
+  padding-top: 10%;
 `;
 
 const MainText = styled.p`
@@ -28,8 +34,16 @@ const SearchBar = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1rem;
-  width: 40rem;
+  width: 50%;
   border-radius: 41px;
+`;
+
+const LocalisationIcon = styled.img`
+  width: 1rem;
+  height: auto;
+  margin-right: -2rem;
+  z-index: 2;
+  margin-left: 1rem;
 `;
 
 const SearchInput = styled.input`
@@ -55,7 +69,6 @@ const SearchButton = styled.button`
 const IconsContainer = styled.div`
   position: absolute;
   bottom: 2rem;
-  left: 4.5rem;
   display: flex;
   gap: 1rem;
 `;
@@ -86,17 +99,20 @@ const Icon = styled.img`
 const Hero = () => {
   return (
     <HeroContainer>
-      <MainText>Rêver, Investir, Réussir Avec La Meilleure Agence Immobilière À Dubaï Devoyl Capital</MainText>
-      <Subtitle>Nous Offrons Les Meilleurs Services Immobiliers</Subtitle>
-      <SearchBar>
-        <SearchInput placeholder="Rechercher une Ville ou une Adresse" />
-        <SearchButton>Rechercher</SearchButton>
-      </SearchBar>
-      <IconsContainer>
-        <IconCircle className="green"> <Icon src="/assets/whatsapp-icon.svg" alt="Flag" /></IconCircle>
-        <IconCircle className="blue"> <Icon src="/assets/telephone-icon.svg" alt="Flag" /></IconCircle>
-        <IconCircle> <Icon src="/assets/instagram-icon.svg" alt="Flag" /></IconCircle>
-      </IconsContainer>
+      <HeroCorp>
+        <MainText>Rêver, Investir, Réussir Avec La Meilleure Agence Immobilière À Dubaï Devoyl Capital</MainText>
+        <Subtitle>Nous Offrons Les Meilleurs Services Immobiliers</Subtitle>
+        <SearchBar>
+          <LocalisationIcon src="/assets/localisation-icon.svg" alt="Localisation" />
+          <SearchInput placeholder="Rechercher une Ville ou une Adresse" />
+          <SearchButton>Rechercher</SearchButton>
+        </SearchBar>
+        <IconsContainer>
+          <IconCircle className="green"> <Icon src="/assets/whatsapp-icon.svg" alt="Flag" /></IconCircle>
+          <IconCircle className="blue"> <Icon src="/assets/telephone-icon.svg" alt="Flag" /></IconCircle>
+          <IconCircle> <Icon src="/assets/instagram-icon.svg" alt="Flag" /></IconCircle>
+        </IconsContainer>
+      </HeroCorp>
     </HeroContainer>
   );
 };

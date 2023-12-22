@@ -4,3 +4,20 @@
 <div id="hero-root">
     <hero-component/>
 </div>
+<div style="display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 111rem;
+  margin: 0 auto;
+    margin-bottom: 0px;
+  margin-bottom: 10rem;">
+    <div id="feature-card-root">
+        <feature-card-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", adress: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
+    </div>
+    <div id="feature-card-root">
+        <feature-card-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", adress: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
+    </div>
+    <div id="feature-card-root">
+        <feature-card-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", adress: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
+    </div>
+</div>

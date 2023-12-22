@@ -7,8 +7,12 @@ const NavbarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #f0f0f0;
+  background-color: white;
   padding-bottom: 0;
+  width: 100%;
+  max-width: 111rem;
+  margin: 0 auto;
+  height: 10vh;
 `;
 
 const Logo = styled.img`

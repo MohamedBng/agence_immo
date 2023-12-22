@@ -9325,9 +9325,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React8 = require_react();
+          var React9 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React9.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -10932,7 +10932,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React8.Children.forEach(props.children, function(child) {
+                  React9.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -19379,7 +19379,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React8.Component().refs;
+          var emptyRefsObject = new React9.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -37350,8 +37350,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #f0f0f0;
+  background-color: white;
   padding-bottom: 0;
+  width: 100%;
+  max-width: 111rem;
+  margin: 0 auto;
+  height: 10vh;
 `;
   var Logo2 = st.img`
   width: 6rem; // 40px
@@ -37414,9 +37418,14 @@
   color: black;
   text-align: left;
   padding-left: 4.5rem;
-  height: 71vh;
+  height: 90vh;
   background-size: cover;
-  padding-top: 8rem;
+`;
+  var HeroCorp = st.div`
+  width: 100%;
+  max-width: 111rem;
+  margin: 0 auto;
+  padding-top: 10%;
 `;
   var MainText = st.p`
   font-size: 2rem;
@@ -37432,8 +37441,15 @@
   display: flex;
   align-items: center;
   margin-top: 1rem;
-  width: 40rem;
+  width: 50%;
   border-radius: 41px;
+`;
+  var LocalisationIcon = st.img`
+  width: 1rem;
+  height: auto;
+  margin-right: -2rem;
+  z-index: 2;
+  margin-left: 1rem;
 `;
   var SearchInput = st.input`
   flex: 1;
@@ -37456,7 +37472,6 @@
   var IconsContainer = st.div`
   position: absolute;
   bottom: 2rem;
-  left: 4.5rem;
   display: flex;
   gap: 1rem;
 `;
@@ -37482,9 +37497,91 @@
   height: auto;
 `;
   var Hero = () => {
-    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, "R\xEAver, Investir, R\xE9ussir Avec La Meilleure Agence Immobili\xE8re \xC0 Duba\xEF Devoyl Capital"), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, "Nous Offrons Les Meilleurs Services Immobiliers"), /* @__PURE__ */ import_react7.default.createElement(SearchBar, null, /* @__PURE__ */ import_react7.default.createElement(SearchInput, { placeholder: "Rechercher une Ville ou une Adresse" }), /* @__PURE__ */ import_react7.default.createElement(SearchButton, null, "Rechercher")), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" }))));
+    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(HeroCorp, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, "R\xEAver, Investir, R\xE9ussir Avec La Meilleure Agence Immobili\xE8re \xC0 Duba\xEF Devoyl Capital"), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, "Nous Offrons Les Meilleurs Services Immobiliers"), /* @__PURE__ */ import_react7.default.createElement(SearchBar, null, /* @__PURE__ */ import_react7.default.createElement(LocalisationIcon, { src: "/assets/localisation-icon.svg", alt: "Localisation" }), /* @__PURE__ */ import_react7.default.createElement(SearchInput, { placeholder: "Rechercher une Ville ou une Adresse" }), /* @__PURE__ */ import_react7.default.createElement(SearchButton, null, "Rechercher")), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" })))));
   };
   var Hero_default = Hero;
+
+  // app/javascript/react/src/components/FeatureCard.jsx
+  var import_react8 = __toESM(require_react());
+  var FeatureCardContainer = st.div`
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50%;
+`;
+  var CardImageContainer = st.div`
+    width: 25rem;       
+    border-radius: 1.5rem;
+    overflow: hidden;
+`;
+  var CardImage = st.img`
+    width: 100%;
+    object-fit: cover;
+`;
+  var CardBody = st.div`
+    background-color: white;
+    width: 20rem;
+    border-radius: 1rem;
+    margin-top: -3rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+  var CardHeader = st.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+  var Price = st.p`
+    font-weight: bold;
+    font-size: larger;
+`;
+  var Icon3 = st.img`
+    width: 1.3rem;
+`;
+  var Name = st.p`
+    font-weight: bold;
+    font-size: larger;
+`;
+  var Adress = st.p`
+    font-size: medium;
+`;
+  var Divider2 = st.hr`
+    width: 100%;
+    background-color: black;
+    border: none;
+    height: 1px;
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+`;
+  var Options = st.div`
+    display: flex;
+    justify-content: space-between;
+`;
+  var OptionsIcons = st.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+`;
+  var OptionIcon = st.img`
+    width: 1.2rem;
+`;
+  var Room = st.p`
+    font-size: smaller;
+`;
+  var Bathroom = st.p`
+    font-size: smaller;
+`;
+  var Area = st.p`
+    font-size: smaller;
+`;
+  var FeatureCard = ({ price, name: name2, adress, image }) => {
+    return /* @__PURE__ */ import_react8.default.createElement(FeatureCardContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImageContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImage, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react8.default.createElement(CardBody, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(Price, null, price), /* @__PURE__ */ import_react8.default.createElement(Icon3, { src: "/assets/arrow-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react8.default.createElement(Name, null, name2), /* @__PURE__ */ import_react8.default.createElement(Adress, null, adress), /* @__PURE__ */ import_react8.default.createElement(Divider2, null), /* @__PURE__ */ import_react8.default.createElement(Options, null, /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react8.default.createElement(Room, null, "3 Chambres")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react8.default.createElement(Bathroom, null, "2 Salles de bain")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react8.default.createElement(Area, null, "1000 m\xB2")))));
+  };
+  var FeatureCard_default = FeatureCard;
 
   // app/javascript/react/src/index.js
   defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
@@ -37493,6 +37590,7 @@
   defineReact({ "button-component": Button_default }, { root: document.getElementById("button-root") });
   defineReact({ "navbar-component": Navbar_default }, { root: document.getElementById("navbar-root") });
   defineReact({ "hero-component": Hero_default }, { root: document.getElementById("hero-root") });
+  defineReact({ "feature-card-component": FeatureCard_default }, { root: document.getElementById("feature-card-root") });
 
   // app/javascript/application.js
   Rails.start();
