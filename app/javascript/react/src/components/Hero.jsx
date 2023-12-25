@@ -46,7 +46,7 @@ const LocalisationIcon = styled.img`
   margin-left: 1rem;
 `;
 
-const SearchInput = styled.input`
+const SearchInput = styled.select`
   flex: 1;
   padding: 1.5rem;
   padding-left: 1.5rem;
@@ -96,7 +96,7 @@ const Icon = styled.img`
   height: auto;
 `;
 
-const Hero = () => {
+const Hero = ({ cities }) => {
   return (
     <HeroContainer>
       <HeroCorp>
@@ -104,7 +104,11 @@ const Hero = () => {
         <Subtitle>Nous Offrons Les Meilleurs Services Immobiliers</Subtitle>
         <SearchBar>
           <LocalisationIcon src="/assets/localisation-icon.svg" alt="Localisation" />
-          <SearchInput placeholder="Rechercher une Ville ou une Adresse" />
+          <SearchInput>
+            {cities.map((city, index) => (
+              <option key={index} value={city}>{city}</option>
+            ))}
+          </SearchInput>
           <SearchButton>Rechercher</SearchButton>
         </SearchBar>
         <IconsContainer>

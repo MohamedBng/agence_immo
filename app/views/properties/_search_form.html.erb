@@ -1,0 +1,10 @@
+
+<%= form_with url: properties_path, method: :get, local: true do |form| %>
+  <%= form.select :city, options_for_select(propertyCitiesEnum.map { |type| [type.humanize, type] }, params[:city]), { include_blank: 'Choisissez une ville' }, class: 'search-input-city' %>
+  <%= form.select :property_type, options_for_select(propertyTypeEnum.map { |type| [type.humanize, type] }, params[:property_type]), { include_blank: 'Type de propriété' }, class: 'search-select-type' %>
+  <%= form.select :status, options_for_select(propertyStatusEnum.map { |status| [status.humanize, status] }, params[:status]), { include_blank: 'Statut' }, class: 'search-select-status' %>
+  <%= form.number_field :bathrooms, value: params[:bathrooms], placeholder: 'Salle de bains', class: 'search-input-bathrooms' %>
+  <%= form.number_field :bedrooms, value: params[:bedrooms], placeholder: 'Chambres', class: 'search-input-beds' %>
+  <%= form.submit 'Rechercher', class: 'search-submit-button' %>
+  <%= link_to 'Supprimer les filtres', properties_path, class: 'reset-filters-button' %>
+<% end %>

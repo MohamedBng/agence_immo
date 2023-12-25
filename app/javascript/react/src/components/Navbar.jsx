@@ -6,7 +6,8 @@ const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: white;
   padding-bottom: 0;
   width: 100%;
@@ -16,7 +17,7 @@ const NavbarContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 6rem; // 40px
+  width: 10rem;
   height: auto;
   margin-left: 3rem;
 `;
@@ -43,7 +44,7 @@ const NavLink = styled.a`
   margin-right: 1.5rem; // 15px
   color: black;
   text-decoration: none;
-  font-size: 1rem; // 10px
+  font-size: medium;
 `;
 
 const FlagContainer = styled.div`

@@ -1,12 +1,17 @@
+require 'open-uri'
+
 FactoryBot.define do
   factory :property_photo do
     association :property
-  
+
     after(:build) do |property_photo|
-      file_path = Rails.root.join('spec', 'support', 'assets', 'property.jpg')
-      file = File.open(file_path, 'rb')
-  
-      property_photo.file = file
+      image_url = "https://source.unsplash.com/random/300x200/?house"
+      downloaded_image = URI.open(image_url)
+
+      temp_file = Tempfile.new(['property_photo', '.jpg'])
+      IO.copy_stream(downloaded_image, temp_file.path)
+
+      property_photo.file = temp_file
     end
   end  
 end

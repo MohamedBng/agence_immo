@@ -2,22 +2,17 @@
     <navbar-component/>
 </div>
 <div id="hero-root">
-    <hero-component/>
+    <hero-component props-json='<%= {cities: @cities}.to_json.html_safe %>'/>
 </div>
-<div style="display: flex;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 111rem;
-  margin: 0 auto;
-    margin-bottom: 0px;
-  margin-bottom: 10rem;">
-    <div id="feature-card-root">
-        <feature-card-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", adress: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
-    </div>
-    <div id="feature-card-root">
-        <feature-card-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", adress: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
-    </div>
-    <div id="feature-card-root">
-        <feature-card-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", adress: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
-    </div>
+<div id="feature-section-root">
+    <feature-section-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", address: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
+</div>
+<div id="advantage-section-root">
+    <advantage-section-component/>
+</div>
+<div id="footer-root">
+    <footer-component/>
+</div>
+<div id="copiryght-root">
+    <copyright-component/>
 </div>

@@ -9325,9 +9325,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React9 = require_react();
+          var React14 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React9.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React14.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -10932,7 +10932,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React9.Children.forEach(props.children, function(child) {
+                  React14.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -19379,7 +19379,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React9.Component().refs;
+          var emptyRefsObject = new React14.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -37349,7 +37349,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: white;
   padding-bottom: 0;
   width: 100%;
@@ -37358,7 +37359,7 @@
   height: 10vh;
 `;
   var Logo2 = st.img`
-  width: 6rem; // 40px
+  width: 10rem;
   height: auto;
   margin-left: 3rem;
 `;
@@ -37381,7 +37382,7 @@
   margin-right: 1.5rem; // 15px
   color: black;
   text-decoration: none;
-  font-size: 1rem; // 10px
+  font-size: medium;
 `;
   var FlagContainer = st.div`
   width: 1rem;
@@ -37451,7 +37452,7 @@
   z-index: 2;
   margin-left: 1rem;
 `;
-  var SearchInput = st.input`
+  var SearchInput = st.select`
   flex: 1;
   padding: 1.5rem;
   padding-left: 1.5rem;
@@ -37496,10 +37497,13 @@
   width: 60%;
   height: auto;
 `;
-  var Hero = () => {
-    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(HeroCorp, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, "R\xEAver, Investir, R\xE9ussir Avec La Meilleure Agence Immobili\xE8re \xC0 Duba\xEF Devoyl Capital"), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, "Nous Offrons Les Meilleurs Services Immobiliers"), /* @__PURE__ */ import_react7.default.createElement(SearchBar, null, /* @__PURE__ */ import_react7.default.createElement(LocalisationIcon, { src: "/assets/localisation-icon.svg", alt: "Localisation" }), /* @__PURE__ */ import_react7.default.createElement(SearchInput, { placeholder: "Rechercher une Ville ou une Adresse" }), /* @__PURE__ */ import_react7.default.createElement(SearchButton, null, "Rechercher")), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" })))));
+  var Hero = ({ cities }) => {
+    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(HeroCorp, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, "R\xEAver, Investir, R\xE9ussir Avec La Meilleure Agence Immobili\xE8re \xC0 Duba\xEF Devoyl Capital"), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, "Nous Offrons Les Meilleurs Services Immobiliers"), /* @__PURE__ */ import_react7.default.createElement(SearchBar, null, /* @__PURE__ */ import_react7.default.createElement(LocalisationIcon, { src: "/assets/localisation-icon.svg", alt: "Localisation" }), /* @__PURE__ */ import_react7.default.createElement(SearchInput, null, cities.map((city, index) => /* @__PURE__ */ import_react7.default.createElement("option", { key: index, value: city }, city))), /* @__PURE__ */ import_react7.default.createElement(SearchButton, null, "Rechercher")), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" })))));
   };
   var Hero_default = Hero;
+
+  // app/javascript/react/src/components/FeatureSection.jsx
+  var import_react9 = __toESM(require_react());
 
   // app/javascript/react/src/components/FeatureCard.jsx
   var import_react8 = __toESM(require_react());
@@ -37508,7 +37512,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50%;
 `;
   var CardImageContainer = st.div`
     width: 25rem;       
@@ -37578,10 +37581,309 @@
   var Area = st.p`
     font-size: smaller;
 `;
-  var FeatureCard = ({ price, name: name2, adress, image }) => {
-    return /* @__PURE__ */ import_react8.default.createElement(FeatureCardContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImageContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImage, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react8.default.createElement(CardBody, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(Price, null, price), /* @__PURE__ */ import_react8.default.createElement(Icon3, { src: "/assets/arrow-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react8.default.createElement(Name, null, name2), /* @__PURE__ */ import_react8.default.createElement(Adress, null, adress), /* @__PURE__ */ import_react8.default.createElement(Divider2, null), /* @__PURE__ */ import_react8.default.createElement(Options, null, /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react8.default.createElement(Room, null, "3 Chambres")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react8.default.createElement(Bathroom, null, "2 Salles de bain")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react8.default.createElement(Area, null, "1000 m\xB2")))));
+  var FeatureCard = ({ price, name: name2, address, image }) => {
+    return /* @__PURE__ */ import_react8.default.createElement(FeatureCardContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImageContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImage, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react8.default.createElement(CardBody, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(Price, null, price), /* @__PURE__ */ import_react8.default.createElement(Icon3, { src: "/assets/arrow-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react8.default.createElement(Name, null, name2), /* @__PURE__ */ import_react8.default.createElement(Adress, null, address), /* @__PURE__ */ import_react8.default.createElement(Divider2, null), /* @__PURE__ */ import_react8.default.createElement(Options, null, /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react8.default.createElement(Room, null, "3 Chambres")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react8.default.createElement(Bathroom, null, "2 Salles de bain")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react8.default.createElement(Area, null, "1000 m\xB2")))));
   };
   var FeatureCard_default = FeatureCard;
+
+  // app/javascript/react/src/components/FeatureSection.jsx
+  var SectionContainer = st.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10rem;
+`;
+  var Title2 = st.p`
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5rem;
+`;
+  var CheckboxContainer = st.div`
+    border-radius: 1rem;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    width: max-content;
+`;
+  var CheckboxLabel = st.label`
+    margin: 0 1rem;
+    cursor: pointer;
+`;
+  var LinkContainer = st.div`
+    display: flex;
+    align-items: center;
+    margin-left: auto; // Pousse le conteneur vers la droite
+`;
+  var StyledLink = st.a`
+    margin-right: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #3E8BE4;
+`;
+  var Icon4 = st.img`
+    width: 24px;
+    height: 24px;
+`;
+  var Checkbox = st.input.attrs({ type: "checkbox" })`
+    margin-right: 0.5rem;
+`;
+  var CheckboxAndLink = st.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 6rem;
+`;
+  var Separator = st.span`
+    margin: 0 1rem;
+`;
+  var FeatureSection = ({ image, price, name: name2, address }) => {
+    return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement(Title2, null, "Explorez nos Propri\xE9t\xE9s"), /* @__PURE__ */ import_react9.default.createElement(CheckboxAndLink, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxContainer, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Achetez"), /* @__PURE__ */ import_react9.default.createElement(Separator, null, "|"), /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Louer")), /* @__PURE__ */ import_react9.default.createElement(LinkContainer, null, /* @__PURE__ */ import_react9.default.createElement(StyledLink, { href: "https://example.com" }, "Voir plus"), /* @__PURE__ */ import_react9.default.createElement(Icon4, { src: "/assets/arrow-icon-simple.svg", alt: "Icon" }))), /* @__PURE__ */ import_react9.default.createElement(SectionContainer, null, /* @__PURE__ */ import_react9.default.createElement(FeatureCard_default, { image, price, name: name2, address }), /* @__PURE__ */ import_react9.default.createElement(FeatureCard_default, { image, price, name: name2, address }), /* @__PURE__ */ import_react9.default.createElement(FeatureCard_default, { image, price, name: name2, address })));
+  };
+  var FeatureSection_default = FeatureSection;
+
+  // app/javascript/react/src/components/AdvantageSection.jsx
+  var import_react10 = __toESM(require_react());
+  var AdvantageSectionContainer = st.section`
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    margin-top: 15rem;
+`;
+  var AdvantageTextContainer = st.div`
+  display: flex;
+  flex-direction: column;
+`;
+  var Title3 = st.h2`
+    margin-bottom: 8rem;
+    width: 69%;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    padding-top: 0;
+    margin-top: 0;
+`;
+  var AdvantageList = st.ul`
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+`;
+  var AdvantageItem = st.li`
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: medium;
+`;
+  var Icon5 = st.img`
+  margin-right: 10px;
+  width: 1rem;
+`;
+  var Button2 = st.button`
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 21rem;
+    padding: 1rem;
+`;
+  var ButtonIcon = st.img`
+    margin-right: 10px;
+    width: 3rem;
+`;
+  var ImageContainer = st.div`
+    max-width: 50%;
+    overflow: hidden;
+    height: 26rem;
+`;
+  var Image = st.img`
+  width: 100%;
+  object-fit: cover;
+`;
+  var AdvantageSection = () => {
+    const advantages = [
+      { text: "0% Property Tax", icon: "/assets/validate-icon.svg" },
+      { text: "0% Commission Fee", icon: "/assets/validate-icon.svg" },
+      { text: "0% Interest Rate For Payment Installments", icon: "/assets/validate-icon.svg" },
+      { text: "10% Booking Amount", icon: "/assets/validate-icon.svg" },
+      { text: "Payment With Cryptocurrency", icon: "/assets/validate-icon.svg" }
+    ];
+    return /* @__PURE__ */ import_react10.default.createElement(AdvantageSectionContainer, null, /* @__PURE__ */ import_react10.default.createElement(AdvantageTextContainer, null, /* @__PURE__ */ import_react10.default.createElement(Title3, null, "Plus qu'une maison, plus qu'un foyer."), /* @__PURE__ */ import_react10.default.createElement(AdvantageList, null, advantages.map((advantage, index) => /* @__PURE__ */ import_react10.default.createElement(AdvantageItem, { key: index }, /* @__PURE__ */ import_react10.default.createElement(Icon5, { src: advantage.icon, alt: "" }), advantage.text))), /* @__PURE__ */ import_react10.default.createElement(Button2, null, "En Savoir Plus", /* @__PURE__ */ import_react10.default.createElement(ButtonIcon, { src: "/assets/arrow-icon-simple-white.svg", alt: "Icon" }))), /* @__PURE__ */ import_react10.default.createElement(ImageContainer, null, /* @__PURE__ */ import_react10.default.createElement(Image, { src: "/assets/house_near_threes.svg", alt: "house near threes" })));
+  };
+  var AdvantageSection_default = AdvantageSection;
+
+  // app/javascript/react/src/components/Footer.jsx
+  var import_react11 = __toESM(require_react());
+  var FooterContainer = st.footer`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 4rem;
+    width: 90%;
+    max-width: 111rem;
+    margin: 0 auto;
+    margin-top: 15rem;
+    height: 30rem;
+}
+`;
+  var ContactInfo = st.div`
+  flex-basis: 50%;
+`;
+  var Title4 = st.h2`
+    width: 30rem;
+    font-size: 2rem;
+`;
+  var Paragraph = st.p`
+    width: 30rem;
+    margin-bottom: 1rem;
+`;
+  var Form = st.form`
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 4px;
+`;
+  var Input = st.input`
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 4px;
+`;
+  var Textarea = st.textarea`
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    height: 150px;
+    width: 90%;
+    background-color: #D9D9D9;
+    border: none;
+`;
+  var SubmitButton = st.button`
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    justify-content: center;
+    width: 15rem;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 4px;
+`;
+  var FooterContact = () => {
+    return /* @__PURE__ */ import_react11.default.createElement(FooterContainer, null, /* @__PURE__ */ import_react11.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react11.default.createElement(Title4, null, "Laissez-nous vous aider \xE0 trouver les meilleures propri\xE9t\xE9s r\xE9sidentielles \xE0 Duba\xEF."), /* @__PURE__ */ import_react11.default.createElement(Paragraph, null, "Vous recherchez une propri\xE9t\xE9 \xE0 Duba\xEF qui prendra de la valeur avec le temps tout en vous offrant exclusivit\xE9 et confort ? Vous \xEAtes au bon endroit avec notre portefeuille, qui inclut uniquement les meilleures propri\xE9t\xE9s r\xE9sidentielles des \xC9mirats Arabes Unis.")), /* @__PURE__ */ import_react11.default.createElement(Form, null, /* @__PURE__ */ import_react11.default.createElement(Input, { type: "text", placeholder: "Nom", required: true }), /* @__PURE__ */ import_react11.default.createElement(Input, { type: "email", placeholder: "Email", required: true }), /* @__PURE__ */ import_react11.default.createElement(Textarea, { placeholder: "Message", required: true }), /* @__PURE__ */ import_react11.default.createElement(SubmitButton, { type: "submit" }, "Envoyer")));
+  };
+  var Footer_default = FooterContact;
+
+  // app/javascript/react/src/components/Copyright.jsx
+  var import_react12 = __toESM(require_react());
+  var CopyrightSection = st.section`
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+`;
+  var CopyrightText = st.p`
+  margin: 0;
+  font-size: 0.875rem; // Vous pouvez ajuster la taille de la police selon vos besoins
+`;
+  var Copyright = () => {
+    return /* @__PURE__ */ import_react12.default.createElement(CopyrightSection, null, /* @__PURE__ */ import_react12.default.createElement(CopyrightText, null, "\xA9 Real Estate 2023. All Rights Reserved"));
+  };
+  var Copyright_default = Copyright;
+
+  // app/javascript/react/src/components/PropertyCard.jsx
+  var import_react13 = __toESM(require_react());
+  var PropertyCardContainer = st.div`
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    margin-right: 1rem;
+    margin-bottom: 5rem;
+`;
+  var CardImageContainer2 = st.div`
+    width: 100%;
+`;
+  var CardImage2 = st.img`
+    width: 100%;
+    object-fit: cover;
+    height: 10rem;
+    object-position: center;
+`;
+  var CardBody2 = st.div`
+    background-color: white;
+    width: 17rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+`;
+  var CardHeader2 = st.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+  var Price2 = st.p`
+    font-weight: bold;
+    font-size: medium;
+`;
+  var Icon6 = st.img`
+    width: 1.3rem;
+`;
+  var Name2 = st.p`
+    font-weight: bold;
+    font-size: medium;
+`;
+  var Adress2 = st.p`
+    font-size: small;
+    height: 35px;
+`;
+  var Divider3 = st.hr`
+    width: 100%;
+    background-color: black;
+    border: none;
+    height: 1px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+
+`;
+  var Options2 = st.div`
+    display: flex;
+    justify-content: space-between;
+`;
+  var OptionsIcons2 = st.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+`;
+  var OptionIcon2 = st.img`
+    width: 1.2rem;
+`;
+  var Room2 = st.p`
+    font-size: xx-small;
+`;
+  var Bathroom2 = st.p`
+    font-size: xx-small;
+`;
+  var Area2 = st.p`
+    font-size: xx-small;
+`;
+  var PropertyCard = ({ price, name: name2, address, image, bedrooms, bathrooms, area }) => {
+    return /* @__PURE__ */ import_react13.default.createElement(PropertyCardContainer, null, /* @__PURE__ */ import_react13.default.createElement(CardImageContainer2, null, /* @__PURE__ */ import_react13.default.createElement(CardImage2, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react13.default.createElement(CardBody2, null, /* @__PURE__ */ import_react13.default.createElement(CardHeader2, null, /* @__PURE__ */ import_react13.default.createElement(Price2, null, price), /* @__PURE__ */ import_react13.default.createElement(Icon6, { src: "/assets/arrow-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react13.default.createElement(Name2, null, name2), /* @__PURE__ */ import_react13.default.createElement(Adress2, null, address), /* @__PURE__ */ import_react13.default.createElement(Divider3, null), /* @__PURE__ */ import_react13.default.createElement(Options2, null, /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react13.default.createElement(Room2, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react13.default.createElement(Bathroom2, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react13.default.createElement(Area2, null, area, " m\xB2")))));
+  };
+  var PropertyCard_default = PropertyCard;
 
   // app/javascript/react/src/index.js
   defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
@@ -37590,7 +37892,11 @@
   defineReact({ "button-component": Button_default }, { root: document.getElementById("button-root") });
   defineReact({ "navbar-component": Navbar_default }, { root: document.getElementById("navbar-root") });
   defineReact({ "hero-component": Hero_default }, { root: document.getElementById("hero-root") });
-  defineReact({ "feature-card-component": FeatureCard_default }, { root: document.getElementById("feature-card-root") });
+  defineReact({ "feature-section-component": FeatureSection_default }, { root: document.getElementById("feature-section-root") });
+  defineReact({ "advantage-section-component": AdvantageSection_default }, { root: document.getElementById("advantage-section-root") });
+  defineReact({ "footer-component": Footer_default }, { root: document.getElementById("footer-root") });
+  defineReact({ "copyright-component": Copyright_default }, { root: document.getElementById("copyright-root") });
+  defineReact({ "property-card-component": PropertyCard_default }, { root: document.getElementById("property-card-root") });
 
   // app/javascript/application.js
   Rails.start();

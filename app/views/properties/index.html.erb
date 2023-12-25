@@ -1,0 +1,35 @@
+<div id="navbar-root">
+    <navbar-component/>
+</div>
+
+<div id="property-search-root">
+  <%= render 'properties/search_form', propertyStatusEnum: @status_enum, propertyTypeEnum: @property_type_enum, propertyCitiesEnum: @cities %>
+</div>
+
+<div id="properties-cards">
+  <% if @properties.empty? %>
+    <p>Aucun logement trouvé correspondant à vos critères de recherche.</p>
+  <% else %>
+    <% @properties.each do |property| %>
+        <div id="property-card-root">
+            <property-card-component props-json='<%= {
+                image: property.property_photos.first.file_url(:small),
+                price: "$" + number_with_delimiter(property.price.to_i, delimiter: ' ').to_s,
+                name: CGI.escapeHTML(property.title['fr']),
+                address: (property.address['street'] + " , " + property.address['city'].humanize).gsub("'", "&#39;"),
+                bathrooms: property.bathrooms.to_i.to_s,
+                bedrooms: property.bedrooms.to_i.to_s,
+                area: property.area.to_i.to_s
+            }.to_json.html_safe %>'/>
+        </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= paginate @properties %>
+<div id="footer-root">
+    <footer-component/>
+</div>
+<div id="copiryght-root">
+    <copyright-component/>
+</div>

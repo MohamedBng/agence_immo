@@ -6,7 +6,6 @@ const FeatureCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50%;
 `;
 
 const CardImageContainer = styled.div`
@@ -92,7 +91,7 @@ const Area = styled.p`
     font-size: smaller;
 `;
 
-const FeatureCard = ({ price, name, adress, image }) => {
+const FeatureCard = ({ price, name, address, image }) => {
   return (
     <FeatureCardContainer>
         <CardImageContainer>
@@ -104,7 +103,7 @@ const FeatureCard = ({ price, name, adress, image }) => {
                 <Icon src="/assets/arrow-icon.svg" alt="Flag" />
             </CardHeader>
             <Name>{name}</Name>
-            <Adress>{adress}</Adress>
+            <Adress>{address}</Adress>
 
             <Divider />
             <Options>

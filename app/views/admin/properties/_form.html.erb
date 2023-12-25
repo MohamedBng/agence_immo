@@ -20,7 +20,8 @@
   <%= f.label :street, t('admin.properties.form.street') %>
   <%= f.text_field :street, value: @property.address.try(:[], 'street') %>
   <%= f.label :city, t('admin.properties.form.city') %>
-  <%= f.text_field :city, value: @property.address.try(:[], 'city') %>
+  <%= f.select :city, options_for_select(Property.cities.keys.map { |city| [t("admin.properties.cities.#{city}"), city] }, @property.address.try(:[], 'city')), { include_blank: t('admin.properties.form.select_city') } %>
+
 
   <%= f.label :bedrooms, t('admin.properties.form.bedrooms') %>
   <%= f.number_field :bedrooms %>

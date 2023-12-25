@@ -84,3 +84,4 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'fastimage'
 gem "cocoon"
+gem 'kaminari'
