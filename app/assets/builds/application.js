@@ -37838,6 +37838,9 @@
     font-weight: bold;
     font-size: medium;
 `;
+  var StyledLink2 = st.a`
+
+`;
   var Icon6 = st.img`
     width: 1.3rem;
 `;
@@ -37880,8 +37883,8 @@
   var Area2 = st.p`
     font-size: xx-small;
 `;
-  var PropertyCard = ({ price, name: name2, address, image, bedrooms, bathrooms, area }) => {
-    return /* @__PURE__ */ import_react13.default.createElement(PropertyCardContainer, null, /* @__PURE__ */ import_react13.default.createElement(CardImageContainer2, null, /* @__PURE__ */ import_react13.default.createElement(CardImage2, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react13.default.createElement(CardBody2, null, /* @__PURE__ */ import_react13.default.createElement(CardHeader2, null, /* @__PURE__ */ import_react13.default.createElement(Price2, null, price), /* @__PURE__ */ import_react13.default.createElement(Icon6, { src: "/assets/arrow-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react13.default.createElement(Name2, null, name2), /* @__PURE__ */ import_react13.default.createElement(Adress2, null, address), /* @__PURE__ */ import_react13.default.createElement(Divider3, null), /* @__PURE__ */ import_react13.default.createElement(Options2, null, /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react13.default.createElement(Room2, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react13.default.createElement(Bathroom2, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react13.default.createElement(Area2, null, area, " m\xB2")))));
+  var PropertyCard = ({ id, price, name: name2, address, image, bedrooms, bathrooms, area }) => {
+    return /* @__PURE__ */ import_react13.default.createElement(PropertyCardContainer, null, /* @__PURE__ */ import_react13.default.createElement(CardImageContainer2, null, /* @__PURE__ */ import_react13.default.createElement(CardImage2, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react13.default.createElement(CardBody2, null, /* @__PURE__ */ import_react13.default.createElement(CardHeader2, null, /* @__PURE__ */ import_react13.default.createElement(Price2, null, price), /* @__PURE__ */ import_react13.default.createElement(StyledLink2, { href: `/properties/${id}` }, /* @__PURE__ */ import_react13.default.createElement(Icon6, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react13.default.createElement(Name2, null, name2), /* @__PURE__ */ import_react13.default.createElement(Adress2, null, address), /* @__PURE__ */ import_react13.default.createElement(Divider3, null), /* @__PURE__ */ import_react13.default.createElement(Options2, null, /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react13.default.createElement(Room2, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react13.default.createElement(Bathroom2, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react13.default.createElement(Area2, null, area, " m\xB2")))));
   };
   var PropertyCard_default = PropertyCard;
 

@@ -13,6 +13,7 @@
     <% @properties.each do |property| %>
         <div id="property-card-root">
             <property-card-component props-json='<%= {
+                id: property.id,
                 image: property.property_photos.first.file_url(:small),
                 price: "$" + number_with_delimiter(property.price.to_i, delimiter: ' ').to_s,
                 name: CGI.escapeHTML(property.title['fr']),

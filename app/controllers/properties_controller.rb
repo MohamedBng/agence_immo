@@ -27,4 +27,8 @@ class PropertiesController < ApplicationController
         @property_type_enum = Property.property_types.keys
         @cities = Property.cities.keys
     end
+
+    def show
+        @property = Property.find(params[:id])
+    end
   end

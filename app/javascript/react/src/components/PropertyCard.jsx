@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const PropertyCardContainer = styled.div`
     width: min-content;
@@ -41,6 +42,10 @@ const CardHeader = styled.div`
 const Price = styled.p`
     font-weight: bold;
     font-size: medium;
+`;
+
+const StyledLink = styled.a`
+
 `;
 
 const Icon = styled.img`
@@ -95,7 +100,7 @@ const Area = styled.p`
     font-size: xx-small;
 `;
 
-const PropertyCard = ({ price, name, address, image, bedrooms, bathrooms, area }) => {
+const PropertyCard = ({ id, price, name, address, image, bedrooms, bathrooms, area }) => {
   return (
     <PropertyCardContainer>
         <CardImageContainer>
@@ -104,7 +109,9 @@ const PropertyCard = ({ price, name, address, image, bedrooms, bathrooms, area }
         <CardBody>
             <CardHeader>
                 <Price>{price}</Price>
-                <Icon src="/assets/arrow-icon.svg" alt="Flag" />
+                <StyledLink href={`/properties/${id}`}>
+                    <Icon src="/assets/arrow-icon.svg" alt="Détails" />
+                </StyledLink>
             </CardHeader>
             <Name>{name}</Name>
             <Adress>{address}</Adress>
