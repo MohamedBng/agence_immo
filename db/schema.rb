@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_17_135818) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_27_155113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_17_135818) do
     t.text "file_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position"
+    t.index ["property_id", "position"], name: "index_property_photos_on_property_id_and_position", unique: true
     t.index ["property_id"], name: "index_property_photos_on_property_id"
   end
 

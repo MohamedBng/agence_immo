@@ -38,7 +38,7 @@
   <%= f.label :status, t('admin.properties.form.status') %>
   <%= f.select :status, Property.statuses.keys.map { |status| [t("admin.properties.statuses.#{status}"), status] }, include_blank: true %>
 
-  <div id="property_photos">
+  <div id="property_photos"  data-controller="sortable" data-sortable-animation-value="150" >
     <%= f.fields_for :property_photos do |photo_fields| %>
       <%= render 'property_photo_fields', f: photo_fields %> 
     <% end %>

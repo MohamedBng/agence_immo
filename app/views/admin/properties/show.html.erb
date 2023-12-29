@@ -47,9 +47,11 @@
 
 <p>
   <strong>Photos :</strong>
-  <div class="image-wrapper">
-    <% @property.property_photos.each do |photo| %>
-            <%= image_tag(photo.file_url(:small), alt: "user-profile") if photo.file.present? %>
+  <div class="image-wrapper" data-controller="sortable" data-sortable-animation-value="150">
+    <% @property.property_photos.each.with_index(1) do |photo, index| %>
+      <div data-sortable-update-url="<%= update_position_admin_property_path(photo) %>" data-position="<%= index %>">
+        <%= image_tag(photo.file_url(:small), alt: "user-profile") if photo.file.present? %>
+      </div>
     <% end %>
   </div>
 </p>

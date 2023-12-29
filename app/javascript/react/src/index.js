@@ -10,6 +10,7 @@ import AdvantageSection from './components/AdvantageSection'
 import Footer from './components/Footer'
 import Copyright from './components/Copyright'
 import PropertyCard from './components/PropertyCard'
+import PropertyPhotosCarousel from './components/PropertyPhotosCarousel'
                                       
 define({ 'sidebar-component': Sidebar }, { root: document.getElementById('sidebar-root') });
 define({ 'dashboard-card-component': DashboardCard }, { root: document.getElementById('dashboard-card-root') });
@@ -22,3 +23,4 @@ define({ 'advantage-section-component': AdvantageSection }, { root: document.get
 define({ 'footer-component': Footer }, { root: document.getElementById('footer-root') });
 define({ 'copyright-component': Copyright }, { root: document.getElementById('copyright-root') })
 define({ 'property-card-component': PropertyCard }, { root: document.getElementById('property-card-root') });
+define({ 'property-photos-carousel-component': PropertyPhotosCarousel }, { root: document.getElementById('property-photos-carousel-root') });

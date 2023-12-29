@@ -25,6 +25,10 @@ class PropertyPolicy < ApplicationPolicy
     true
   end
 
+  def update_position?
+    true
+  end
+
   def edit?
     update?
   end

@@ -85,3 +85,4 @@ gem 'mini_magick'
 gem 'fastimage'
 gem "cocoon"
 gem 'kaminari'
+gem 'acts_as_list'

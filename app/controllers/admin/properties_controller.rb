@@ -16,7 +16,12 @@ class Admin::PropertiesController < ApplicationController
 
     def show
         authorize @property
+        @property.property_photos = @property.property_photos.ordered
     end
+
+    def edit
+        @property.property_photos = @property.property_photos.ordered
+    end    
 
     def create
         @property = Property.new(property_params)
@@ -41,6 +46,12 @@ class Admin::PropertiesController < ApplicationController
         end
     end
 
+    def update_position
+      @property = Property.find(params[:id])
+      authorize @property
+      p "okk"
+    end
+
     def destroy
         authorize @property
         @property.destroy
@@ -57,7 +68,7 @@ class Admin::PropertiesController < ApplicationController
         params.require(:property).permit(
           :price, :bedrooms, :bathrooms, :area, :property_type, :status,
           :title_fr, :title_en, :description_fr, :description_en, :street, :city, :country,
-          property_photos_attributes: [:id, :file, :_destroy]
+          property_photos_attributes: [:id, :file, :position, :_destroy]
         ).tap do |permitted_params|
           permitted_params[:title] = {
             'fr' => permitted_params.delete(:title_fr),
