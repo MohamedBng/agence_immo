@@ -181,6 +181,7 @@ body {
 
 .pagination {
     text-align: center;
+    margin-bottom: 5rem;
 }
 
 /* Dans votre fichier CSS */
@@ -227,4 +228,11 @@ body {
     margin: 0.5rem;
     text-decoration: none;
     font-size: small;
+}
+
+#property-details-body {
+    display: flex;
+    margin-left: 3.6rem;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
 }

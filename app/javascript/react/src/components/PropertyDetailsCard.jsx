@@ -1,76 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PropertyCardContainer = styled.div`
-    width: min-content;
+const PropertyDetailsCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 1.5rem;
     overflow: hidden;
-    margin-right: 1rem;
+    margin-right: 4rem;
     margin-bottom: 5rem;
-`;
-
-const CardImageContainer = styled.div`
-    width: 100%;
-`;
-
-const CardImage = styled.img`
-    width: 100%;
-    object-fit: cover;
-    height: 10rem;
-    object-position: center;
+    margin-left: -16rem;
+    width: min-content;
+    position: absolute;
+    margin-top: 2rem;
 `;
 
 const CardBody = styled.div`
     background-color: white;
-    width: 17rem;
+    width: 29rem;
     padding-right: 1rem;
     padding-left: 1rem;
     padding-bottom: 1rem;
+    height: 27rem;
 `;
 
 const CardHeader = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`;
-
-const Price = styled.p`
-    font-weight: bold;
-    font-size: medium;
-`;
-
-const StyledLink = styled.a`
-
-`;
-
-const Icon = styled.img`
-    width: 1.3rem;
 `;
 
 const Name = styled.p`
     font-weight: bold;
-    font-size: medium;
-    height: 2.5rem;
+    font-size: xx-large;
+    height: 1.5rem;
 `;
 
 const Adress = styled.p`
-    font-size: small;
+    font-size: large;
     height: 35px;
+    margin-top: 4rem;
+    font-weight: lighter;
 `;
 
-const Divider = styled.hr`
-    width: 100%;
-    background-color: black;
-    border: none;
-    height: 1px;
-    margin: 0 auto;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-
+const Price = styled.p`
+    font-weight: bold;
+    font-size: large;
 `;
 
 const Options = styled.div`
@@ -85,38 +58,47 @@ const OptionsIcons = styled.div`
 `;
 
 const OptionIcon = styled.img`
-    width: 1.2rem;
+    width: 2rem;
 `;
 
 const Room = styled.p`
-    font-size: xx-small;
+    font-size: medium;
 `;
 
 const Bathroom = styled.p`
-    font-size: xx-small;
+    font-size: medium;
 `;
 
 const Area = styled.p`
-    font-size: xx-small;
+    font-size: medium;
 `;
 
-const PropertyCard = ({ id, price, name, address, image, bedrooms, bathrooms, area }) => {
+const Divider = styled.hr`
+    width: 100%;
+    background-color: black;
+    border: none;
+    height: 1px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+`;
+
+const Description = styled.p`
+    font-size: small;
+    margin-top: 2rem;
+    height: 7rem;
+    overflow: scroll;
+`;
+
+const PropertyDetailsCard = ({price, name, address, description, bedrooms, bathrooms, area }) => {
   return (
-    <PropertyCardContainer>
-        <CardImageContainer>
-            <CardImage src={image} alt="Feature card" />
-        </CardImageContainer>
+    <PropertyDetailsCardContainer>
         <CardBody>
             <CardHeader>
-                <Price>{price}</Price>
-                <StyledLink href={`/properties/${id}`}>
-                    <Icon src="/assets/arrow-icon.svg" alt="Détails" />
-                </StyledLink>
+                <Name>{name}</Name>
+                <Adress>{address}</Adress> 
             </CardHeader>
-            <Name>{name}</Name>
-            <Adress>{address}</Adress>
-
-            <Divider />
+            <Price>{price}</Price>
             <Options>
                 <OptionsIcons>
                     <OptionIcon src="/assets/bed-icon.svg" alt="Bed" />
@@ -131,9 +113,11 @@ const PropertyCard = ({ id, price, name, address, image, bedrooms, bathrooms, ar
                     <Area>{area} m²</Area>
                 </OptionsIcons>
             </Options>
+            <Divider />
+            <Description>{description}</Description>
         </CardBody>
-    </PropertyCardContainer>
+    </PropertyDetailsCardContainer>
   );
 };
 
-export default PropertyCard;
+export default PropertyDetailsCard;

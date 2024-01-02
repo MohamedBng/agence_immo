@@ -91,7 +91,14 @@ const Area = styled.p`
     font-size: smaller;
 `;
 
-const FeatureCard = ({ price, name, address, image }) => {
+
+const StyledLink = styled.a`
+`;
+
+const FeatureCard = ({ id, price, name, address, image, bedrooms, bathrooms, area }) => {
+  const formatPrice = (price) => {
+    return "$" + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };  
   return (
     <FeatureCardContainer>
         <CardImageContainer>
@@ -99,8 +106,10 @@ const FeatureCard = ({ price, name, address, image }) => {
         </CardImageContainer>
         <CardBody>
             <CardHeader>
-                <Price>{price}</Price>
-                <Icon src="/assets/arrow-icon.svg" alt="Flag" />
+                <Price>{formatPrice(price)}</Price>
+                <StyledLink href={`/properties/${id}`}>
+                    <Icon src="/assets/arrow-icon.svg" alt="Détails" />
+                </StyledLink>
             </CardHeader>
             <Name>{name}</Name>
             <Adress>{address}</Adress>
@@ -109,15 +118,15 @@ const FeatureCard = ({ price, name, address, image }) => {
             <Options>
                 <OptionsIcons>
                     <OptionIcon src="/assets/bed-icon.svg" alt="Bed" />
-                    <Room>3 Chambres</Room>
+                    <Room>{bedrooms} Chambres</Room>
                 </OptionsIcons>
                 <OptionsIcons>
                     <OptionIcon src="/assets/bath-icon.svg" alt="Bath" />
-                    <Bathroom>2 Salles de bain</Bathroom>
+                    <Bathroom>{bathrooms} Salles de bain</Bathroom>
                 </OptionsIcons>
                 <OptionsIcons>
                     <OptionIcon src="/assets/area-icon.svg" alt="Area" />
-                    <Area>1000 m²</Area>
+                    <Area>{area} m²</Area>
                 </OptionsIcons>
             </Options>
         </CardBody>

@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import Copyright from './components/Copyright'
 import PropertyCard from './components/PropertyCard'
 import PropertyPhotosCarousel from './components/PropertyPhotosCarousel'
+import PropertyDetailsCard from './components/PropertyDetailsCard'
                                       
 define({ 'sidebar-component': Sidebar }, { root: document.getElementById('sidebar-root') });
 define({ 'dashboard-card-component': DashboardCard }, { root: document.getElementById('dashboard-card-root') });
@@ -24,3 +25,4 @@ define({ 'footer-component': Footer }, { root: document.getElementById('footer-r
 define({ 'copyright-component': Copyright }, { root: document.getElementById('copyright-root') })
 define({ 'property-card-component': PropertyCard }, { root: document.getElementById('property-card-root') });
 define({ 'property-photos-carousel-component': PropertyPhotosCarousel }, { root: document.getElementById('property-photos-carousel-root') });
+define({ 'property-details-card-component': PropertyDetailsCard }, { root: document.getElementById('property-details-card-root') });

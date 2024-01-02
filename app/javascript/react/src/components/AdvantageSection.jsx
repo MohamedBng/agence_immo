@@ -6,6 +6,7 @@ const AdvantageSectionContainer = styled.section`
     justify-content: space-between;
     padding: 2rem;
     margin-top: 15rem;
+    margin-bottom: 15rem;
 `;
 
 const AdvantageTextContainer = styled.div`

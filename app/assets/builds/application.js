@@ -9325,9 +9325,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React15 = require_react();
+          var React16 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React15.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React16.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -10932,7 +10932,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React15.Children.forEach(props.children, function(child) {
+                  React16.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -19379,7 +19379,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React15.Component().refs;
+          var emptyRefsObject = new React16.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -41964,8 +41964,8 @@
   background-color: #3E8BE4;
   color: white;
   border: none;
-  padding: 1rem;
-  margin-left: -7rem;
+  padding: 1.2rem;
+  margin-left: -7.1rem;
   border-radius: 5px;
 `;
   var IconsContainer = st.div`
@@ -41996,7 +41996,7 @@
   height: auto;
 `;
   var Hero = ({ cities }) => {
-    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(HeroCorp, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, "R\xEAver, Investir, R\xE9ussir Avec La Meilleure Agence Immobili\xE8re \xC0 Duba\xEF Devoyl Capital"), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, "Nous Offrons Les Meilleurs Services Immobiliers"), /* @__PURE__ */ import_react7.default.createElement(SearchBar, null, /* @__PURE__ */ import_react7.default.createElement(LocalisationIcon, { src: "/assets/localisation-icon.svg", alt: "Localisation" }), /* @__PURE__ */ import_react7.default.createElement(SearchInput, null, cities.map((city, index2) => /* @__PURE__ */ import_react7.default.createElement("option", { key: index2, value: city }, city))), /* @__PURE__ */ import_react7.default.createElement(SearchButton, null, "Rechercher")), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" })))));
+    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(HeroCorp, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, "R\xEAver, Investir, R\xE9ussir Avec La Meilleure Agence Immobili\xE8re \xC0 Duba\xEF Devoyl Capital"), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, "Nous Offrons Les Meilleurs Services Immobiliers"), /* @__PURE__ */ import_react7.default.createElement(SearchBar, { as: "form", action: "/properties", method: "get" }, /* @__PURE__ */ import_react7.default.createElement(LocalisationIcon, { src: "/assets/localisation-icon.svg", alt: "Localisation" }), /* @__PURE__ */ import_react7.default.createElement(SearchInput, { as: "select", name: "city" }, cities.map((city, index2) => /* @__PURE__ */ import_react7.default.createElement("option", { key: index2, value: city }, city))), /* @__PURE__ */ import_react7.default.createElement(SearchButton, { type: "submit" }, "Rechercher")), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" })))));
   };
   var Hero_default = Hero;
 
@@ -42079,8 +42079,13 @@
   var Area = st.p`
     font-size: smaller;
 `;
-  var FeatureCard = ({ price, name: name2, address, image }) => {
-    return /* @__PURE__ */ import_react8.default.createElement(FeatureCardContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImageContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImage, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react8.default.createElement(CardBody, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(Price, null, price), /* @__PURE__ */ import_react8.default.createElement(Icon3, { src: "/assets/arrow-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react8.default.createElement(Name, null, name2), /* @__PURE__ */ import_react8.default.createElement(Adress, null, address), /* @__PURE__ */ import_react8.default.createElement(Divider2, null), /* @__PURE__ */ import_react8.default.createElement(Options, null, /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react8.default.createElement(Room, null, "3 Chambres")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react8.default.createElement(Bathroom, null, "2 Salles de bain")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react8.default.createElement(Area, null, "1000 m\xB2")))));
+  var StyledLink = st.a`
+`;
+  var FeatureCard = ({ id, price, name: name2, address, image, bedrooms, bathrooms, area }) => {
+    const formatPrice = (price2) => {
+      return "$" + price2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    };
+    return /* @__PURE__ */ import_react8.default.createElement(FeatureCardContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImageContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImage, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react8.default.createElement(CardBody, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(Price, null, formatPrice(price)), /* @__PURE__ */ import_react8.default.createElement(StyledLink, { href: `/properties/${id}` }, /* @__PURE__ */ import_react8.default.createElement(Icon3, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react8.default.createElement(Name, null, name2), /* @__PURE__ */ import_react8.default.createElement(Adress, null, address), /* @__PURE__ */ import_react8.default.createElement(Divider2, null), /* @__PURE__ */ import_react8.default.createElement(Options, null, /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react8.default.createElement(Room, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react8.default.createElement(Bathroom, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react8.default.createElement(Area, null, area, " m\xB2")))));
   };
   var FeatureCard_default = FeatureCard;
 
@@ -42112,7 +42117,7 @@
     align-items: center;
     margin-left: auto; // Pousse le conteneur vers la droite
 `;
-  var StyledLink = st.a`
+  var StyledLink2 = st.a`
     margin-right: 0.5rem;
     text-decoration: none;
     font-weight: bold;
@@ -42133,8 +42138,21 @@
   var Separator = st.span`
     margin: 0 1rem;
 `;
-  var FeatureSection = ({ image, price, name: name2, address }) => {
-    return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement(Title2, null, "Explorez nos Propri\xE9t\xE9s"), /* @__PURE__ */ import_react9.default.createElement(CheckboxAndLink, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxContainer, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Achetez"), /* @__PURE__ */ import_react9.default.createElement(Separator, null, "|"), /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Louer")), /* @__PURE__ */ import_react9.default.createElement(LinkContainer, null, /* @__PURE__ */ import_react9.default.createElement(StyledLink, { href: "https://example.com" }, "Voir plus"), /* @__PURE__ */ import_react9.default.createElement(Icon4, { src: "/assets/arrow-icon-simple.svg", alt: "Icon" }))), /* @__PURE__ */ import_react9.default.createElement(SectionContainer, null, /* @__PURE__ */ import_react9.default.createElement(FeatureCard_default, { image, price, name: name2, address }), /* @__PURE__ */ import_react9.default.createElement(FeatureCard_default, { image, price, name: name2, address }), /* @__PURE__ */ import_react9.default.createElement(FeatureCard_default, { image, price, name: name2, address })));
+  var FeatureSection = ({ properties }) => {
+    return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement(Title2, null, "Explorez nos Propri\xE9t\xE9s"), /* @__PURE__ */ import_react9.default.createElement(CheckboxAndLink, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxContainer, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Achetez"), /* @__PURE__ */ import_react9.default.createElement(Separator, null, "|"), /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Louer")), /* @__PURE__ */ import_react9.default.createElement(LinkContainer, null, /* @__PURE__ */ import_react9.default.createElement(StyledLink2, { href: "https://example.com" }, "Voir plus"), /* @__PURE__ */ import_react9.default.createElement(Icon4, { src: "/assets/arrow-icon-simple.svg", alt: "Icon" }))), /* @__PURE__ */ import_react9.default.createElement(SectionContainer, null, properties.map((property, index2) => /* @__PURE__ */ import_react9.default.createElement(
+      FeatureCard_default,
+      {
+        key: index2,
+        image: property.image,
+        price: property.price,
+        name: property.name,
+        address: property.address,
+        bedrooms: property.bedrooms,
+        bathrooms: property.bathrooms,
+        area: property.area,
+        id: property.id
+      }
+    ))));
   };
   var FeatureSection_default = FeatureSection;
 
@@ -42145,6 +42163,7 @@
     justify-content: space-between;
     padding: 2rem;
     margin-top: 15rem;
+    margin-bottom: 15rem;
 `;
   var AdvantageTextContainer = st.div`
   display: flex;
@@ -42225,7 +42244,6 @@
     width: 90%;
     max-width: 111rem;
     margin: 0 auto;
-    margin-top: 15rem;
     height: 30rem;
 }
 `;
@@ -42336,7 +42354,7 @@
     font-weight: bold;
     font-size: medium;
 `;
-  var StyledLink2 = st.a`
+  var StyledLink3 = st.a`
 
 `;
   var Icon6 = st.img`
@@ -42345,6 +42363,7 @@
   var Name2 = st.p`
     font-weight: bold;
     font-size: medium;
+    height: 2.5rem;
 `;
   var Adress2 = st.p`
     font-size: small;
@@ -42382,7 +42401,7 @@
     font-size: xx-small;
 `;
   var PropertyCard = ({ id, price, name: name2, address, image, bedrooms, bathrooms, area }) => {
-    return /* @__PURE__ */ import_react13.default.createElement(PropertyCardContainer, null, /* @__PURE__ */ import_react13.default.createElement(CardImageContainer2, null, /* @__PURE__ */ import_react13.default.createElement(CardImage2, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react13.default.createElement(CardBody2, null, /* @__PURE__ */ import_react13.default.createElement(CardHeader2, null, /* @__PURE__ */ import_react13.default.createElement(Price2, null, price), /* @__PURE__ */ import_react13.default.createElement(StyledLink2, { href: `/properties/${id}` }, /* @__PURE__ */ import_react13.default.createElement(Icon6, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react13.default.createElement(Name2, null, name2), /* @__PURE__ */ import_react13.default.createElement(Adress2, null, address), /* @__PURE__ */ import_react13.default.createElement(Divider3, null), /* @__PURE__ */ import_react13.default.createElement(Options2, null, /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react13.default.createElement(Room2, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react13.default.createElement(Bathroom2, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react13.default.createElement(Area2, null, area, " m\xB2")))));
+    return /* @__PURE__ */ import_react13.default.createElement(PropertyCardContainer, null, /* @__PURE__ */ import_react13.default.createElement(CardImageContainer2, null, /* @__PURE__ */ import_react13.default.createElement(CardImage2, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react13.default.createElement(CardBody2, null, /* @__PURE__ */ import_react13.default.createElement(CardHeader2, null, /* @__PURE__ */ import_react13.default.createElement(Price2, null, price), /* @__PURE__ */ import_react13.default.createElement(StyledLink3, { href: `/properties/${id}` }, /* @__PURE__ */ import_react13.default.createElement(Icon6, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react13.default.createElement(Name2, null, name2), /* @__PURE__ */ import_react13.default.createElement(Adress2, null, address), /* @__PURE__ */ import_react13.default.createElement(Divider3, null), /* @__PURE__ */ import_react13.default.createElement(Options2, null, /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react13.default.createElement(Room2, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react13.default.createElement(Bathroom2, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react13.default.createElement(Area2, null, area, " m\xB2")))));
   };
   var PropertyCard_default = PropertyCard;
 
@@ -42391,21 +42410,35 @@
   var CarouselContainer = st.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 85%;
+`;
+  var ImageContainer2 = st.div`
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
 `;
   var MainImage = st.img`
-  width: 80%;
-  height: auto;
-  margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 `;
   var ThumbnailsContainer = st.div`
   display: flex;
-  justify-content: center;
+  width: 100%;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+`;
+  var ThumbnailContainer = st.div`
+  width: inherit;
+  height: 10rem;
+  overflow: hidden;
 `;
   var Thumbnail = st.img`
-  width: 100px;
-  height: auto;
-  margin: 5px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   cursor: pointer;
   opacity: 0.6;
 
@@ -42415,17 +42448,98 @@
 `;
   var PropertyPhotosCarousel = ({ propertyPhotos }) => {
     const [selectedImage, setSelectedImage] = (0, import_react14.useState)(propertyPhotos[0]);
-    return /* @__PURE__ */ import_react14.default.createElement(CarouselContainer, null, /* @__PURE__ */ import_react14.default.createElement(MainImage, { src: selectedImage.file, alt: "Selected" }), /* @__PURE__ */ import_react14.default.createElement(ThumbnailsContainer, null, propertyPhotos.map((photo) => /* @__PURE__ */ import_react14.default.createElement(
+    return /* @__PURE__ */ import_react14.default.createElement(CarouselContainer, null, /* @__PURE__ */ import_react14.default.createElement(ImageContainer2, null, /* @__PURE__ */ import_react14.default.createElement(MainImage, { src: selectedImage.file, alt: "Selected" })), /* @__PURE__ */ import_react14.default.createElement(ThumbnailsContainer, null, propertyPhotos.map((photo) => /* @__PURE__ */ import_react14.default.createElement(ThumbnailContainer, { key: photo.id }, /* @__PURE__ */ import_react14.default.createElement(
       Thumbnail,
       {
-        key: photo.id,
         src: photo.file,
         alt: "Thumbnail",
         onClick: () => setSelectedImage(photo)
       }
-    ))));
+    )))));
   };
   var PropertyPhotosCarousel_default = PropertyPhotosCarousel;
+
+  // app/javascript/react/src/components/PropertyDetailsCard.jsx
+  var import_react15 = __toESM(require_react());
+  var PropertyDetailsCardContainer = st.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    margin-right: 4rem;
+    margin-bottom: 5rem;
+    margin-left: -16rem;
+    width: min-content;
+    position: absolute;
+    margin-top: 2rem;
+`;
+  var CardBody3 = st.div`
+    background-color: white;
+    width: 29rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    height: 27rem;
+`;
+  var CardHeader3 = st.div`
+`;
+  var Name3 = st.p`
+    font-weight: bold;
+    font-size: xx-large;
+    height: 1.5rem;
+`;
+  var Adress3 = st.p`
+    font-size: large;
+    height: 35px;
+    margin-top: 4rem;
+    font-weight: lighter;
+`;
+  var Price3 = st.p`
+    font-weight: bold;
+    font-size: large;
+`;
+  var Options3 = st.div`
+    display: flex;
+    justify-content: space-between;
+`;
+  var OptionsIcons3 = st.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+`;
+  var OptionIcon3 = st.img`
+    width: 2rem;
+`;
+  var Room3 = st.p`
+    font-size: medium;
+`;
+  var Bathroom3 = st.p`
+    font-size: medium;
+`;
+  var Area3 = st.p`
+    font-size: medium;
+`;
+  var Divider4 = st.hr`
+    width: 100%;
+    background-color: black;
+    border: none;
+    height: 1px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+`;
+  var Description = st.p`
+    font-size: small;
+    margin-top: 2rem;
+    height: 7rem;
+    overflow: scroll;
+`;
+  var PropertyDetailsCard = ({ price, name: name2, address, description, bedrooms, bathrooms, area }) => {
+    return /* @__PURE__ */ import_react15.default.createElement(PropertyDetailsCardContainer, null, /* @__PURE__ */ import_react15.default.createElement(CardBody3, null, /* @__PURE__ */ import_react15.default.createElement(CardHeader3, null, /* @__PURE__ */ import_react15.default.createElement(Name3, null, name2), /* @__PURE__ */ import_react15.default.createElement(Adress3, null, address)), /* @__PURE__ */ import_react15.default.createElement(Price3, null, price), /* @__PURE__ */ import_react15.default.createElement(Options3, null, /* @__PURE__ */ import_react15.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon3, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react15.default.createElement(Room3, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react15.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon3, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react15.default.createElement(Bathroom3, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react15.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon3, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react15.default.createElement(Area3, null, area, " m\xB2"))), /* @__PURE__ */ import_react15.default.createElement(Divider4, null), /* @__PURE__ */ import_react15.default.createElement(Description, null, description)));
+  };
+  var PropertyDetailsCard_default = PropertyDetailsCard;
 
   // app/javascript/react/src/index.js
   defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
@@ -42440,6 +42554,7 @@
   defineReact({ "copyright-component": Copyright_default }, { root: document.getElementById("copyright-root") });
   defineReact({ "property-card-component": PropertyCard_default }, { root: document.getElementById("property-card-root") });
   defineReact({ "property-photos-carousel-component": PropertyPhotosCarousel_default }, { root: document.getElementById("property-photos-carousel-root") });
+  defineReact({ "property-details-card-component": PropertyDetailsCard_default }, { root: document.getElementById("property-details-card-root") });
 
   // app/javascript/application.js
   var application = Application.start();

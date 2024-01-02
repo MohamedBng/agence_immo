@@ -10,7 +10,6 @@ const FooterContainer = styled.footer`
     width: 90%;
     max-width: 111rem;
     margin: 0 auto;
-    margin-top: 15rem;
     height: 30rem;
 }
 `;

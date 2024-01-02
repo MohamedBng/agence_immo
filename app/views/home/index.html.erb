@@ -4,8 +4,9 @@
 <div id="hero-root">
     <hero-component props-json='<%= {cities: @cities}.to_json.html_safe %>'/>
 </div>
+
 <div id="feature-section-root">
-    <feature-section-component props-json='<%= {image: @property.property_photos.first.file_url(:small),  price: "$1000", name: "Villa Mirage Éclatante", address: "152 Boulevard des Sables, Dubai Hills"}.to_json.html_safe %>'/>
+    <feature-section-component props-json='<%= {properties: @properties}.to_json.html_safe %>'/>
 </div>
 
 <div id="advantage-section-root">

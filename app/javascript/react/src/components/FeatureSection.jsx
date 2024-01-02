@@ -60,7 +60,7 @@ const Separator = styled.span`
     margin: 0 1rem;
 `;
 
-const FeatureSection = ({image, price, name, address}) => {
+const FeatureSection = ({properties}) => {
     return (
         <>
             <Title>Explorez nos Propriétés</Title>
@@ -80,9 +80,19 @@ const FeatureSection = ({image, price, name, address}) => {
                 </LinkContainer>
             </CheckboxAndLink>
             <SectionContainer>
-                <FeatureCard image={image} price={price} name={name} address={address} />
-                <FeatureCard image={image} price={price} name={name} address={address} />
-                <FeatureCard image={image} price={price} name={name} address={address} />
+                {properties.map((property, index) => (
+                    <FeatureCard
+                        key={index}
+                        image={property.image}
+                        price={property.price}
+                        name={property.name}
+                        address={property.address}
+                        bedrooms={property.bedrooms}
+                        bathrooms={property.bathrooms}
+                        area={property.area}
+                        id={property.id}
+                    />
+                ))}
             </SectionContainer>
         </>
     );
