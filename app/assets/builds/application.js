@@ -8027,7 +8027,7 @@
             }
             return dispatcher.useContext(Context2);
           }
-          function useState2(initialState) {
+          function useState3(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -8829,7 +8829,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState3;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -41856,6 +41856,9 @@
   margin: 0 auto;
   height: 10vh;
 `;
+  var LogoLink = st.a`
+  text-decoration: none;
+`;
   var Logo2 = st.img`
   width: 10rem;
   height: auto;
@@ -41905,7 +41908,7 @@
   }
 `;
   var Navbar = () => {
-    return /* @__PURE__ */ import_react6.default.createElement(NavbarContainer, null, /* @__PURE__ */ import_react6.default.createElement(Logo2, { src: "/assets/home-logo.svg", alt: "Logo" }), /* @__PURE__ */ import_react6.default.createElement(NavRightItems, null, /* @__PURE__ */ import_react6.default.createElement(ChangeLocales, null, /* @__PURE__ */ import_react6.default.createElement(FlagContainer, null, /* @__PURE__ */ import_react6.default.createElement(Flag, { src: "/assets/french-flag.svg", alt: "Flag" })), /* @__PURE__ */ import_react6.default.createElement(LanguageSelect, null, /* @__PURE__ */ import_react6.default.createElement("option", { value: "fr" }, "Fran\xE7ais"), /* @__PURE__ */ import_react6.default.createElement("option", { value: "en" }, "English"))), /* @__PURE__ */ import_react6.default.createElement(NavLinks, null, /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "ACCUEIL"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "TOUT LES BIENS"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "GUIDES"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "FAQ"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "NOUS CONTACTEZ"))));
+    return /* @__PURE__ */ import_react6.default.createElement(NavbarContainer, null, /* @__PURE__ */ import_react6.default.createElement(LogoLink, { href: "/" }, /* @__PURE__ */ import_react6.default.createElement(Logo2, { src: "/assets/home-logo.svg", alt: "Logo" })), /* @__PURE__ */ import_react6.default.createElement(NavRightItems, null, /* @__PURE__ */ import_react6.default.createElement(ChangeLocales, null, /* @__PURE__ */ import_react6.default.createElement(FlagContainer, null, /* @__PURE__ */ import_react6.default.createElement(Flag, { src: "/assets/french-flag.svg", alt: "Flag" })), /* @__PURE__ */ import_react6.default.createElement(LanguageSelect, null, /* @__PURE__ */ import_react6.default.createElement("option", { value: "fr" }, "Fran\xE7ais"), /* @__PURE__ */ import_react6.default.createElement("option", { value: "en" }, "English"))), /* @__PURE__ */ import_react6.default.createElement(NavLinks, null, /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/" }, "ACCUEIL"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/properties" }, "TOUT LES BIENS"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "GUIDES"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "FAQ"), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, "NOUS CONTACTEZ"))));
   };
   var Navbar_default = Navbar;
 
@@ -41967,6 +41970,12 @@
   padding: 1.2rem;
   margin-left: -7.1rem;
   border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
 `;
   var IconsContainer = st.div`
   position: absolute;
@@ -42044,9 +42053,11 @@
   var Name = st.p`
     font-weight: bold;
     font-size: larger;
+    height: 2.7rem;
 `;
   var Adress = st.p`
     font-size: medium;
+    height: 2.5rem;
 `;
   var Divider2 = st.hr`
     width: 100%;
@@ -42115,7 +42126,7 @@
   var LinkContainer = st.div`
     display: flex;
     align-items: center;
-    margin-left: auto; // Pousse le conteneur vers la droite
+    margin-left: auto;
 `;
   var StyledLink2 = st.a`
     margin-right: 0.5rem;
@@ -42138,21 +42149,46 @@
   var Separator = st.span`
     margin: 0 1rem;
 `;
-  var FeatureSection = ({ properties }) => {
-    return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement(Title2, null, "Explorez nos Propri\xE9t\xE9s"), /* @__PURE__ */ import_react9.default.createElement(CheckboxAndLink, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxContainer, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Achetez"), /* @__PURE__ */ import_react9.default.createElement(Separator, null, "|"), /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(Checkbox, null), "Louer")), /* @__PURE__ */ import_react9.default.createElement(LinkContainer, null, /* @__PURE__ */ import_react9.default.createElement(StyledLink2, { href: "https://example.com" }, "Voir plus"), /* @__PURE__ */ import_react9.default.createElement(Icon4, { src: "/assets/arrow-icon-simple.svg", alt: "Icon" }))), /* @__PURE__ */ import_react9.default.createElement(SectionContainer, null, properties.map((property, index2) => /* @__PURE__ */ import_react9.default.createElement(
+  var FeatureSection = ({ ventes, locations }) => {
+    const [afficherVentes, setAfficherVentes] = (0, import_react9.useState)(true);
+    const [afficherLocations, setAfficherLocations] = (0, import_react9.useState)(false);
+    const handleVentesChange = () => {
+      setAfficherVentes(true);
+      setAfficherLocations(false);
+    };
+    const handleLocationsChange = () => {
+      setAfficherLocations(true);
+      setAfficherVentes(false);
+    };
+    const propertiesToShow = afficherVentes ? ventes : afficherLocations ? locations : [];
+    return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement(Title2, null, "Explorez nos Propri\xE9t\xE9s"), /* @__PURE__ */ import_react9.default.createElement(CheckboxAndLink, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxContainer, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(
+      Checkbox,
+      {
+        name: "vente",
+        checked: afficherVentes,
+        onChange: handleVentesChange
+      }
+    ), "Achetez"), /* @__PURE__ */ import_react9.default.createElement(Separator, null, "|"), /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(
+      Checkbox,
+      {
+        name: "location",
+        checked: afficherLocations,
+        onChange: handleLocationsChange
+      }
+    ), "Louer")), /* @__PURE__ */ import_react9.default.createElement(LinkContainer, null, /* @__PURE__ */ import_react9.default.createElement(StyledLink2, { href: "/properties" }, "Voir plus"), /* @__PURE__ */ import_react9.default.createElement(Icon4, { src: "/assets/arrow-icon-simple.svg", alt: "Icon" }))), /* @__PURE__ */ import_react9.default.createElement(SectionContainer, null, propertiesToShow && propertiesToShow.length > 0 ? propertiesToShow.map((property, index2) => /* @__PURE__ */ import_react9.default.createElement(
       FeatureCard_default,
       {
         key: index2,
+        id: property.id,
         image: property.image,
         price: property.price,
         name: property.name,
         address: property.address,
         bedrooms: property.bedrooms,
         bathrooms: property.bathrooms,
-        area: property.area,
-        id: property.id
+        area: property.area
       }
-    ))));
+    )) : /* @__PURE__ */ import_react9.default.createElement("p", null, "Aucune propri\xE9t\xE9 \xE0 afficher")));
   };
   var FeatureSection_default = FeatureSection;
 
@@ -42207,6 +42243,11 @@
     justify-content: space-between;
     width: 21rem;
     padding: 1rem;
+
+    &:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
 `;
   var ButtonIcon = st.img`
     margin-right: 10px;
@@ -42292,6 +42333,11 @@
     padding: 1rem;
     margin: 0 auto;
     border-radius: 4px;
+
+    &:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
 `;
   var FooterContact = () => {
     return /* @__PURE__ */ import_react11.default.createElement(FooterContainer, null, /* @__PURE__ */ import_react11.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react11.default.createElement(Title4, null, "Laissez-nous vous aider \xE0 trouver les meilleures propri\xE9t\xE9s r\xE9sidentielles \xE0 Duba\xEF."), /* @__PURE__ */ import_react11.default.createElement(Paragraph, null, "Vous recherchez une propri\xE9t\xE9 \xE0 Duba\xEF qui prendra de la valeur avec le temps tout en vous offrant exclusivit\xE9 et confort ? Vous \xEAtes au bon endroit avec notre portefeuille, qui inclut uniquement les meilleures propri\xE9t\xE9s r\xE9sidentielles des \xC9mirats Arabes Unis.")), /* @__PURE__ */ import_react11.default.createElement(Form, null, /* @__PURE__ */ import_react11.default.createElement(Input, { type: "text", placeholder: "Nom", required: true }), /* @__PURE__ */ import_react11.default.createElement(Input, { type: "email", placeholder: "Email", required: true }), /* @__PURE__ */ import_react11.default.createElement(Textarea, { placeholder: "Message", required: true }), /* @__PURE__ */ import_react11.default.createElement(SubmitButton, { type: "submit" }, "Envoyer")));

@@ -64,6 +64,12 @@ const SearchButton = styled.button`
   padding: 1.2rem;
   margin-left: -7.1rem;
   border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
 `;
 
 const IconsContainer = styled.div`

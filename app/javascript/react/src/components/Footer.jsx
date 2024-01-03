@@ -65,6 +65,11 @@ const SubmitButton = styled.button`
     padding: 1rem;
     margin: 0 auto;
     border-radius: 4px;
+
+    &:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
 `;
 
 const FooterContact = () => {

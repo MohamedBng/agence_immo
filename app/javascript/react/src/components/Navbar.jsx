@@ -16,6 +16,10 @@ const NavbarContainer = styled.div`
   height: 10vh;
 `;
 
+const LogoLink = styled.a`
+  text-decoration: none;
+`;
+
 const Logo = styled.img`
   width: 10rem;
   height: auto;
@@ -75,7 +79,9 @@ const LanguageSelect = styled.select`
 const Navbar = () => {
   return (
     <NavbarContainer>
-      <Logo src="/assets/home-logo.svg" alt="Logo" />
+      <LogoLink href="/">
+        <Logo src="/assets/home-logo.svg" alt="Logo" />
+      </LogoLink>
       <NavRightItems>
         <ChangeLocales>
             <FlagContainer>
@@ -87,8 +93,8 @@ const Navbar = () => {
             </LanguageSelect>
         </ChangeLocales>
         <NavLinks>
-            <NavLink href="#">ACCUEIL</NavLink>
-            <NavLink href="#">TOUT LES BIENS</NavLink>
+            <NavLink href="/">ACCUEIL</NavLink>
+            <NavLink href="/properties">TOUT LES BIENS</NavLink>
             <NavLink href="#">GUIDES</NavLink>
             <NavLink href="#">FAQ</NavLink>
             <NavLink href="#">NOUS CONTACTEZ</NavLink>

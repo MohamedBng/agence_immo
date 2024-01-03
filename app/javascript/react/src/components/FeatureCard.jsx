@@ -47,10 +47,12 @@ const Icon = styled.img`
 const Name = styled.p`
     font-weight: bold;
     font-size: larger;
+    height: 2.7rem;
 `;
 
 const Adress = styled.p`
     font-size: medium;
+    height: 2.5rem;
 `;
 
 const Divider = styled.hr`

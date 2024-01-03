@@ -10,6 +10,14 @@ FactoryBot.define do
     property_type { ["maison", "appartement", "maisons_de_ville", "penthouses", "plots"].sample }
     status { ["vente", "location"].sample }
 
+    trait :for_sale do
+      status { "vente" }
+    end
+
+    trait :for_rent do
+      status { "location" }
+    end
+
     after(:build) do |property|
       5.times do |index|
         property_photo = build(:property_photo, property: property, position: index)

@@ -6,7 +6,7 @@
 </div>
 
 <div id="feature-section-root">
-    <feature-section-component props-json='<%= {properties: @properties}.to_json.html_safe %>'/>
+    <feature-section-component props-json='<%= {ventes: @properties[:ventes], locations: @properties[:locations]}.to_json.html_safe %>'/>
 </div>
 
 <div id="advantage-section-root">

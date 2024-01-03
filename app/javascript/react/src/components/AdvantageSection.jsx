@@ -56,6 +56,11 @@ const Button = styled.button`
     justify-content: space-between;
     width: 21rem;
     padding: 1rem;
+
+    &:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
 `;
 
 const ButtonIcon = styled.img`

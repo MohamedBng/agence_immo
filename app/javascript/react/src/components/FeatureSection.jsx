@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import FeatureCard from './FeatureCard'; // Assurez-vous d'importer le composant FeatureCard
+import FeatureCard from './FeatureCard';
 
 const SectionContainer = styled.div`
     display: flex;
@@ -31,7 +31,7 @@ const CheckboxLabel = styled.label`
 const LinkContainer = styled.div`
     display: flex;
     align-items: center;
-    margin-left: auto; // Pousse le conteneur vers la droite
+    margin-left: auto;
 `;
 
 const StyledLink = styled.a`
@@ -60,42 +60,70 @@ const Separator = styled.span`
     margin: 0 1rem;
 `;
 
-const FeatureSection = ({properties}) => {
+const FeatureSection = ({ ventes, locations }) => {
+    const [afficherVentes, setAfficherVentes] = useState(true);
+    const [afficherLocations, setAfficherLocations] = useState(false);
+
+    const handleVentesChange = () => {
+        setAfficherVentes(true);
+        setAfficherLocations(false);
+    };
+
+    const handleLocationsChange = () => {
+        setAfficherLocations(true);
+        setAfficherVentes(false);
+    };
+
+    const propertiesToShow = afficherVentes ? ventes : afficherLocations ? locations : [];
+
     return (
         <>
             <Title>Explorez nos Propriétés</Title>
             <CheckboxAndLink>
                 <CheckboxContainer>
                     <CheckboxLabel>
-                        <Checkbox />Achetez
+                        <Checkbox 
+                            name="vente"
+                            checked={afficherVentes} 
+                            onChange={handleVentesChange} 
+                        />Achetez
                     </CheckboxLabel>
                     <Separator>|</Separator>
                     <CheckboxLabel>
-                        <Checkbox />Louer
+                        <Checkbox 
+                            name="location"
+                            checked={afficherLocations} 
+                            onChange={handleLocationsChange} 
+                        />Louer
                     </CheckboxLabel>
                 </CheckboxContainer>
                 <LinkContainer>
-                    <StyledLink href="https://example.com">Voir plus</StyledLink>
+                    <StyledLink href="/properties">Voir plus</StyledLink>
                     <Icon src="/assets/arrow-icon-simple.svg" alt="Icon" />
                 </LinkContainer>
             </CheckboxAndLink>
             <SectionContainer>
-                {properties.map((property, index) => (
-                    <FeatureCard
-                        key={index}
-                        image={property.image}
-                        price={property.price}
-                        name={property.name}
-                        address={property.address}
-                        bedrooms={property.bedrooms}
-                        bathrooms={property.bathrooms}
-                        area={property.area}
-                        id={property.id}
-                    />
-                ))}
+                {propertiesToShow && propertiesToShow.length > 0 ? (
+                    propertiesToShow.map((property, index) => (
+                        <FeatureCard
+                            key={index}
+                            id={property.id}
+                            image={property.image}
+                            price={property.price}
+                            name={property.name}
+                            address={property.address}
+                            bedrooms={property.bedrooms}
+                            bathrooms={property.bathrooms}
+                            area={property.area}
+                        />
+                    ))
+                ) : (
+                    <p>Aucune propriété à afficher</p>
+                )}
             </SectionContainer>
         </>
     );
 };
 
 export default FeatureSection;
+
