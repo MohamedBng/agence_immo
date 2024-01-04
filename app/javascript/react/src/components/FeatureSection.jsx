@@ -60,7 +60,7 @@ const Separator = styled.span`
     margin: 0 1rem;
 `;
 
-const FeatureSection = ({ ventes, locations }) => {
+const FeatureSection = ({ ventes, locations, translatedBedrooms, translatedBathrooms, buyLabel, rentLabel, seeMoreLabel}) => {
     const [afficherVentes, setAfficherVentes] = useState(true);
     const [afficherLocations, setAfficherLocations] = useState(false);
 
@@ -86,25 +86,25 @@ const FeatureSection = ({ ventes, locations }) => {
                             name="vente"
                             checked={afficherVentes} 
                             onChange={handleVentesChange} 
-                        />Achetez
+                        />{buyLabel}
                     </CheckboxLabel>
                     <Separator>|</Separator>
                     <CheckboxLabel>
                         <Checkbox 
                             name="location"
                             checked={afficherLocations} 
-                            onChange={handleLocationsChange} 
-                        />Louer
+                            onChange={handleLocationsChange}  
+                        />{rentLabel}
                     </CheckboxLabel>
                 </CheckboxContainer>
                 <LinkContainer>
-                    <StyledLink href="/properties">Voir plus</StyledLink>
+                    <StyledLink href="/properties">{seeMoreLabel}</StyledLink>
                     <Icon src="/assets/arrow-icon-simple.svg" alt="Icon" />
                 </LinkContainer>
             </CheckboxAndLink>
             <SectionContainer>
                 {propertiesToShow && propertiesToShow.length > 0 ? (
-                    propertiesToShow.map((property, index) => (
+                    propertiesToShow.map((property, index,) => (
                         <FeatureCard
                             key={index}
                             id={property.id}
@@ -115,6 +115,8 @@ const FeatureSection = ({ ventes, locations }) => {
                             bedrooms={property.bedrooms}
                             bathrooms={property.bathrooms}
                             area={property.area}
+                            translatedBedrooms={translatedBedrooms}
+                            translatedBathrooms={translatedBathrooms}
                         />
                     ))
                 ) : (

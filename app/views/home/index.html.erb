@@ -1,12 +1,13 @@
-<div id="navbar-root">
-    <navbar-component/>
-</div>
 <div id="hero-root">
-    <hero-component props-json='<%= {cities: @cities}.to_json.html_safe %>'/>
+    <hero-component props-json='<%= {mainText: I18n.t('hero.main_text'),
+                                    subtitle: I18n.t('hero.subtitle'),
+                                    searchButton: I18n.t('hero.search_button'),
+                                    localisationIconAlt: I18n.t('hero.localisation_icon_alt'),
+                                    cities: @cities}.to_json.html_safe %>'/>
 </div>
 
 <div id="feature-section-root">
-    <feature-section-component props-json='<%= {ventes: @properties[:ventes], locations: @properties[:locations]}.to_json.html_safe %>'/>
+    <feature-section-component props-json='<%= {ventes: @properties[:ventes], locations: @properties[:locations], translatedBedrooms: I18n.t('feature_card.bedrooms'), translatedBathrooms: I18n.t('feature_card.bathrooms'), buyLabel: I18n.t('feature_section.buy'), rentLabel: I18n.t('feature_section.rent'), seeMoreLabel: I18n.t('feature_section.see_more')}.to_json.html_safe %>'/>
 </div>
 
 <div id="advantage-section-root">

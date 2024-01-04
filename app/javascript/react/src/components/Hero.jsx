@@ -64,6 +64,7 @@ const SearchButton = styled.button`
   padding: 1.2rem;
   margin-left: -7.1rem;
   border-radius: 5px;
+  width: 6.8rem;
   cursor: pointer;
 
   &:hover {
@@ -102,20 +103,20 @@ const Icon = styled.img`
   height: auto;
 `;
 
-const Hero = ({ cities }) => {
+const Hero = ({ cities, mainText, subtitle, localisationIconAlt, searchButton }) => {
   return (
     <HeroContainer>
       <HeroCorp>
-        <MainText>Rêver, Investir, Réussir Avec La Meilleure Agence Immobilière À Dubaï Devoyl Capital</MainText>
-        <Subtitle>Nous Offrons Les Meilleurs Services Immobiliers</Subtitle>
+        <MainText>{mainText}</MainText>
+        <Subtitle>{subtitle}</Subtitle>
         <SearchBar as="form" action="/properties" method="get">
-          <LocalisationIcon src="/assets/localisation-icon.svg" alt="Localisation" />
+          <LocalisationIcon src="/assets/localisation-icon.svg" alt={localisationIconAlt} />
           <SearchInput as="select" name="city">
             {cities.map((city, index) => (
               <option key={index} value={city}>{city}</option>
             ))}
           </SearchInput>
-          <SearchButton type="submit">Rechercher</SearchButton>
+          <SearchButton type="submit">{searchButton}</SearchButton>
         </SearchBar>
         <IconsContainer>
           <IconCircle className="green"> <Icon src="/assets/whatsapp-icon.svg" alt="Flag" /></IconCircle>

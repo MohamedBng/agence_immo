@@ -92,3 +92,21 @@ fr:
               blank: "ne peut pas être vide"
             status:
               blank: "ne peut pas être vide"
+  feature_card:
+    bedrooms: "Chambres"
+    bathrooms: "Salles de bain"
+  feature_section:
+    buy: "Achetez"
+    rent: "Louer"
+    see_more: "Voir plus"
+  hero:
+    main_text: "Rêver, Investir, Réussir Avec La Meilleure Agence Immobilière À Dubaï Devoyl Capital"
+    subtitle: "Nous Offrons Les Meilleurs Services Immobiliers"
+    search_button: "Rechercher"
+    localisation_icon_alt: "Localisation"
+  nav:
+    home: ACCUEIL
+    properties: TOUT LES BIENS
+    guides: GUIDES
+    faq: FAQ
+    contact: NOUS CONTACTEZ

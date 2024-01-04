@@ -92,3 +92,21 @@ en:
               blank: "cannot be blank"
             status:
               blank: "cannot be blank"
+  feature_card:
+    bedrooms: "Bedrooms"
+    bathrooms: "Bathrooms"
+  feature_section:
+    buy: "Buy"
+    rent: "Rent"
+    see_more: "See more"
+  hero:
+    main_text: "Dream, Invest, Succeed With The Best Real Estate Agency In Dubai Devoyl Capital"
+    subtitle: "We Offer the Best Real Estate Services"
+    search_button: "Search"
+    localisation_icon_alt: "Location"
+  nav:
+    home: HOME
+    properties: ALL PROPERTIES
+    guides: GUIDES
+    faq: FAQ
+    contact: CONTACT US

@@ -13,6 +13,9 @@
   </head>
 
   <body>
+    <div id="navbar-root">
+      <navbar-component props-json='<%= {translations: I18n.t('nav')}.to_json.html_safe %>'/>
+    </div>
     <%= notice %>
     <%= yield %>
   </body>

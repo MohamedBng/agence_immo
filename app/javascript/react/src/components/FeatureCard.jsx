@@ -97,7 +97,7 @@ const Area = styled.p`
 const StyledLink = styled.a`
 `;
 
-const FeatureCard = ({ id, price, name, address, image, bedrooms, bathrooms, area }) => {
+const FeatureCard = ({ id, price, name, address, image, bedrooms, bathrooms, area, translatedBedrooms, translatedBathrooms}) => {
   const formatPrice = (price) => {
     return "$" + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };  
@@ -120,11 +120,11 @@ const FeatureCard = ({ id, price, name, address, image, bedrooms, bathrooms, are
             <Options>
                 <OptionsIcons>
                     <OptionIcon src="/assets/bed-icon.svg" alt="Bed" />
-                    <Room>{bedrooms} Chambres</Room>
+                    <Room>{bedrooms} {translatedBedrooms}</Room>
                 </OptionsIcons>
                 <OptionsIcons>
                     <OptionIcon src="/assets/bath-icon.svg" alt="Bath" />
-                    <Bathroom>{bathrooms} Salles de bain</Bathroom>
+                    <Bathroom>{bathrooms} {translatedBathrooms}</Bathroom>
                 </OptionsIcons>
                 <OptionsIcons>
                     <OptionIcon src="/assets/area-icon.svg" alt="Area" />

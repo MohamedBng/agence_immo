@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @properties = {
@@ -19,7 +18,7 @@ class HomeController < ApplicationController
                   id: property.id,
                   image: property.property_photos.first.file_url(:small),
                   price: property.price.to_i,
-                  name: CGI.escapeHTML(property.title['fr']),
+                  name: CGI.escapeHTML(property.title[I18n.locale.to_s]),
                   address: format_address(property.address),
                   bathrooms: property.bathrooms.to_i.to_s,
                   bedrooms: property.bedrooms.to_i.to_s,

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   post '/send_contact', to: 'contact#send_email'
 
+  post '/change_locale', to: 'application#change_locale'
+
   resources :properties do
     get '/page/:page', action: :index, on: :collection
   end

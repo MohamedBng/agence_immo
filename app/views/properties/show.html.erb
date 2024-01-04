@@ -1,6 +1,3 @@
-<div id="navbar-root">
-    <navbar-component/>
-</div>
 <div id="property-details-body">
     <div id="property-photos-carousel-root">
         <property-photos-carousel-component props-json='<%= {propertyPhotos: @property.property_photos.map { |photo| { id: photo.id, file: photo.file.url } }}.to_json.html_safe %>'/>
@@ -8,12 +5,12 @@
     <div id="property-details-card-root">
         <property-details-card-component props-json='<%= {
             price: "$" + number_with_delimiter(@property.price.to_i, delimiter: ' ').to_s,
-            name: CGI.escapeHTML(@property.title['fr']),
+            name: CGI.escapeHTML(@property.title[I18n.locale.to_s]),
             address: (@property.address['street'] + " , " + @property.address['city'].humanize).gsub("'", "&#39;"),
             bathrooms: @property.bathrooms.to_i.to_s,
             bedrooms: @property.bedrooms.to_i.to_s,
             area: @property.area.to_i.to_s,
-            description: @property.description['fr']
+            description: @property.description[I18n.locale.to_s]
         }.to_json.html_safe %>'/>
     </div>
 </div>

@@ -1,4 +1,4 @@
-class Admin::PropertiesController < ApplicationController
+class Admin::PropertiesController < Admin::BaseController
     layout 'admin'
     before_action :authenticate_user!
     before_action :set_property, only: [:edit, :update, :destroy, :show]
