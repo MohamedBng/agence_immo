@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  post '/send_contact', to: 'contact#send_email'
+
   resources :properties do
     get '/page/:page', action: :index, on: :collection
   end

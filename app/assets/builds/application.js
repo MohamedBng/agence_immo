@@ -8027,7 +8027,7 @@
             }
             return dispatcher.useContext(Context2);
           }
-          function useState3(initialState) {
+          function useState4(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -8829,7 +8829,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState3;
+          exports.useState = useState4;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -42340,7 +42340,32 @@
     }
 `;
   var FooterContact = () => {
-    return /* @__PURE__ */ import_react11.default.createElement(FooterContainer, null, /* @__PURE__ */ import_react11.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react11.default.createElement(Title4, null, "Laissez-nous vous aider \xE0 trouver les meilleures propri\xE9t\xE9s r\xE9sidentielles \xE0 Duba\xEF."), /* @__PURE__ */ import_react11.default.createElement(Paragraph, null, "Vous recherchez une propri\xE9t\xE9 \xE0 Duba\xEF qui prendra de la valeur avec le temps tout en vous offrant exclusivit\xE9 et confort ? Vous \xEAtes au bon endroit avec notre portefeuille, qui inclut uniquement les meilleures propri\xE9t\xE9s r\xE9sidentielles des \xC9mirats Arabes Unis.")), /* @__PURE__ */ import_react11.default.createElement(Form, null, /* @__PURE__ */ import_react11.default.createElement(Input, { type: "text", placeholder: "Nom", required: true }), /* @__PURE__ */ import_react11.default.createElement(Input, { type: "email", placeholder: "Email", required: true }), /* @__PURE__ */ import_react11.default.createElement(Textarea, { placeholder: "Message", required: true }), /* @__PURE__ */ import_react11.default.createElement(SubmitButton, { type: "submit" }, "Envoyer")));
+    const [name2, setName] = (0, import_react11.useState)("");
+    const [email, setEmail] = (0, import_react11.useState)("");
+    const [message, setMessage] = (0, import_react11.useState)("");
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      fetch("/send_contact", {
+        method: "POST",
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          message: data.get("message")
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then((response) => response.json()).then((data2) => {
+        console.log("Success:", data2);
+      }).catch((error2) => {
+        console.error("Error:", error2);
+      });
+      setName("");
+      setEmail("");
+      setMessage("");
+    };
+    return /* @__PURE__ */ import_react11.default.createElement(FooterContainer, null, /* @__PURE__ */ import_react11.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react11.default.createElement(Title4, null, "Laissez-nous vous aider \xE0 trouver les meilleures propri\xE9t\xE9s r\xE9sidentielles \xE0 Duba\xEF."), /* @__PURE__ */ import_react11.default.createElement(Paragraph, null, "Vous recherchez une propri\xE9t\xE9 \xE0 Duba\xEF qui prendra de la valeur avec le temps tout en vous offrant exclusivit\xE9 et confort ? Vous \xEAtes au bon endroit avec notre portefeuille, qui inclut uniquement les meilleures propri\xE9t\xE9s r\xE9sidentielles des \xC9mirats Arabes Unis.")), /* @__PURE__ */ import_react11.default.createElement(Form, { onSubmit: handleSubmit }, /* @__PURE__ */ import_react11.default.createElement(Input, { name: "name", type: "text", placeholder: "Nom", value: name2, onChange: (e) => setName(e.target.value), required: true }), /* @__PURE__ */ import_react11.default.createElement(Input, { name: "email", type: "email", placeholder: "Email", value: email, onChange: (e) => setEmail(e.target.value), required: true }), /* @__PURE__ */ import_react11.default.createElement(Textarea, { name: "message", placeholder: "Message", value: message, onChange: (e) => setMessage(e.target.value), required: true }), /* @__PURE__ */ import_react11.default.createElement(SubmitButton, { type: "submit" }, "Envoyer")));
   };
   var Footer_default = FooterContact;
 
@@ -42358,7 +42383,7 @@
   font-size: 0.875rem; // Vous pouvez ajuster la taille de la police selon vos besoins
 `;
   var Copyright = () => {
-    return /* @__PURE__ */ import_react12.default.createElement(CopyrightSection, null, /* @__PURE__ */ import_react12.default.createElement(CopyrightText, null, "\xA9 Real Estate 2023. All Rights Reserved"));
+    return /* @__PURE__ */ import_react12.default.createElement(CopyrightSection, null, /* @__PURE__ */ import_react12.default.createElement(CopyrightText, null, "\xA9 2024 Real Estate. All Rights Reserved."));
   };
   var Copyright_default = Copyright;
 

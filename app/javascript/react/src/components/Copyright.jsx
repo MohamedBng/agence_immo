@@ -17,7 +17,7 @@ const CopyrightText = styled.p`
 const Copyright = () => {
   return (
     <CopyrightSection>
-      <CopyrightText>© Real Estate 2023. All Rights Reserved</CopyrightText>
+      <CopyrightText>© 2024 Real Estate. All Rights Reserved.</CopyrightText>
     </CopyrightSection>
   );
 };

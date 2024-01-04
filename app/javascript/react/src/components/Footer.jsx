@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
@@ -73,16 +73,46 @@ const SubmitButton = styled.button`
 `;
 
 const FooterContact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    fetch('/send_contact', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: data.get('name'),
+        email: data.get('email'),
+        message: data.get('message'),
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+    setName('');
+    setEmail('');
+    setMessage('');
+  };
+
   return (
     <FooterContainer>
       <ContactInfo>
         <Title>Laissez-nous vous aider à trouver les meilleures propriétés résidentielles à Dubaï.</Title>
         <Paragraph>Vous recherchez une propriété à Dubaï qui prendra de la valeur avec le temps tout en vous offrant exclusivité et confort ? Vous êtes au bon endroit avec notre portefeuille, qui inclut uniquement les meilleures propriétés résidentielles des Émirats Arabes Unis.</Paragraph>
       </ContactInfo>
-      <Form>
-        <Input type="text" placeholder="Nom" required />
-        <Input type="email" placeholder="Email" required />
-        <Textarea placeholder="Message" required />
+      <Form onSubmit={handleSubmit}>
+        <Input name="name" type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} required />
+        <Input name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <Textarea name="message" placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} required />
         <SubmitButton type="submit">Envoyer</SubmitButton>
       </Form>
     </FooterContainer>
