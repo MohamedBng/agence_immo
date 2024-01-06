@@ -11,6 +11,20 @@ const FooterContainer = styled.footer`
     max-width: 111rem;
     margin: 0 auto;
     height: 30rem;
+
+    @media (max-width: 767px) {
+      padding: 0;
+      height: auto;
+      flex-direction: column;
+      padding-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      padding: 0;
+      height: auto;
+      flex-direction: column;
+      padding-bottom: 1rem;
+    }
 }
 `;
 
@@ -21,11 +35,33 @@ const ContactInfo = styled.div`
 const Title = styled.h2`
     width: 30rem;
     font-size: 2rem;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 100%;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
 `;
 
 const Paragraph = styled.p`
     width: 30rem;
     margin-bottom: 1rem;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
 `;
 
 const Form = styled.form`
@@ -35,6 +71,14 @@ const Form = styled.form`
     padding: 2rem;
     background-color: white;
     border-radius: 4px;
+
+    @media (max-width: 767px) {
+      width: 82%;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 82%;
+    }
 `;
 
 const Input = styled.input`

@@ -5,6 +5,11 @@ const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
+
+  @media (max-width: 767px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 const ImageContainer = styled.div`

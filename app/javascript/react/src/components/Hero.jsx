@@ -9,6 +9,18 @@ const HeroContainer = styled.div`
   padding-left: 4.5rem;
   height: 90vh;
   background-size: cover;
+  background-position: center;
+  min-height: 40rem;
+
+  @media (max-width: 767px) {
+    text-align: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 85vh;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding-top: 20%;
+  }
 `;
 
 const HeroCorp = styled.div`
@@ -16,12 +28,23 @@ const HeroCorp = styled.div`
   max-width: 111rem;
   margin: 0 auto;
   padding-top: 10%;
+
+  @media (max-width: 767px) {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
 `;
 
 const MainText = styled.p`
   font-size: 2rem;
   font-weight: bold;
   width: 29rem;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -36,6 +59,14 @@ const SearchBar = styled.div`
   margin-top: 1rem;
   width: 50%;
   border-radius: 41px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 64%;
+  }
 `;
 
 const LocalisationIcon = styled.img`

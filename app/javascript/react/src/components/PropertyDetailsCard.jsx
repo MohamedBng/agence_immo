@@ -14,6 +14,14 @@ const PropertyDetailsCardContainer = styled.div`
     width: min-content;
     position: absolute;
     margin-top: 2rem;
+
+    @media (max-width: 767px) {
+        width: 85%;
+        position: unset;
+        padding: 1rem;
+        margin: 0 auto;
+        margin-top: 2rem;
+    };
 `;
 
 const CardBody = styled.div`
@@ -23,6 +31,10 @@ const CardBody = styled.div`
     padding-left: 1rem;
     padding-bottom: 1rem;
     height: 27rem;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 `;
 
 const CardHeader = styled.div`
@@ -59,6 +71,10 @@ const OptionsIcons = styled.div`
 
 const OptionIcon = styled.img`
     width: 2rem;
+
+    @media (max-width: 767px) {
+        width: 1rem;
+    }
 `;
 
 const Room = styled.p`

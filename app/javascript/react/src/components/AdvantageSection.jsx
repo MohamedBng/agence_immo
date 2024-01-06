@@ -7,6 +7,16 @@ const AdvantageSectionContainer = styled.section`
     padding: 2rem;
     margin-top: 15rem;
     margin-bottom: 15rem;
+
+    @media (max-width: 767px) {
+      margin-top: 0rem;
+      margin-bottom: 5rem;
+      padding: 0;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      padding: 0;
+    }
 `;
 
 const AdvantageTextContainer = styled.div`
@@ -22,12 +32,25 @@ const Title = styled.h2`
     margin-bottom: 3rem;
     padding-top: 0;
     margin-top: 0;
+
+    @media (max-width: 767px) {
+      width: auto;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 90%;
+      margin-bottom: 1rem;
+    }
 `;
 
 const AdvantageList = styled.ul`
   list-style: none;
   padding: 0;
   margin-bottom: 2rem;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-bottom: 0;
+  }
 `;
 
 const AdvantageItem = styled.li`
@@ -61,6 +84,10 @@ const Button = styled.button`
       background-color: #0069d9;
       border-color: #0062cc;
     }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      margin-top: 0.5rem;
+    }
 `;
 
 const ButtonIcon = styled.img`
@@ -72,6 +99,10 @@ const ImageContainer = styled.div`
     max-width: 50%;
     overflow: hidden;
     height: 26rem;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
 `;
 
 const Image = styled.img`

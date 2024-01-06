@@ -6,12 +6,24 @@ const FeatureCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }  
 `;
 
 const CardImageContainer = styled.div`
     width: 25rem;       
     border-radius: 1.5rem;
     overflow: hidden;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width: 22rem;
+    }
 `;
 
 const CardImage = styled.img`
@@ -27,6 +39,10 @@ const CardBody = styled.div`
     padding-right: 1rem;
     padding-left: 1rem;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width: 18rem;
+    }
 `;
 
 const CardHeader = styled.div`

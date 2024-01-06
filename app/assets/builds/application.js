@@ -41850,40 +41850,82 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: white;
-  padding-bottom: 0;
   width: 100%;
   max-width: 111rem;
   margin: 0 auto;
   height: 10vh;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    height: auto;
+    align-items: unset;
+  }
 `;
   var LogoLink = st.a`
   text-decoration: none;
+  
+  @media (max-width: 767px) {
+    height: 4rem;
+    overflow: hidden;
+    width: 8.7rem;
+    margin: 0 auto;
+  }
 `;
   var Logo2 = st.img`
   width: 10rem;
   height: auto;
   margin-left: 3rem;
+
+  @media (max-width: 767px) {
+    width: 9rem;
+    margin-top: -2rem;
+    margin-left: 0rem;
+  }
 `;
   var NavRightItems = st.div`
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  @media (max-width: 767px) {
+    align-items: center;
+    width: 100%;
+  }
 `;
   var ChangeLocales = st.div`
-    display: flex;
-    align-items: center;
-    margin-right: 3rem;
-    margin-top: -1rem;
+  display: flex;
+  align-items: center;
+  margin-right: 3rem;
+  margin-top: -1rem;
+
+  @media (max-width: 767px) {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
 `;
   var NavLinks = st.div`
-    margin-right: 1.5rem;
-    margin-top: 1.3rem;
+  margin-right: 1.5rem;
+  margin-top: 1.3rem;
+
+  @media (max-width: 767px) {
+    margin-right: 0;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+  }
 `;
   var NavLink = st.a`
   margin-right: 1.5rem; // 15px
   color: black;
   text-decoration: none;
   font-size: medium;
+
+  @media (max-width: 767px) {
+    margin-right: 0rem;
+  }
 `;
   var FlagContainer = st.div`
   width: 1rem;
@@ -41907,8 +41949,29 @@
     padding-left: 0.5rem; // 5px
   }
 `;
+  var BurgerMenuIcon = st.div`
+  display: none;
+
+  @media (max-width: 767px) {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 1rem;
+  }
+`;
+  var MobileNavRightItems = st(NavRightItems)`
+  @media (max-width: 767px) {
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    max-height: ${(props) => props.isOpen ? "500px" : "0"};
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+`;
   var Navbar = ({ translations }) => {
     const [language, setLanguage] = (0, import_react6.useState)(getInitialLanguage());
+    const [isMenuOpen, setIsMenuOpen] = (0, import_react6.useState)(false);
     function getInitialLanguage() {
       const languageCookie = document.cookie.split("; ").find((row) => row.startsWith("locale="));
       if (languageCookie) {
@@ -41917,6 +41980,9 @@
       }
       return "fr";
     }
+    const toggleMenu = () => {
+      setIsMenuOpen(!isMenuOpen);
+    };
     const handleLanguageChange = (event) => {
       const newLanguage = event.target.value;
       fetch("/change_locale", {
@@ -41942,7 +42008,7 @@
           return "/assets/french-flag.svg";
       }
     };
-    return /* @__PURE__ */ import_react6.default.createElement(NavbarContainer, null, /* @__PURE__ */ import_react6.default.createElement(LogoLink, { href: "/" }, /* @__PURE__ */ import_react6.default.createElement(Logo2, { src: "/assets/home-logo.svg", alt: "Logo" })), /* @__PURE__ */ import_react6.default.createElement(NavRightItems, null, /* @__PURE__ */ import_react6.default.createElement(ChangeLocales, null, /* @__PURE__ */ import_react6.default.createElement(FlagContainer, null, /* @__PURE__ */ import_react6.default.createElement(Flag, { src: getFlagImagePath(), alt: "Flag" })), /* @__PURE__ */ import_react6.default.createElement(LanguageSelect, { onChange: handleLanguageChange, value: language }, /* @__PURE__ */ import_react6.default.createElement("option", { value: "fr" }, "Fran\xE7ais"), /* @__PURE__ */ import_react6.default.createElement("option", { value: "en" }, "English"))), /* @__PURE__ */ import_react6.default.createElement(NavLinks, null, /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/" }, translations.home), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/properties" }, translations.properties), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.guides), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.faq), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.contact))));
+    return /* @__PURE__ */ import_react6.default.createElement(NavbarContainer, null, /* @__PURE__ */ import_react6.default.createElement(LogoLink, { href: "/" }, /* @__PURE__ */ import_react6.default.createElement(Logo2, { src: "/assets/home-logo.svg", alt: "Logo" })), /* @__PURE__ */ import_react6.default.createElement(BurgerMenuIcon, { onClick: toggleMenu }, /* @__PURE__ */ import_react6.default.createElement("svg", { width: "30", height: "30", viewBox: "0 0 100 100" }, /* @__PURE__ */ import_react6.default.createElement("path", { d: "M10,30h80v10H10z" }), /* @__PURE__ */ import_react6.default.createElement("path", { d: "M10,50h80v10H10z" }), /* @__PURE__ */ import_react6.default.createElement("path", { d: "M10,70h80v10H10z" }))), /* @__PURE__ */ import_react6.default.createElement(MobileNavRightItems, { isOpen: isMenuOpen }, /* @__PURE__ */ import_react6.default.createElement(ChangeLocales, null, /* @__PURE__ */ import_react6.default.createElement(FlagContainer, null, /* @__PURE__ */ import_react6.default.createElement(Flag, { src: getFlagImagePath(), alt: "Flag" })), /* @__PURE__ */ import_react6.default.createElement(LanguageSelect, { onChange: handleLanguageChange, value: language }, /* @__PURE__ */ import_react6.default.createElement("option", { value: "fr" }, "Fran\xE7ais"), /* @__PURE__ */ import_react6.default.createElement("option", { value: "en" }, "English"))), /* @__PURE__ */ import_react6.default.createElement(NavLinks, null, /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/" }, translations.home), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/properties" }, translations.properties), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.guides), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.faq), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.contact))));
   };
   var Navbar_default = Navbar;
 
@@ -41956,17 +42022,40 @@
   padding-left: 4.5rem;
   height: 90vh;
   background-size: cover;
+  background-position: center;
+  min-height: 40rem;
+
+  @media (max-width: 767px) {
+    text-align: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 85vh;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding-top: 20%;
+  }
 `;
   var HeroCorp = st.div`
   width: 100%;
   max-width: 111rem;
   margin: 0 auto;
   padding-top: 10%;
+
+  @media (max-width: 767px) {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
 `;
   var MainText = st.p`
   font-size: 2rem;
   font-weight: bold;
   width: 29rem;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
   var Subtitle = st.p`
   color: white;
@@ -41979,6 +42068,14 @@
   margin-top: 1rem;
   width: 50%;
   border-radius: 41px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 64%;
+  }
 `;
   var LocalisationIcon = st.img`
   width: 1rem;
@@ -42054,11 +42151,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }  
 `;
   var CardImageContainer = st.div`
     width: 25rem;       
     border-radius: 1.5rem;
     overflow: hidden;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width: 22rem;
+    }
 `;
   var CardImage = st.img`
     width: 100%;
@@ -42072,6 +42181,10 @@
     padding-right: 1rem;
     padding-left: 1rem;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width: 18rem;
+    }
 `;
   var CardHeader = st.div`
     display: flex;
@@ -42141,6 +42254,18 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10rem;
+
+    @media (max-width: 767px) {
+        margin-bottom: 10rem;
+        flex-direction: column;
+        gap: 5rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1300px) {
+        & > *:nth-child(n+3) {
+            display: none;
+        }
+    }
 `;
   var Title2 = st.p`
     font-size: 2rem;
@@ -42162,6 +42287,10 @@
     display: flex;
     align-items: center;
     margin-left: auto;
+
+    @media (max-width: 767px) {
+        display: none;
+    }
 `;
   var StyledLink2 = st.a`
     margin-right: 0.5rem;
@@ -42237,6 +42366,16 @@
     padding: 2rem;
     margin-top: 15rem;
     margin-bottom: 15rem;
+
+    @media (max-width: 767px) {
+      margin-top: 0rem;
+      margin-bottom: 5rem;
+      padding: 0;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      padding: 0;
+    }
 `;
   var AdvantageTextContainer = st.div`
   display: flex;
@@ -42250,11 +42389,24 @@
     margin-bottom: 3rem;
     padding-top: 0;
     margin-top: 0;
+
+    @media (max-width: 767px) {
+      width: auto;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 90%;
+      margin-bottom: 1rem;
+    }
 `;
   var AdvantageList = st.ul`
   list-style: none;
   padding: 0;
   margin-bottom: 2rem;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-bottom: 0;
+  }
 `;
   var AdvantageItem = st.li`
     display: flex;
@@ -42285,6 +42437,10 @@
       background-color: #0069d9;
       border-color: #0062cc;
     }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      margin-top: 0.5rem;
+    }
 `;
   var ButtonIcon = st.img`
     margin-right: 10px;
@@ -42294,6 +42450,10 @@
     max-width: 50%;
     overflow: hidden;
     height: 26rem;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
 `;
   var Image = st.img`
   width: 100%;
@@ -42323,6 +42483,20 @@
     max-width: 111rem;
     margin: 0 auto;
     height: 30rem;
+
+    @media (max-width: 767px) {
+      padding: 0;
+      height: auto;
+      flex-direction: column;
+      padding-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      padding: 0;
+      height: auto;
+      flex-direction: column;
+      padding-bottom: 1rem;
+    }
 }
 `;
   var ContactInfo = st.div`
@@ -42331,10 +42505,32 @@
   var Title4 = st.h2`
     width: 30rem;
     font-size: 2rem;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 100%;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
 `;
   var Paragraph = st.p`
     width: 30rem;
     margin-bottom: 1rem;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
 `;
   var Form = st.form`
     flex-basis: 40%;
@@ -42343,6 +42539,14 @@
     padding: 2rem;
     background-color: white;
     border-radius: 4px;
+
+    @media (max-width: 767px) {
+      width: 82%;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 82%;
+    }
 `;
   var Input = st.input`
     margin-bottom: 1rem;
@@ -42436,6 +42640,11 @@
     overflow: hidden;
     margin-right: 1rem;
     margin-bottom: 5rem;
+
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-right: 0
+      }
 `;
   var CardImageContainer2 = st.div`
     width: 100%;
@@ -42452,6 +42661,10 @@
     padding-right: 1rem;
     padding-left: 1rem;
     padding-bottom: 1rem;
+
+    @media (max-width: 767px) {
+        width: 90%;
+      }
 `;
   var CardHeader2 = st.div`
     display: flex;
@@ -42519,6 +42732,11 @@
   display: flex;
   flex-direction: column;
   width: 85%;
+
+  @media (max-width: 767px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
   var ImageContainer2 = st.div`
   width: 100%;
@@ -42582,6 +42800,14 @@
     width: min-content;
     position: absolute;
     margin-top: 2rem;
+
+    @media (max-width: 767px) {
+        width: 85%;
+        position: unset;
+        padding: 1rem;
+        margin: 0 auto;
+        margin-top: 2rem;
+    };
 `;
   var CardBody3 = st.div`
     background-color: white;
@@ -42590,6 +42816,10 @@
     padding-left: 1rem;
     padding-bottom: 1rem;
     height: 27rem;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 `;
   var CardHeader3 = st.div`
 `;
@@ -42619,6 +42849,10 @@
 `;
   var OptionIcon3 = st.img`
     width: 2rem;
+
+    @media (max-width: 767px) {
+        width: 1rem;
+    }
 `;
   var Room3 = st.p`
     font-size: medium;

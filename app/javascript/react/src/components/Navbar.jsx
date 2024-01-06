@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
+import styled, { css } from 'styled-components';
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -9,39 +8,77 @@ const NavbarContainer = styled.div`
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: white;
-  padding-bottom: 0;
   width: 100%;
   max-width: 111rem;
   margin: 0 auto;
   height: 10vh;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    height: auto;
+    align-items: unset;
+  }
 `;
 
 const LogoLink = styled.a`
   text-decoration: none;
+  
+  @media (max-width: 767px) {
+    height: 4rem;
+    overflow: hidden;
+    width: 8.7rem;
+    margin: 0 auto;
+  }
 `;
 
 const Logo = styled.img`
   width: 10rem;
   height: auto;
   margin-left: 3rem;
+
+  @media (max-width: 767px) {
+    width: 9rem;
+    margin-top: -2rem;
+    margin-left: 0rem;
+  }
 `;
 
 const NavRightItems = styled.div`
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  @media (max-width: 767px) {
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const ChangeLocales = styled.div`
-    display: flex;
-    align-items: center;
-    margin-right: 3rem;
-    margin-top: -1rem;
+  display: flex;
+  align-items: center;
+  margin-right: 3rem;
+  margin-top: -1rem;
+
+  @media (max-width: 767px) {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
 `;
 
 const NavLinks = styled.div`
-    margin-right: 1.5rem;
-    margin-top: 1.3rem;
+  margin-right: 1.5rem;
+  margin-top: 1.3rem;
+
+  @media (max-width: 767px) {
+    margin-right: 0;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+  }
 `;
 
 const NavLink = styled.a`
@@ -49,6 +86,10 @@ const NavLink = styled.a`
   color: black;
   text-decoration: none;
   font-size: medium;
+
+  @media (max-width: 767px) {
+    margin-right: 0rem;
+  }
 `;
 
 const FlagContainer = styled.div`
@@ -76,8 +117,32 @@ const LanguageSelect = styled.select`
   }
 `;
 
+const BurgerMenuIcon = styled.div`
+  display: none;
+
+  @media (max-width: 767px) {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 1rem;
+  }
+`;
+
+const MobileNavRightItems = styled(NavRightItems)`
+  @media (max-width: 767px) {
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    max-height: ${props => props.isOpen ? '500px' : '0'};
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+`;
+
+
 const Navbar = ({ translations }) => {
   const [language, setLanguage] = useState(getInitialLanguage());
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function getInitialLanguage() {
     const languageCookie = document.cookie
@@ -91,6 +156,10 @@ const Navbar = ({ translations }) => {
 
     return 'fr';
   }
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleLanguageChange = (event) => {
     const newLanguage = event.target.value;
@@ -126,15 +195,22 @@ const Navbar = ({ translations }) => {
       <LogoLink href="/">
         <Logo src="/assets/home-logo.svg" alt="Logo" />
       </LogoLink>
-      <NavRightItems>
+      <BurgerMenuIcon onClick={toggleMenu}>
+        <svg width="30" height="30" viewBox="0 0 100 100">
+          <path d="M10,30h80v10H10z"/>
+          <path d="M10,50h80v10H10z"/>
+          <path d="M10,70h80v10H10z"/>
+        </svg>
+      </BurgerMenuIcon>
+      <MobileNavRightItems isOpen={isMenuOpen}>
         <ChangeLocales>
-            <FlagContainer>
+          <FlagContainer>
             <Flag src={getFlagImagePath()} alt="Flag" />
-            </FlagContainer>
-            <LanguageSelect onChange={handleLanguageChange} value={language}>
+          </FlagContainer>
+          <LanguageSelect onChange={handleLanguageChange} value={language}>
             <option value="fr">Français</option>
             <option value="en">English</option>
-            </LanguageSelect>
+          </LanguageSelect>
         </ChangeLocales>
         <NavLinks>
           <NavLink href="/">{translations.home}</NavLink>
@@ -143,7 +219,7 @@ const Navbar = ({ translations }) => {
           <NavLink href="#">{translations.faq}</NavLink>
           <NavLink href="#">{translations.contact}</NavLink>
         </NavLinks>
-      </NavRightItems>
+      </MobileNavRightItems>
     </NavbarContainer>
   );
 };

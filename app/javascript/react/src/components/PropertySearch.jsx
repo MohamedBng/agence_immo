@@ -20,6 +20,15 @@ const Input = styled.input`
   margin: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+
+  @media (max-width: 767px) {
+    padding: 0.5rem;
+    margin: 0rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 95%;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Select = styled.select`
@@ -27,6 +36,15 @@ const Select = styled.select`
   margin: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+
+  @media (max-width: 767px) {
+    padding: 0.5rem;
+    margin: 0rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 `;
 
 const SubmitButton = styled.button`

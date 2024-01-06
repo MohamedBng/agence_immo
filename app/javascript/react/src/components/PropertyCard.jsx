@@ -11,6 +11,11 @@ const PropertyCardContainer = styled.div`
     overflow: hidden;
     margin-right: 1rem;
     margin-bottom: 5rem;
+
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-right: 0
+      }
 `;
 
 const CardImageContainer = styled.div`
@@ -30,6 +35,10 @@ const CardBody = styled.div`
     padding-right: 1rem;
     padding-left: 1rem;
     padding-bottom: 1rem;
+
+    @media (max-width: 767px) {
+        width: 90%;
+      }
 `;
 
 const CardHeader = styled.div`

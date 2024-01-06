@@ -7,6 +7,18 @@ const SectionContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10rem;
+
+    @media (max-width: 767px) {
+        margin-bottom: 10rem;
+        flex-direction: column;
+        gap: 5rem;
+    }
+
+    @media (min-width: 768px) and (max-width: 1300px) {
+        & > *:nth-child(n+3) {
+            display: none;
+        }
+    }
 `;
 
 const Title = styled.p`
@@ -32,6 +44,10 @@ const LinkContainer = styled.div`
     display: flex;
     align-items: center;
     margin-left: auto;
+
+    @media (max-width: 767px) {
+        display: none;
+    }
 `;
 
 const StyledLink = styled.a`
