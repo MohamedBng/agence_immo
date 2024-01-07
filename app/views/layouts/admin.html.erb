@@ -4,17 +4,20 @@
 <head>
   <title>Administration</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="turbo-cache-control" content="no-cache">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
 </head>
 <body>
   <div id="dashboard-container">
-    <section id="sidebar-root">
-        <sidebar-component props-json='<%= {  canAccessUsers: policy(User).index?, canAccessProperties: policy(Property).index?}.to_json.html_safe %>'/>
-    </section>
+    <div data-controller="sidebar"
+        data-can-access-users="<%= policy(User).index? %>"
+        data-can-access-properties="<%= policy(Property).index? %>">
+    </div>
     <section id="dashboard-body">
         <div id="dashboard-header">
             <p class="dashboard-title">

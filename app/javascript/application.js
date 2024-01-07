@@ -1,21 +1,14 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import Rails from "@rails/ujs";
-import { Application } from "@hotwired/stimulus"
 import './add_jquery'
 import Sortable from 'stimulus-sortable';
 import "@hotwired/turbo-rails"
 import "@nathanvda/cocoon"
 import "./controllers"
+import application from './controllers/index'
 import "./react/src/index.js"
 
-const application = Application.start()
 application.register('sortable', Sortable);
-
-// Configure Stimulus development experience
-application.debug = false
-window.Stimulus   = application
-
-export { application }
 
 document.addEventListener("DOMContentLoaded", function () {
     const imageWrapper = document.querySelector(".image-wrapper");

@@ -1,12 +1,16 @@
 <div id="dashboard-cards">
     <% if policy(User).new? %>
-        <div class="dashboard-card-root">
-            <dashboard-card-component props-json='<%= {  text:  t('admin.dashboard.add_new_user'), link: "/admin/users/new", icon: "/assets/add-icon.svg"}.to_json.html_safe %>'/>
+        <div data-controller="dashboard-card"
+        data-text= "<% t('admin.dashboard.add_new_user').html_safe %>"
+        data-link="/admin/users/new"
+        data-icon="/assets/add-icon.svg">
         </div>
     <% end %>
     <% if policy(Property).new? %>
-        <div class="dashboard-card-root">
-            <dashboard-card-component props-json='<%= {  text:  t('admin.dashboard.add_new_property'), link: "/admin/properties/new", icon: "/assets/add-icon.svg"}.to_json.html_safe %>'/>
+        <div data-controller="dashboard-card"
+        data-text= "<%= t('admin.dashboard.add_new_property').html_safe %>"
+        data-link="/admin/properties/new"
+        data-icon="/assets/add-icon.svg">
         </div>
     <% end %>
 </div>

@@ -9325,9 +9325,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React16 = require_react();
+          var React18 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React16.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React18.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -10932,7 +10932,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React16.Children.forEach(props.children, function(child) {
+                  React18.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -19379,7 +19379,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React16.Component().refs;
+          var emptyRefsObject = new React18.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -29981,7 +29981,7 @@
               unmarkContainerAsRoot(container);
             }
           };
-          function createRoot2(container, options2) {
+          function createRoot4(container, options2) {
             if (!isValidContainer(container)) {
               throw new Error("createRoot(...): Target container is not a DOM element.");
             }
@@ -30352,7 +30352,7 @@
                 error2('You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
               }
             }
-            return createRoot2(container, options2);
+            return createRoot4(container, options2);
           }
           function hydrateRoot$1(container, initialChildren, options2) {
             {
@@ -31103,6 +31103,11 @@
       }
     });
   }
+
+  // app/javascript/add_jquery.js
+  var import_jquery = __toESM(require_jquery());
+  window.jQuery = import_jquery.default;
+  window.$ = import_jquery.default;
 
   // node_modules/@hotwired/stimulus/dist/stimulus.js
   var EventListener = class {
@@ -33551,11 +33556,6 @@
   Controller.targets = [];
   Controller.outlets = [];
   Controller.values = {};
-
-  // app/javascript/add_jquery.js
-  var import_jquery = __toESM(require_jquery());
-  window.jQuery = import_jquery.default;
-  window.$ = import_jquery.default;
 
   // node_modules/sortablejs/modular/sortable.esm.js
   function ownKeys(object, enumerableOnly) {
@@ -40096,302 +40096,11 @@
     });
   })(jQuery);
 
-  // node_modules/remount/dist/remount.js
-  var React = __toESM(require_react());
-  var ReactDOM = __toESM(require_client());
-  function inject() {
-    if (window.HTMLElement && window.HTMLElement._babelES5Adapter || void 0 === window.Reflect || void 0 === window.customElements || window.customElements.hasOwnProperty("polyfillWrapFlushCallback")) {
-      return;
-    }
-    const a2 = HTMLElement;
-    window.HTMLElement = function() {
-      return Reflect.construct(a2, [], this.constructor);
-    };
-    HTMLElement.prototype = a2.prototype;
-    HTMLElement.prototype.constructor = HTMLElement;
-    Object.setPrototypeOf(HTMLElement, a2);
-    HTMLElement._babelES5Adapter = true;
-  }
-  var name$1 = "CustomElements";
-  function defineElement$1(elSpec, elName, events) {
-    const { onUpdate, onUnmount, onMount } = events;
-    inject();
-    const attributes = elSpec.attributes || [];
-    class ComponentElement extends HTMLElement {
-      static get observedAttributes() {
-        return ["props-json", ...attributes];
-      }
-      connectedCallback() {
-        this._mountPoint = createMountPoint(this, elSpec);
-        onMount(this, this._mountPoint);
-      }
-      disconnectedCallback() {
-        if (!this._mountPoint) {
-          return;
-        }
-        onUnmount(this, this._mountPoint);
-      }
-      attributeChangedCallback() {
-        if (!this._mountPoint) {
-          return;
-        }
-        onUpdate(this, this._mountPoint);
-      }
-    }
-    if (elSpec.quiet && window.customElements.get(elName)) {
-      return;
-    }
-    window.customElements.define(elName, ComponentElement);
-  }
-  function isSupported$1() {
-    return !!(window.customElements && window.customElements.define);
-  }
-  function createMountPoint(element, elSpec) {
-    const { shadow: shadow2 } = elSpec;
-    if (shadow2 && element.attachShadow) {
-      const mountPoint = document.createElement("span");
-      element.attachShadow({ mode: "open" }).appendChild(mountPoint);
-      return mountPoint;
-    } else {
-      return element;
-    }
-  }
-  function supportsShadow$1() {
-    return !!(document && document.body && document.body.attachShadow);
-  }
-  var CustomElementsStrategy = /* @__PURE__ */ Object.freeze({
-    __proto__: null,
-    name: name$1,
-    defineElement: defineElement$1,
-    isSupported: isSupported$1,
-    supportsShadow: supportsShadow$1
-  });
-  function each(list, fn) {
-    for (let i2 = 0, len = list.length; i2 < len; i2++) {
-      fn(list[i2]);
-    }
-  }
-  var name = "MutationObserver";
-  var observers = {};
-  function isSupported() {
-    return "MutationObserver" in window;
-  }
-  function defineElement(elSpec, elName, events) {
-    elName = elName.toLowerCase();
-    if (!isValidName(elName)) {
-      if (elSpec.quiet) {
-        return;
-      }
-      throw new Error(`Remount: "${elName}" is not a valid custom element elName`);
-    }
-    if (observers[elName]) {
-      if (elSpec.quiet) {
-        return;
-      }
-      throw new Error(`Remount: "${elName}" is already registered`);
-    }
-    const observer = new MutationObserver(
-      /** @type MutationCallback */
-      (mutations) => {
-        each(mutations, (mutation) => {
-          each(mutation.addedNodes, (node2) => {
-            if (isElement(node2)) {
-              checkForMount(node2, elName, events);
-            }
-          });
-        });
-      }
-    );
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-    observers[elName] = /* true */
-    observer;
-    function mountElementsInDOM() {
-      const nodes = document.getElementsByTagName(elName);
-      each(
-        nodes,
-        (node2) => checkForMount(node2, elName, events)
-      );
-    }
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-      mountElementsInDOM();
-    } else {
-      window.addEventListener("DOMContentLoaded", mountElementsInDOM);
-    }
-  }
-  function checkForMount(node2, elName, events) {
-    if (node2.nodeName.toLowerCase() === elName) {
-      events.onMount(node2, node2);
-      observeForUpdates(node2, events);
-      observeForRemoval(node2, events);
-    } else if (node2.children && node2.children.length) {
-      each(node2.children, (subnode) => {
-        if (isElement(subnode)) {
-          checkForMount(subnode, elName, events);
-        }
-      });
-    }
-  }
-  function observeForUpdates(node2, events) {
-    const { onUpdate } = events;
-    const observer = new MutationObserver(
-      /** @type MutationCallback */
-      (mutations) => {
-        each(mutations, (mutation) => {
-          const targetNode = mutation.target;
-          if (isElement(targetNode)) {
-            onUpdate(targetNode, targetNode);
-          }
-        });
-      }
-    );
-    observer.observe(node2, { attributes: true });
-  }
-  function observeForRemoval(node2, events) {
-    const { onUnmount } = events;
-    const parent = node2.parentNode;
-    if (!parent) {
-      return;
-    }
-    const observer = new MutationObserver(
-      /** @type MutationCallback */
-      (mutations) => {
-        each(mutations, (mutation) => {
-          each(mutation.removedNodes, (subnode) => {
-            if (node2 !== subnode) {
-              return;
-            }
-            if (isElement(node2)) {
-              observer.disconnect(parent);
-              onUnmount(node2, node2);
-            }
-          });
-        });
-      }
-    );
-    observer.observe(parent, { childList: true, subtree: true });
-  }
-  function isValidName(elName) {
-    return !!(elName.indexOf("-") !== -1 && elName.match(/^[a-z][a-z0-9-]*$/));
-  }
-  function supportsShadow() {
-    return false;
-  }
-  function isElement(node2) {
-    if (node2) {
-      return true;
-    }
-    return false;
-  }
-  var MutationObserverStrategy = /* @__PURE__ */ Object.freeze({
-    __proto__: null,
-    name,
-    observers,
-    isSupported,
-    defineElement,
-    supportsShadow
-  });
-  var cachedStrategy;
-  function getStrategy() {
-    if (cachedStrategy) {
-      return cachedStrategy;
-    }
-    const StrategyUsed = [CustomElementsStrategy, MutationObserverStrategy].find(
-      (strategy) => !!strategy.isSupported()
-    );
-    if (!StrategyUsed) {
-      console.warn(
-        "Remount: This browser doesn't support the MutationObserver API or the Custom Elements API. Including polyfills might fix this. Remount elements will not work. https://github.com/rstacruz/remount"
-      );
-    }
-    cachedStrategy = StrategyUsed;
-    return StrategyUsed;
-  }
-  function define2(components, defaults2) {
-    const Strategy = getStrategy();
-    if (!Strategy) {
-      return;
-    }
-    Object.keys(components).forEach((name2) => {
-      const elSpec = Object.assign({}, defaults2, toElementSpec(components[name2]));
-      const adapter = elSpec.adapter;
-      if (!adapter)
-        throw new Error("No suitable adapter found");
-      Strategy.defineElement(elSpec, name2, {
-        onMount(element, mountPoint) {
-          const props = getProps(element, elSpec.attributes);
-          if (elSpec.shadow && elSpec.retarget) {
-            adapter.mount(elSpec, mountPoint, props, element);
-          } else {
-            adapter.mount(elSpec, mountPoint, props, null);
-          }
-        },
-        onUpdate(element, mountPoint) {
-          const props = getProps(element, elSpec.attributes);
-          adapter.update(elSpec, mountPoint, props, null);
-        },
-        onUnmount(element, mountPoint) {
-          adapter.unmount(elSpec, mountPoint);
-        }
-      });
-    });
-  }
-  function toElementSpec(thing) {
-    if (isElementSpec(thing)) {
-      return thing;
-    }
-    return { component: thing };
-  }
-  function isElementSpec(spec) {
-    return typeof spec === "object" && spec.component;
-  }
-  function getProps(element, attributes) {
-    const rawJson = element.getAttribute("props-json");
-    if (rawJson) {
-      return JSON.parse(rawJson);
-    }
-    const names = attributes || [];
-    return names.reduce((result, attribute) => {
-      result[attribute] = element.getAttribute(attribute);
-      return result;
-    }, {});
-  }
-  var roots = /* @__PURE__ */ new Map();
-  function mount2(elSpec, mountPoint, props, element) {
-    const reactElement = React.createElement(elSpec.component, props);
-    const root = ReactDOM.createRoot(mountPoint);
-    roots.set(mountPoint, root);
-    root.render(reactElement);
-  }
-  function update(elSpec, mountPoint, props, element) {
-    const reactElement = React.createElement(elSpec.component, props);
-    const root = roots.get(mountPoint);
-    if (root)
-      root.render(reactElement);
-  }
-  function unmount(elSpec, mountPoint) {
-    const root = roots.get(mountPoint);
-    if (!root)
-      return;
-    root.unmount();
-    roots.delete(mountPoint);
-  }
-  var ReactAdapter = /* @__PURE__ */ Object.freeze({
-    __proto__: null,
-    mount: mount2,
-    update,
-    unmount
-  });
-  function defineReact(components = {}, options = {}) {
-    return define2(components, {
-      adapter: ReactAdapter,
-      ...options
-    });
-  }
+  // app/javascript/controllers/dashboard_card_controller.js
+  var import_react3 = __toESM(require_react());
+  var import_client = __toESM(require_client());
 
-  // app/javascript/react/src/components/Sidebar.jsx
+  // app/javascript/react/src/components/DashboardCard.jsx
   var import_react2 = __toESM(require_react());
 
   // node_modules/tslib/tslib.es6.mjs
@@ -41690,7 +41399,49 @@
   var dt = "__sc-".concat(f, "__");
   "undefined" != typeof window && (window[dt] || (window[dt] = 0), 1 === window[dt] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window[dt] += 1);
 
+  // app/javascript/react/src/components/DashboardCard.jsx
+  var DashboardCardContainer = st.div`
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    width: 200px;
+    height: 170px;
+    background-color: #55fff5;
+    padding: 1rem;
+    border-radius: 15px;
+    color: black;
+`;
+  var CardTitle = st.p`
+    font-size: 1.2rem;
+    margin-bottom: auto;
+`;
+  var CardLink = st.a`
+    img {
+        width: 3rem;
+        align-self: flex-start;
+    }
+`;
+  var DashboardCard = ({ text, link, icon }) => {
+    return /* @__PURE__ */ import_react2.default.createElement(DashboardCardContainer, { className: "dashboard-card" }, /* @__PURE__ */ import_react2.default.createElement(CardTitle, null, text), /* @__PURE__ */ import_react2.default.createElement(CardLink, { href: link }, /* @__PURE__ */ import_react2.default.createElement("img", { src: icon, alt: text })));
+  };
+  var DashboardCard_default = DashboardCard;
+
+  // app/javascript/controllers/dashboard_card_controller.js
+  var dashboard_card_controller_default = class extends Controller {
+    connect() {
+      const app = this.element;
+      const text = app.getAttribute("data-text");
+      const link = app.getAttribute("data-link");
+      const icon = app.getAttribute("data-icon");
+      (0, import_client.createRoot)(app).render(/* @__PURE__ */ import_react3.default.createElement(DashboardCard_default, { text, link, icon }));
+    }
+  };
+
+  // app/javascript/controllers/sidebar_controller.js
+  var import_react5 = __toESM(require_react());
+  var import_client2 = __toESM(require_client());
+
   // app/javascript/react/src/components/Sidebar.jsx
+  var import_react4 = __toESM(require_react());
   var SidebarContainer = st.div`
   width: 16rem;
   background-color: #171717;
@@ -41771,51 +41522,335 @@
   var LogoutItem = st(MenuItem)`
 `;
   var Sidebar = ({ canAccessUsers, canAccessProperties }) => {
-    return /* @__PURE__ */ import_react2.default.createElement(SidebarContainer, null, /* @__PURE__ */ import_react2.default.createElement(Logo, null, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/house-icon.svg", alt: "house" })), "Agence Immo"), /* @__PURE__ */ import_react2.default.createElement(MenuItem, { href: "/admin/dashboard" }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/dashboard-icon.svg", alt: "dashboard" })), "Dashboard"), canAccessUsers && /* @__PURE__ */ import_react2.default.createElement(MenuItem, { href: "/admin/users" }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/users-icon.svg", alt: "users" })), "Users"), canAccessProperties && /* @__PURE__ */ import_react2.default.createElement(MenuItem, { href: "/admin/properties" }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/house-icon.svg", alt: "users" })), "Properties"), /* @__PURE__ */ import_react2.default.createElement(Divider, null), /* @__PURE__ */ import_react2.default.createElement(LogoutItem, { onClick: handleLogout }, /* @__PURE__ */ import_react2.default.createElement(Icon, null, /* @__PURE__ */ import_react2.default.createElement("img", { src: "/assets/logout-icon.svg", alt: "logout" })), "Logout"));
+    return /* @__PURE__ */ import_react4.default.createElement(SidebarContainer, null, /* @__PURE__ */ import_react4.default.createElement(Logo, null, /* @__PURE__ */ import_react4.default.createElement(Icon, null, /* @__PURE__ */ import_react4.default.createElement("img", { src: "/assets/house-icon.svg", alt: "house" })), "Agence Immo"), /* @__PURE__ */ import_react4.default.createElement(MenuItem, { href: "/admin/dashboard" }, /* @__PURE__ */ import_react4.default.createElement(Icon, null, /* @__PURE__ */ import_react4.default.createElement("img", { src: "/assets/dashboard-icon.svg", alt: "dashboard" })), "Dashboard"), canAccessUsers && /* @__PURE__ */ import_react4.default.createElement(MenuItem, { href: "/admin/users" }, /* @__PURE__ */ import_react4.default.createElement(Icon, null, /* @__PURE__ */ import_react4.default.createElement("img", { src: "/assets/users-icon.svg", alt: "users" })), "Users"), canAccessProperties && /* @__PURE__ */ import_react4.default.createElement(MenuItem, { href: "/admin/properties" }, /* @__PURE__ */ import_react4.default.createElement(Icon, null, /* @__PURE__ */ import_react4.default.createElement("img", { src: "/assets/house-icon.svg", alt: "users" })), "Properties"), /* @__PURE__ */ import_react4.default.createElement(Divider, null), /* @__PURE__ */ import_react4.default.createElement(LogoutItem, { onClick: handleLogout }, /* @__PURE__ */ import_react4.default.createElement(Icon, null, /* @__PURE__ */ import_react4.default.createElement("img", { src: "/assets/logout-icon.svg", alt: "logout" })), "Logout"));
   };
   var Sidebar_default = Sidebar;
 
-  // app/javascript/react/src/components/DashboardCard.jsx
-  var import_react3 = __toESM(require_react());
-  var DashboardCardContainer = st.div`
-    display: flex;
-    flex-direction: column; /* Aligne les éléments verticalement */
-    width: 200px;
-    height: 170px;
-    background-color: #55fff5;
-    padding: 1rem;
-    border-radius: 15px;
-    color: black;
-`;
-  var CardTitle = st.p`
-    font-size: 1.2rem;
-    margin-bottom: auto;
-`;
-  var CardLink = st.a`
-    img {
-        width: 3rem;
-        align-self: flex-start;
+  // app/javascript/controllers/sidebar_controller.js
+  var sidebar_controller_default = class extends Controller {
+    connect() {
+      const app = this.element;
+      const canAccessUsers = app.getAttribute("data-can-access-users") === "true";
+      const canAccessProperties = app.getAttribute("data-can-access-properties") === "true";
+      (0, import_client2.createRoot)(app).render(/* @__PURE__ */ import_react5.default.createElement(Sidebar_default, { canAccessUsers, canAccessProperties }));
     }
-`;
-  var DashboardCard = ({ text, link, icon }) => {
-    return /* @__PURE__ */ import_react3.default.createElement(DashboardCardContainer, { className: "dashboard-card" }, /* @__PURE__ */ import_react3.default.createElement(CardTitle, null, text), /* @__PURE__ */ import_react3.default.createElement(CardLink, { href: link }, /* @__PURE__ */ import_react3.default.createElement("img", { src: icon, alt: text })));
   };
-  var DashboardCard_default = DashboardCard;
+
+  // app/javascript/controllers/index.js
+  var application = Application.start();
+  application.register("dashboard-card", dashboard_card_controller_default);
+  application.register("sidebar", sidebar_controller_default);
+  var controllers_default = application;
+
+  // node_modules/remount/dist/remount.js
+  var React5 = __toESM(require_react());
+  var ReactDOM = __toESM(require_client());
+  function inject() {
+    if (window.HTMLElement && window.HTMLElement._babelES5Adapter || void 0 === window.Reflect || void 0 === window.customElements || window.customElements.hasOwnProperty("polyfillWrapFlushCallback")) {
+      return;
+    }
+    const a2 = HTMLElement;
+    window.HTMLElement = function() {
+      return Reflect.construct(a2, [], this.constructor);
+    };
+    HTMLElement.prototype = a2.prototype;
+    HTMLElement.prototype.constructor = HTMLElement;
+    Object.setPrototypeOf(HTMLElement, a2);
+    HTMLElement._babelES5Adapter = true;
+  }
+  var name$1 = "CustomElements";
+  function defineElement$1(elSpec, elName, events) {
+    const { onUpdate, onUnmount, onMount } = events;
+    inject();
+    const attributes = elSpec.attributes || [];
+    class ComponentElement extends HTMLElement {
+      static get observedAttributes() {
+        return ["props-json", ...attributes];
+      }
+      connectedCallback() {
+        this._mountPoint = createMountPoint(this, elSpec);
+        onMount(this, this._mountPoint);
+      }
+      disconnectedCallback() {
+        if (!this._mountPoint) {
+          return;
+        }
+        onUnmount(this, this._mountPoint);
+      }
+      attributeChangedCallback() {
+        if (!this._mountPoint) {
+          return;
+        }
+        onUpdate(this, this._mountPoint);
+      }
+    }
+    if (elSpec.quiet && window.customElements.get(elName)) {
+      return;
+    }
+    window.customElements.define(elName, ComponentElement);
+  }
+  function isSupported$1() {
+    return !!(window.customElements && window.customElements.define);
+  }
+  function createMountPoint(element, elSpec) {
+    const { shadow: shadow2 } = elSpec;
+    if (shadow2 && element.attachShadow) {
+      const mountPoint = document.createElement("span");
+      element.attachShadow({ mode: "open" }).appendChild(mountPoint);
+      return mountPoint;
+    } else {
+      return element;
+    }
+  }
+  function supportsShadow$1() {
+    return !!(document && document.body && document.body.attachShadow);
+  }
+  var CustomElementsStrategy = /* @__PURE__ */ Object.freeze({
+    __proto__: null,
+    name: name$1,
+    defineElement: defineElement$1,
+    isSupported: isSupported$1,
+    supportsShadow: supportsShadow$1
+  });
+  function each(list, fn) {
+    for (let i2 = 0, len = list.length; i2 < len; i2++) {
+      fn(list[i2]);
+    }
+  }
+  var name = "MutationObserver";
+  var observers = {};
+  function isSupported() {
+    return "MutationObserver" in window;
+  }
+  function defineElement(elSpec, elName, events) {
+    elName = elName.toLowerCase();
+    if (!isValidName(elName)) {
+      if (elSpec.quiet) {
+        return;
+      }
+      throw new Error(`Remount: "${elName}" is not a valid custom element elName`);
+    }
+    if (observers[elName]) {
+      if (elSpec.quiet) {
+        return;
+      }
+      throw new Error(`Remount: "${elName}" is already registered`);
+    }
+    const observer = new MutationObserver(
+      /** @type MutationCallback */
+      (mutations) => {
+        each(mutations, (mutation) => {
+          each(mutation.addedNodes, (node2) => {
+            if (isElement(node2)) {
+              checkForMount(node2, elName, events);
+            }
+          });
+        });
+      }
+    );
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    observers[elName] = /* true */
+    observer;
+    function mountElementsInDOM() {
+      const nodes = document.getElementsByTagName(elName);
+      each(
+        nodes,
+        (node2) => checkForMount(node2, elName, events)
+      );
+    }
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      mountElementsInDOM();
+    } else {
+      window.addEventListener("DOMContentLoaded", mountElementsInDOM);
+    }
+  }
+  function checkForMount(node2, elName, events) {
+    if (node2.nodeName.toLowerCase() === elName) {
+      events.onMount(node2, node2);
+      observeForUpdates(node2, events);
+      observeForRemoval(node2, events);
+    } else if (node2.children && node2.children.length) {
+      each(node2.children, (subnode) => {
+        if (isElement(subnode)) {
+          checkForMount(subnode, elName, events);
+        }
+      });
+    }
+  }
+  function observeForUpdates(node2, events) {
+    const { onUpdate } = events;
+    const observer = new MutationObserver(
+      /** @type MutationCallback */
+      (mutations) => {
+        each(mutations, (mutation) => {
+          const targetNode = mutation.target;
+          if (isElement(targetNode)) {
+            onUpdate(targetNode, targetNode);
+          }
+        });
+      }
+    );
+    observer.observe(node2, { attributes: true });
+  }
+  function observeForRemoval(node2, events) {
+    const { onUnmount } = events;
+    const parent = node2.parentNode;
+    if (!parent) {
+      return;
+    }
+    const observer = new MutationObserver(
+      /** @type MutationCallback */
+      (mutations) => {
+        each(mutations, (mutation) => {
+          each(mutation.removedNodes, (subnode) => {
+            if (node2 !== subnode) {
+              return;
+            }
+            if (isElement(node2)) {
+              observer.disconnect(parent);
+              onUnmount(node2, node2);
+            }
+          });
+        });
+      }
+    );
+    observer.observe(parent, { childList: true, subtree: true });
+  }
+  function isValidName(elName) {
+    return !!(elName.indexOf("-") !== -1 && elName.match(/^[a-z][a-z0-9-]*$/));
+  }
+  function supportsShadow() {
+    return false;
+  }
+  function isElement(node2) {
+    if (node2) {
+      return true;
+    }
+    return false;
+  }
+  var MutationObserverStrategy = /* @__PURE__ */ Object.freeze({
+    __proto__: null,
+    name,
+    observers,
+    isSupported,
+    defineElement,
+    supportsShadow
+  });
+  var cachedStrategy;
+  function getStrategy() {
+    if (cachedStrategy) {
+      return cachedStrategy;
+    }
+    const StrategyUsed = [CustomElementsStrategy, MutationObserverStrategy].find(
+      (strategy) => !!strategy.isSupported()
+    );
+    if (!StrategyUsed) {
+      console.warn(
+        "Remount: This browser doesn't support the MutationObserver API or the Custom Elements API. Including polyfills might fix this. Remount elements will not work. https://github.com/rstacruz/remount"
+      );
+    }
+    cachedStrategy = StrategyUsed;
+    return StrategyUsed;
+  }
+  function define2(components, defaults2) {
+    const Strategy = getStrategy();
+    if (!Strategy) {
+      return;
+    }
+    Object.keys(components).forEach((name2) => {
+      const elSpec = Object.assign({}, defaults2, toElementSpec(components[name2]));
+      const adapter = elSpec.adapter;
+      if (!adapter)
+        throw new Error("No suitable adapter found");
+      Strategy.defineElement(elSpec, name2, {
+        onMount(element, mountPoint) {
+          const props = getProps(element, elSpec.attributes);
+          if (elSpec.shadow && elSpec.retarget) {
+            adapter.mount(elSpec, mountPoint, props, element);
+          } else {
+            adapter.mount(elSpec, mountPoint, props, null);
+          }
+        },
+        onUpdate(element, mountPoint) {
+          const props = getProps(element, elSpec.attributes);
+          adapter.update(elSpec, mountPoint, props, null);
+        },
+        onUnmount(element, mountPoint) {
+          adapter.unmount(elSpec, mountPoint);
+        }
+      });
+    });
+  }
+  function toElementSpec(thing) {
+    if (isElementSpec(thing)) {
+      return thing;
+    }
+    return { component: thing };
+  }
+  function isElementSpec(spec) {
+    return typeof spec === "object" && spec.component;
+  }
+  function getProps(element, attributes) {
+    const rawJson = element.getAttribute("props-json");
+    if (rawJson) {
+      return JSON.parse(rawJson);
+    }
+    const names = attributes || [];
+    return names.reduce((result, attribute) => {
+      result[attribute] = element.getAttribute(attribute);
+      return result;
+    }, {});
+  }
+  var roots = /* @__PURE__ */ new Map();
+  function mount2(elSpec, mountPoint, props, element) {
+    const reactElement = React5.createElement(elSpec.component, props);
+    const root = ReactDOM.createRoot(mountPoint);
+    roots.set(mountPoint, root);
+    root.render(reactElement);
+  }
+  function update(elSpec, mountPoint, props, element) {
+    const reactElement = React5.createElement(elSpec.component, props);
+    const root = roots.get(mountPoint);
+    if (root)
+      root.render(reactElement);
+  }
+  function unmount(elSpec, mountPoint) {
+    const root = roots.get(mountPoint);
+    if (!root)
+      return;
+    root.unmount();
+    roots.delete(mountPoint);
+  }
+  var ReactAdapter = /* @__PURE__ */ Object.freeze({
+    __proto__: null,
+    mount: mount2,
+    update,
+    unmount
+  });
+  function defineReact(components = {}, options = {}) {
+    return define2(components, {
+      adapter: ReactAdapter,
+      ...options
+    });
+  }
 
   // app/javascript/react/src/components/Title.jsx
-  var import_react4 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
   var TitleText = st.p`
     margin-top: 0;
     font-weight: bold;
     font-size: 1.2rem;
 `;
   var Title = ({ title }) => {
-    return /* @__PURE__ */ import_react4.default.createElement(TitleText, null, title);
+    return /* @__PURE__ */ import_react6.default.createElement(TitleText, null, title);
   };
   var Title_default = Title;
 
   // app/javascript/react/src/components/Button.jsx
-  var import_react5 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   var StyledButton = st.button`
     display: inline-block;
     padding: 0.375rem 0.75rem;
@@ -41837,12 +41872,12 @@
     }
 `;
   var Button = ({ text, onClick }) => {
-    return /* @__PURE__ */ import_react5.default.createElement(StyledButton, { onClick }, text);
+    return /* @__PURE__ */ import_react7.default.createElement(StyledButton, { onClick }, text);
   };
   var Button_default = Button;
 
   // app/javascript/react/src/components/Navbar.jsx
-  var import_react6 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
   var NavbarContainer = st.div`
   display: flex;
   justify-content: space-between;
@@ -41970,8 +42005,8 @@
   }
 `;
   var Navbar = ({ translations }) => {
-    const [language, setLanguage] = (0, import_react6.useState)(getInitialLanguage());
-    const [isMenuOpen, setIsMenuOpen] = (0, import_react6.useState)(false);
+    const [language, setLanguage] = (0, import_react8.useState)(getInitialLanguage());
+    const [isMenuOpen, setIsMenuOpen] = (0, import_react8.useState)(false);
     function getInitialLanguage() {
       const languageCookie = document.cookie.split("; ").find((row) => row.startsWith("locale="));
       if (languageCookie) {
@@ -42008,12 +42043,12 @@
           return "/assets/french-flag.svg";
       }
     };
-    return /* @__PURE__ */ import_react6.default.createElement(NavbarContainer, null, /* @__PURE__ */ import_react6.default.createElement(LogoLink, { href: "/" }, /* @__PURE__ */ import_react6.default.createElement(Logo2, { src: "/assets/home-logo.svg", alt: "Logo" })), /* @__PURE__ */ import_react6.default.createElement(BurgerMenuIcon, { onClick: toggleMenu }, /* @__PURE__ */ import_react6.default.createElement("svg", { width: "30", height: "30", viewBox: "0 0 100 100" }, /* @__PURE__ */ import_react6.default.createElement("path", { d: "M10,30h80v10H10z" }), /* @__PURE__ */ import_react6.default.createElement("path", { d: "M10,50h80v10H10z" }), /* @__PURE__ */ import_react6.default.createElement("path", { d: "M10,70h80v10H10z" }))), /* @__PURE__ */ import_react6.default.createElement(MobileNavRightItems, { isOpen: isMenuOpen }, /* @__PURE__ */ import_react6.default.createElement(ChangeLocales, null, /* @__PURE__ */ import_react6.default.createElement(FlagContainer, null, /* @__PURE__ */ import_react6.default.createElement(Flag, { src: getFlagImagePath(), alt: "Flag" })), /* @__PURE__ */ import_react6.default.createElement(LanguageSelect, { onChange: handleLanguageChange, value: language }, /* @__PURE__ */ import_react6.default.createElement("option", { value: "fr" }, "Fran\xE7ais"), /* @__PURE__ */ import_react6.default.createElement("option", { value: "en" }, "English"))), /* @__PURE__ */ import_react6.default.createElement(NavLinks, null, /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/" }, translations.home), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "/properties" }, translations.properties), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.guides), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.faq), /* @__PURE__ */ import_react6.default.createElement(NavLink, { href: "#" }, translations.contact))));
+    return /* @__PURE__ */ import_react8.default.createElement(NavbarContainer, null, /* @__PURE__ */ import_react8.default.createElement(LogoLink, { href: "/" }, /* @__PURE__ */ import_react8.default.createElement(Logo2, { src: "/assets/home-logo.svg", alt: "Logo" })), /* @__PURE__ */ import_react8.default.createElement(BurgerMenuIcon, { onClick: toggleMenu }, /* @__PURE__ */ import_react8.default.createElement("svg", { width: "30", height: "30", viewBox: "0 0 100 100" }, /* @__PURE__ */ import_react8.default.createElement("path", { d: "M10,30h80v10H10z" }), /* @__PURE__ */ import_react8.default.createElement("path", { d: "M10,50h80v10H10z" }), /* @__PURE__ */ import_react8.default.createElement("path", { d: "M10,70h80v10H10z" }))), /* @__PURE__ */ import_react8.default.createElement(MobileNavRightItems, { isOpen: isMenuOpen }, /* @__PURE__ */ import_react8.default.createElement(ChangeLocales, null, /* @__PURE__ */ import_react8.default.createElement(FlagContainer, null, /* @__PURE__ */ import_react8.default.createElement(Flag, { src: getFlagImagePath(), alt: "Flag" })), /* @__PURE__ */ import_react8.default.createElement(LanguageSelect, { onChange: handleLanguageChange, value: language }, /* @__PURE__ */ import_react8.default.createElement("option", { value: "fr" }, "Fran\xE7ais"), /* @__PURE__ */ import_react8.default.createElement("option", { value: "en" }, "English"))), /* @__PURE__ */ import_react8.default.createElement(NavLinks, null, /* @__PURE__ */ import_react8.default.createElement(NavLink, { href: "/" }, translations.home), /* @__PURE__ */ import_react8.default.createElement(NavLink, { href: "/properties" }, translations.properties), /* @__PURE__ */ import_react8.default.createElement(NavLink, { href: "#" }, translations.guides), /* @__PURE__ */ import_react8.default.createElement(NavLink, { href: "#" }, translations.faq), /* @__PURE__ */ import_react8.default.createElement(NavLink, { href: "#" }, translations.contact))));
   };
   var Navbar_default = Navbar;
 
   // app/javascript/react/src/components/Hero.jsx
-  var import_react7 = __toESM(require_react());
+  var import_react9 = __toESM(require_react());
   var HeroContainer = st.div`
   position: relative;
   background-image: url("/assets/dubai-marina.jpg");
@@ -42137,15 +42172,15 @@
   height: auto;
 `;
   var Hero = ({ cities, mainText, subtitle, localisationIconAlt, searchButton }) => {
-    return /* @__PURE__ */ import_react7.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react7.default.createElement(HeroCorp, null, /* @__PURE__ */ import_react7.default.createElement(MainText, null, mainText), /* @__PURE__ */ import_react7.default.createElement(Subtitle, null, subtitle), /* @__PURE__ */ import_react7.default.createElement(SearchBar, { as: "form", action: "/properties", method: "get" }, /* @__PURE__ */ import_react7.default.createElement(LocalisationIcon, { src: "/assets/localisation-icon.svg", alt: localisationIconAlt }), /* @__PURE__ */ import_react7.default.createElement(SearchInput, { as: "select", name: "city" }, cities.map((city, index2) => /* @__PURE__ */ import_react7.default.createElement("option", { key: index2, value: city }, city))), /* @__PURE__ */ import_react7.default.createElement(SearchButton, { type: "submit" }, searchButton)), /* @__PURE__ */ import_react7.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react7.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react7.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" })))));
+    return /* @__PURE__ */ import_react9.default.createElement(HeroContainer, null, /* @__PURE__ */ import_react9.default.createElement(HeroCorp, null, /* @__PURE__ */ import_react9.default.createElement(MainText, null, mainText), /* @__PURE__ */ import_react9.default.createElement(Subtitle, null, subtitle), /* @__PURE__ */ import_react9.default.createElement(SearchBar, { as: "form", action: "/properties", method: "get" }, /* @__PURE__ */ import_react9.default.createElement(LocalisationIcon, { src: "/assets/localisation-icon.svg", alt: localisationIconAlt }), /* @__PURE__ */ import_react9.default.createElement(SearchInput, { as: "select", name: "city" }, cities.map((city, index2) => /* @__PURE__ */ import_react9.default.createElement("option", { key: index2, value: city }, city))), /* @__PURE__ */ import_react9.default.createElement(SearchButton, { type: "submit" }, searchButton)), /* @__PURE__ */ import_react9.default.createElement(IconsContainer, null, /* @__PURE__ */ import_react9.default.createElement(IconCircle, { className: "green" }, " ", /* @__PURE__ */ import_react9.default.createElement(Icon2, { src: "/assets/whatsapp-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react9.default.createElement(IconCircle, { className: "blue" }, " ", /* @__PURE__ */ import_react9.default.createElement(Icon2, { src: "/assets/telephone-icon.svg", alt: "Flag" })), /* @__PURE__ */ import_react9.default.createElement(IconCircle, null, " ", /* @__PURE__ */ import_react9.default.createElement(Icon2, { src: "/assets/instagram-icon.svg", alt: "Flag" })))));
   };
   var Hero_default = Hero;
 
   // app/javascript/react/src/components/FeatureSection.jsx
-  var import_react9 = __toESM(require_react());
+  var import_react11 = __toESM(require_react());
 
   // app/javascript/react/src/components/FeatureCard.jsx
-  var import_react8 = __toESM(require_react());
+  var import_react10 = __toESM(require_react());
   var FeatureCardContainer = st.div`
     width: min-content;
     display: flex;
@@ -42244,7 +42279,7 @@
     const formatPrice = (price2) => {
       return "$" + price2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     };
-    return /* @__PURE__ */ import_react8.default.createElement(FeatureCardContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImageContainer, null, /* @__PURE__ */ import_react8.default.createElement(CardImage, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react8.default.createElement(CardBody, null, /* @__PURE__ */ import_react8.default.createElement(CardHeader, null, /* @__PURE__ */ import_react8.default.createElement(Price, null, formatPrice(price)), /* @__PURE__ */ import_react8.default.createElement(StyledLink, { href: `/properties/${id}` }, /* @__PURE__ */ import_react8.default.createElement(Icon3, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react8.default.createElement(Name, null, name2), /* @__PURE__ */ import_react8.default.createElement(Adress, null, address), /* @__PURE__ */ import_react8.default.createElement(Divider2, null), /* @__PURE__ */ import_react8.default.createElement(Options, null, /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react8.default.createElement(Room, null, bedrooms, " ", translatedBedrooms)), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react8.default.createElement(Bathroom, null, bathrooms, " ", translatedBathrooms)), /* @__PURE__ */ import_react8.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react8.default.createElement(OptionIcon, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react8.default.createElement(Area, null, area, " m\xB2")))));
+    return /* @__PURE__ */ import_react10.default.createElement(FeatureCardContainer, null, /* @__PURE__ */ import_react10.default.createElement(CardImageContainer, null, /* @__PURE__ */ import_react10.default.createElement(CardImage, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react10.default.createElement(CardBody, null, /* @__PURE__ */ import_react10.default.createElement(CardHeader, null, /* @__PURE__ */ import_react10.default.createElement(Price, null, formatPrice(price)), /* @__PURE__ */ import_react10.default.createElement(StyledLink, { href: `/properties/${id}` }, /* @__PURE__ */ import_react10.default.createElement(Icon3, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react10.default.createElement(Name, null, name2), /* @__PURE__ */ import_react10.default.createElement(Adress, null, address), /* @__PURE__ */ import_react10.default.createElement(Divider2, null), /* @__PURE__ */ import_react10.default.createElement(Options, null, /* @__PURE__ */ import_react10.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react10.default.createElement(OptionIcon, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react10.default.createElement(Room, null, bedrooms, " ", translatedBedrooms)), /* @__PURE__ */ import_react10.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react10.default.createElement(OptionIcon, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react10.default.createElement(Bathroom, null, bathrooms, " ", translatedBathrooms)), /* @__PURE__ */ import_react10.default.createElement(OptionsIcons, null, /* @__PURE__ */ import_react10.default.createElement(OptionIcon, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react10.default.createElement(Area, null, area, " m\xB2")))));
   };
   var FeatureCard_default = FeatureCard;
 
@@ -42314,8 +42349,8 @@
     margin: 0 1rem;
 `;
   var FeatureSection = ({ ventes, locations, translatedBedrooms, translatedBathrooms, buyLabel, rentLabel, seeMoreLabel }) => {
-    const [afficherVentes, setAfficherVentes] = (0, import_react9.useState)(true);
-    const [afficherLocations, setAfficherLocations] = (0, import_react9.useState)(false);
+    const [afficherVentes, setAfficherVentes] = (0, import_react11.useState)(true);
+    const [afficherLocations, setAfficherLocations] = (0, import_react11.useState)(false);
     const handleVentesChange = () => {
       setAfficherVentes(true);
       setAfficherLocations(false);
@@ -42325,21 +42360,21 @@
       setAfficherVentes(false);
     };
     const propertiesToShow = afficherVentes ? ventes : afficherLocations ? locations : [];
-    return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement(Title2, null, "Explorez nos Propri\xE9t\xE9s"), /* @__PURE__ */ import_react9.default.createElement(CheckboxAndLink, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxContainer, null, /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(
+    return /* @__PURE__ */ import_react11.default.createElement(import_react11.default.Fragment, null, /* @__PURE__ */ import_react11.default.createElement(Title2, null, "Explorez nos Propri\xE9t\xE9s"), /* @__PURE__ */ import_react11.default.createElement(CheckboxAndLink, null, /* @__PURE__ */ import_react11.default.createElement(CheckboxContainer, null, /* @__PURE__ */ import_react11.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react11.default.createElement(
       Checkbox,
       {
         name: "vente",
         checked: afficherVentes,
         onChange: handleVentesChange
       }
-    ), buyLabel), /* @__PURE__ */ import_react9.default.createElement(Separator, null, "|"), /* @__PURE__ */ import_react9.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react9.default.createElement(
+    ), buyLabel), /* @__PURE__ */ import_react11.default.createElement(Separator, null, "|"), /* @__PURE__ */ import_react11.default.createElement(CheckboxLabel, null, /* @__PURE__ */ import_react11.default.createElement(
       Checkbox,
       {
         name: "location",
         checked: afficherLocations,
         onChange: handleLocationsChange
       }
-    ), rentLabel)), /* @__PURE__ */ import_react9.default.createElement(LinkContainer, null, /* @__PURE__ */ import_react9.default.createElement(StyledLink2, { href: "/properties" }, seeMoreLabel), /* @__PURE__ */ import_react9.default.createElement(Icon4, { src: "/assets/arrow-icon-simple.svg", alt: "Icon" }))), /* @__PURE__ */ import_react9.default.createElement(SectionContainer, null, propertiesToShow && propertiesToShow.length > 0 ? propertiesToShow.map((property, index2) => /* @__PURE__ */ import_react9.default.createElement(
+    ), rentLabel)), /* @__PURE__ */ import_react11.default.createElement(LinkContainer, null, /* @__PURE__ */ import_react11.default.createElement(StyledLink2, { href: "/properties" }, seeMoreLabel), /* @__PURE__ */ import_react11.default.createElement(Icon4, { src: "/assets/arrow-icon-simple.svg", alt: "Icon" }))), /* @__PURE__ */ import_react11.default.createElement(SectionContainer, null, propertiesToShow && propertiesToShow.length > 0 ? propertiesToShow.map((property, index2) => /* @__PURE__ */ import_react11.default.createElement(
       FeatureCard_default,
       {
         key: index2,
@@ -42354,12 +42389,12 @@
         translatedBedrooms,
         translatedBathrooms
       }
-    )) : /* @__PURE__ */ import_react9.default.createElement("p", null, "Aucune propri\xE9t\xE9 \xE0 afficher")));
+    )) : /* @__PURE__ */ import_react11.default.createElement("p", null, "Aucune propri\xE9t\xE9 \xE0 afficher")));
   };
   var FeatureSection_default = FeatureSection;
 
   // app/javascript/react/src/components/AdvantageSection.jsx
-  var import_react10 = __toESM(require_react());
+  var import_react12 = __toESM(require_react());
   var AdvantageSectionContainer = st.section`
     display: flex;
     justify-content: space-between;
@@ -42467,12 +42502,12 @@
       { text: "10% Booking Amount", icon: "/assets/validate-icon.svg" },
       { text: "Payment With Cryptocurrency", icon: "/assets/validate-icon.svg" }
     ];
-    return /* @__PURE__ */ import_react10.default.createElement(AdvantageSectionContainer, null, /* @__PURE__ */ import_react10.default.createElement(AdvantageTextContainer, null, /* @__PURE__ */ import_react10.default.createElement(Title3, null, "Plus qu'une maison, plus qu'un foyer."), /* @__PURE__ */ import_react10.default.createElement(AdvantageList, null, advantages.map((advantage, index2) => /* @__PURE__ */ import_react10.default.createElement(AdvantageItem, { key: index2 }, /* @__PURE__ */ import_react10.default.createElement(Icon5, { src: advantage.icon, alt: "" }), advantage.text))), /* @__PURE__ */ import_react10.default.createElement(Button2, null, "En Savoir Plus", /* @__PURE__ */ import_react10.default.createElement(ButtonIcon, { src: "/assets/arrow-icon-simple-white.svg", alt: "Icon" }))), /* @__PURE__ */ import_react10.default.createElement(ImageContainer, null, /* @__PURE__ */ import_react10.default.createElement(Image, { src: "/assets/house_near_threes.svg", alt: "house near threes" })));
+    return /* @__PURE__ */ import_react12.default.createElement(AdvantageSectionContainer, null, /* @__PURE__ */ import_react12.default.createElement(AdvantageTextContainer, null, /* @__PURE__ */ import_react12.default.createElement(Title3, null, "Plus qu'une maison, plus qu'un foyer."), /* @__PURE__ */ import_react12.default.createElement(AdvantageList, null, advantages.map((advantage, index2) => /* @__PURE__ */ import_react12.default.createElement(AdvantageItem, { key: index2 }, /* @__PURE__ */ import_react12.default.createElement(Icon5, { src: advantage.icon, alt: "" }), advantage.text))), /* @__PURE__ */ import_react12.default.createElement(Button2, null, "En Savoir Plus", /* @__PURE__ */ import_react12.default.createElement(ButtonIcon, { src: "/assets/arrow-icon-simple-white.svg", alt: "Icon" }))), /* @__PURE__ */ import_react12.default.createElement(ImageContainer, null, /* @__PURE__ */ import_react12.default.createElement(Image, { src: "/assets/house_near_threes.svg", alt: "house near threes" })));
   };
   var AdvantageSection_default = AdvantageSection;
 
   // app/javascript/react/src/components/Footer.jsx
-  var import_react11 = __toESM(require_react());
+  var import_react13 = __toESM(require_react());
   var FooterContainer = st.footer`
     display: flex;
     justify-content: space-between;
@@ -42581,9 +42616,9 @@
     }
 `;
   var FooterContact = () => {
-    const [name2, setName] = (0, import_react11.useState)("");
-    const [email, setEmail] = (0, import_react11.useState)("");
-    const [message, setMessage] = (0, import_react11.useState)("");
+    const [name2, setName] = (0, import_react13.useState)("");
+    const [email, setEmail] = (0, import_react13.useState)("");
+    const [message, setMessage] = (0, import_react13.useState)("");
     const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
@@ -42606,12 +42641,12 @@
       setEmail("");
       setMessage("");
     };
-    return /* @__PURE__ */ import_react11.default.createElement(FooterContainer, null, /* @__PURE__ */ import_react11.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react11.default.createElement(Title4, null, "Laissez-nous vous aider \xE0 trouver les meilleures propri\xE9t\xE9s r\xE9sidentielles \xE0 Duba\xEF."), /* @__PURE__ */ import_react11.default.createElement(Paragraph, null, "Vous recherchez une propri\xE9t\xE9 \xE0 Duba\xEF qui prendra de la valeur avec le temps tout en vous offrant exclusivit\xE9 et confort ? Vous \xEAtes au bon endroit avec notre portefeuille, qui inclut uniquement les meilleures propri\xE9t\xE9s r\xE9sidentielles des \xC9mirats Arabes Unis.")), /* @__PURE__ */ import_react11.default.createElement(Form, { onSubmit: handleSubmit }, /* @__PURE__ */ import_react11.default.createElement(Input, { name: "name", type: "text", placeholder: "Nom", value: name2, onChange: (e) => setName(e.target.value), required: true }), /* @__PURE__ */ import_react11.default.createElement(Input, { name: "email", type: "email", placeholder: "Email", value: email, onChange: (e) => setEmail(e.target.value), required: true }), /* @__PURE__ */ import_react11.default.createElement(Textarea, { name: "message", placeholder: "Message", value: message, onChange: (e) => setMessage(e.target.value), required: true }), /* @__PURE__ */ import_react11.default.createElement(SubmitButton, { type: "submit" }, "Envoyer")));
+    return /* @__PURE__ */ import_react13.default.createElement(FooterContainer, null, /* @__PURE__ */ import_react13.default.createElement(ContactInfo, null, /* @__PURE__ */ import_react13.default.createElement(Title4, null, "Laissez-nous vous aider \xE0 trouver les meilleures propri\xE9t\xE9s r\xE9sidentielles \xE0 Duba\xEF."), /* @__PURE__ */ import_react13.default.createElement(Paragraph, null, "Vous recherchez une propri\xE9t\xE9 \xE0 Duba\xEF qui prendra de la valeur avec le temps tout en vous offrant exclusivit\xE9 et confort ? Vous \xEAtes au bon endroit avec notre portefeuille, qui inclut uniquement les meilleures propri\xE9t\xE9s r\xE9sidentielles des \xC9mirats Arabes Unis.")), /* @__PURE__ */ import_react13.default.createElement(Form, { onSubmit: handleSubmit }, /* @__PURE__ */ import_react13.default.createElement(Input, { name: "name", type: "text", placeholder: "Nom", value: name2, onChange: (e) => setName(e.target.value), required: true }), /* @__PURE__ */ import_react13.default.createElement(Input, { name: "email", type: "email", placeholder: "Email", value: email, onChange: (e) => setEmail(e.target.value), required: true }), /* @__PURE__ */ import_react13.default.createElement(Textarea, { name: "message", placeholder: "Message", value: message, onChange: (e) => setMessage(e.target.value), required: true }), /* @__PURE__ */ import_react13.default.createElement(SubmitButton, { type: "submit" }, "Envoyer")));
   };
   var Footer_default = FooterContact;
 
   // app/javascript/react/src/components/Copyright.jsx
-  var import_react12 = __toESM(require_react());
+  var import_react14 = __toESM(require_react());
   var CopyrightSection = st.section`
   background-color: #000;
   color: #fff;
@@ -42624,12 +42659,12 @@
   font-size: 0.875rem; // Vous pouvez ajuster la taille de la police selon vos besoins
 `;
   var Copyright = () => {
-    return /* @__PURE__ */ import_react12.default.createElement(CopyrightSection, null, /* @__PURE__ */ import_react12.default.createElement(CopyrightText, null, "\xA9 2024 Real Estate. All Rights Reserved."));
+    return /* @__PURE__ */ import_react14.default.createElement(CopyrightSection, null, /* @__PURE__ */ import_react14.default.createElement(CopyrightText, null, "\xA9 2024 Real Estate. All Rights Reserved."));
   };
   var Copyright_default = Copyright;
 
   // app/javascript/react/src/components/PropertyCard.jsx
-  var import_react13 = __toESM(require_react());
+  var import_react15 = __toESM(require_react());
   var PropertyCardContainer = st.div`
     width: min-content;
     display: flex;
@@ -42722,12 +42757,12 @@
     font-size: xx-small;
 `;
   var PropertyCard = ({ id, price, name: name2, address, image, bedrooms, bathrooms, area }) => {
-    return /* @__PURE__ */ import_react13.default.createElement(PropertyCardContainer, null, /* @__PURE__ */ import_react13.default.createElement(CardImageContainer2, null, /* @__PURE__ */ import_react13.default.createElement(CardImage2, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react13.default.createElement(CardBody2, null, /* @__PURE__ */ import_react13.default.createElement(CardHeader2, null, /* @__PURE__ */ import_react13.default.createElement(Price2, null, price), /* @__PURE__ */ import_react13.default.createElement(StyledLink3, { href: `/properties/${id}` }, /* @__PURE__ */ import_react13.default.createElement(Icon6, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react13.default.createElement(Name2, null, name2), /* @__PURE__ */ import_react13.default.createElement(Adress2, null, address), /* @__PURE__ */ import_react13.default.createElement(Divider3, null), /* @__PURE__ */ import_react13.default.createElement(Options2, null, /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react13.default.createElement(Room2, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react13.default.createElement(Bathroom2, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react13.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react13.default.createElement(OptionIcon2, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react13.default.createElement(Area2, null, area, " m\xB2")))));
+    return /* @__PURE__ */ import_react15.default.createElement(PropertyCardContainer, null, /* @__PURE__ */ import_react15.default.createElement(CardImageContainer2, null, /* @__PURE__ */ import_react15.default.createElement(CardImage2, { src: image, alt: "Feature card" })), /* @__PURE__ */ import_react15.default.createElement(CardBody2, null, /* @__PURE__ */ import_react15.default.createElement(CardHeader2, null, /* @__PURE__ */ import_react15.default.createElement(Price2, null, price), /* @__PURE__ */ import_react15.default.createElement(StyledLink3, { href: `/properties/${id}` }, /* @__PURE__ */ import_react15.default.createElement(Icon6, { src: "/assets/arrow-icon.svg", alt: "D\xE9tails" }))), /* @__PURE__ */ import_react15.default.createElement(Name2, null, name2), /* @__PURE__ */ import_react15.default.createElement(Adress2, null, address), /* @__PURE__ */ import_react15.default.createElement(Divider3, null), /* @__PURE__ */ import_react15.default.createElement(Options2, null, /* @__PURE__ */ import_react15.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon2, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react15.default.createElement(Room2, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react15.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon2, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react15.default.createElement(Bathroom2, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react15.default.createElement(OptionsIcons2, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon2, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react15.default.createElement(Area2, null, area, " m\xB2")))));
   };
   var PropertyCard_default = PropertyCard;
 
   // app/javascript/react/src/components/PropertyPhotosCarousel.jsx
-  var import_react14 = __toESM(require_react());
+  var import_react16 = __toESM(require_react());
   var CarouselContainer = st.div`
   display: flex;
   flex-direction: column;
@@ -42773,8 +42808,8 @@
   }
 `;
   var PropertyPhotosCarousel = ({ propertyPhotos }) => {
-    const [selectedImage, setSelectedImage] = (0, import_react14.useState)(propertyPhotos[0]);
-    return /* @__PURE__ */ import_react14.default.createElement(CarouselContainer, null, /* @__PURE__ */ import_react14.default.createElement(ImageContainer2, null, /* @__PURE__ */ import_react14.default.createElement(MainImage, { src: selectedImage.file, alt: "Selected" })), /* @__PURE__ */ import_react14.default.createElement(ThumbnailsContainer, null, propertyPhotos.map((photo) => /* @__PURE__ */ import_react14.default.createElement(ThumbnailContainer, { key: photo.id }, /* @__PURE__ */ import_react14.default.createElement(
+    const [selectedImage, setSelectedImage] = (0, import_react16.useState)(propertyPhotos[0]);
+    return /* @__PURE__ */ import_react16.default.createElement(CarouselContainer, null, /* @__PURE__ */ import_react16.default.createElement(ImageContainer2, null, /* @__PURE__ */ import_react16.default.createElement(MainImage, { src: selectedImage.file, alt: "Selected" })), /* @__PURE__ */ import_react16.default.createElement(ThumbnailsContainer, null, propertyPhotos.map((photo) => /* @__PURE__ */ import_react16.default.createElement(ThumbnailContainer, { key: photo.id }, /* @__PURE__ */ import_react16.default.createElement(
       Thumbnail,
       {
         src: photo.file,
@@ -42786,7 +42821,7 @@
   var PropertyPhotosCarousel_default = PropertyPhotosCarousel;
 
   // app/javascript/react/src/components/PropertyDetailsCard.jsx
-  var import_react15 = __toESM(require_react());
+  var import_react17 = __toESM(require_react());
   var PropertyDetailsCardContainer = st.div`
     display: flex;
     flex-direction: column;
@@ -42879,13 +42914,11 @@
     overflow: scroll;
 `;
   var PropertyDetailsCard = ({ price, name: name2, address, description, bedrooms, bathrooms, area }) => {
-    return /* @__PURE__ */ import_react15.default.createElement(PropertyDetailsCardContainer, null, /* @__PURE__ */ import_react15.default.createElement(CardBody3, null, /* @__PURE__ */ import_react15.default.createElement(CardHeader3, null, /* @__PURE__ */ import_react15.default.createElement(Name3, null, name2), /* @__PURE__ */ import_react15.default.createElement(Adress3, null, address)), /* @__PURE__ */ import_react15.default.createElement(Price3, null, price), /* @__PURE__ */ import_react15.default.createElement(Options3, null, /* @__PURE__ */ import_react15.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon3, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react15.default.createElement(Room3, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react15.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon3, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react15.default.createElement(Bathroom3, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react15.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react15.default.createElement(OptionIcon3, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react15.default.createElement(Area3, null, area, " m\xB2"))), /* @__PURE__ */ import_react15.default.createElement(Divider4, null), /* @__PURE__ */ import_react15.default.createElement(Description, null, description)));
+    return /* @__PURE__ */ import_react17.default.createElement(PropertyDetailsCardContainer, null, /* @__PURE__ */ import_react17.default.createElement(CardBody3, null, /* @__PURE__ */ import_react17.default.createElement(CardHeader3, null, /* @__PURE__ */ import_react17.default.createElement(Name3, null, name2), /* @__PURE__ */ import_react17.default.createElement(Adress3, null, address)), /* @__PURE__ */ import_react17.default.createElement(Price3, null, price), /* @__PURE__ */ import_react17.default.createElement(Options3, null, /* @__PURE__ */ import_react17.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react17.default.createElement(OptionIcon3, { src: "/assets/bed-icon.svg", alt: "Bed" }), /* @__PURE__ */ import_react17.default.createElement(Room3, null, bedrooms, " Chambres")), /* @__PURE__ */ import_react17.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react17.default.createElement(OptionIcon3, { src: "/assets/bath-icon.svg", alt: "Bath" }), /* @__PURE__ */ import_react17.default.createElement(Bathroom3, null, bathrooms, " Salles de bain")), /* @__PURE__ */ import_react17.default.createElement(OptionsIcons3, null, /* @__PURE__ */ import_react17.default.createElement(OptionIcon3, { src: "/assets/area-icon.svg", alt: "Area" }), /* @__PURE__ */ import_react17.default.createElement(Area3, null, area, " m\xB2"))), /* @__PURE__ */ import_react17.default.createElement(Divider4, null), /* @__PURE__ */ import_react17.default.createElement(Description, null, description)));
   };
   var PropertyDetailsCard_default = PropertyDetailsCard;
 
   // app/javascript/react/src/index.js
-  defineReact({ "sidebar-component": Sidebar_default }, { root: document.getElementById("sidebar-root") });
-  defineReact({ "dashboard-card-component": DashboardCard_default }, { root: document.getElementById("dashboard-card-root") });
   defineReact({ "title-component": Title_default }, { root: document.getElementById("title-root") });
   defineReact({ "button-component": Button_default }, { root: document.getElementById("button-root") });
   defineReact({ "navbar-component": Navbar_default }, { root: document.getElementById("navbar-root") });
@@ -42899,10 +42932,7 @@
   defineReact({ "property-details-card-component": PropertyDetailsCard_default }, { root: document.getElementById("property-details-card-root") });
 
   // app/javascript/application.js
-  var application = Application.start();
-  application.register("sortable", r);
-  application.debug = false;
-  window.Stimulus = application;
+  controllers_default.register("sortable", r);
   document.addEventListener("DOMContentLoaded", function() {
     const imageWrapper = document.querySelector(".image-wrapper");
     if (imageWrapper) {
